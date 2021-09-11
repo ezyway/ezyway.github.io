@@ -64,17 +64,17 @@ table td:after{
 	bottom: 0;
 	left: 20%;
 	height: 1px;
-	width: 70%;
+	width: 60%;
 }
 table td:before{
 	content: "";
 	background: orchid;
 	position: absolute;
-	bottom: 5px;
-	left: 20%;
-	height: 70%;
+	bottom: 20px;
+	left: 15%;
+	height: 60%;
 	width: 10px;
-	border-radius: 10px;
+	border-radius: 50px;
 }
 
 
@@ -101,6 +101,20 @@ html {
 @media only screen and (max-width:768px) {
 	html {
 		font-size: 10px;
+	}
+	table td:after{
+		bottom: 0;
+		left: 20%;
+		height: 1px;
+		width: 60%;
+		width: 75%;
+	}
+	table td:before{
+		bottom: 20px;
+		left: 10%;
+		height: 60%;
+		width: 10px;
+		border-radius: 50px;
 	}
 }
 @media only screen and (max-width:400px) {
