@@ -109,6 +109,10 @@ html {
 	.typewriter .wrap{
 		font-size: 18px;
 	}
+	.typewriter{
+		margin-bottom: 50px;
+	}
+	
 	table td:after{
 		bottom: 0;
 		left: 20%;
