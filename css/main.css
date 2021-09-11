@@ -762,6 +762,7 @@ input[type="reset"].button-primary,
 input[type="button"].button-primary {
 	background: #313131;
 	color: #FFFFFF;
+	border-radius: 5px;
 }
 .button.button-primary:hover,
 a.button.button-primary:hover,
@@ -1162,11 +1163,12 @@ header .row {
 header .top-bar {
 	display: block;
 	background: #000000;
-	min-width: 220px;
+	min-width: 240px;
 	min-height: 66px;
 	position: absolute;
 	left: 90px;
-	top: 0;
+	top: 10px;
+	border-radius: 5px;
 }
 header .logo {
 	display: block;
@@ -1288,10 +1290,12 @@ header .logo {
 	background: #000000;
 	padding: 24px 30px 42px;
 	margin: 0;
+	margin-top: 5px;
 	width: 100%;
 	height: auto;
 	clear: both;
 	display: none;
+	border-radius: 5px;
 }
 .main-navigation > li {
 	display: block;
@@ -1310,10 +1314,17 @@ header .logo {
 .main-navigation li a:hover {
 	color: #FF0077;
 	padding-left: 1rem;
+	background-color: #212121;
+	border-radius: 5px;
 }
 .main-navigation li.current > a {
 	background: none;
 	color: #FF0077;
+}
+.main-navigation li.current > a:hover {
+	background: none;
+	color: #FF0077;
+	background-color: #212121;
 }
 
 /**
@@ -1438,6 +1449,7 @@ header .logo {
 	font-size: 1.3rem;
 	text-transform: uppercase;
 	letter-spacing: .25rem;
+	border-radius: 5px;
 }
 .intro-content .button:hover, .intro-content .button:focus {
 	border-color: #cc005f;
@@ -2238,7 +2250,7 @@ header .logo {
  *
  * ------------------------------------------------------------------- 
  */
-#whatiknow {
+#myskills {
 	background: #151515;
 	padding-top: 7.2rem;
 	padding-bottom: 6rem;
@@ -2306,7 +2318,7 @@ header .logo {
  * ------------------------------------------------------------------- 
  */
 #contact {
-	background: #151515;
+	background: #0f0909;
 	padding-top: 12rem;
 	padding-bottom: 7.2rem;
 }
@@ -2561,7 +2573,7 @@ footer .row {
 	max-width: 900px;
 }
 footer .social {
-	text-align: right;
+	text-align: center;
 }
 footer .footer-social {
 	display: inline-block;
@@ -2621,8 +2633,8 @@ footer .copyright span:last-child::after {
  */
 #go-top {
 	position: fixed;
-	bottom: 0;
-	right: 0;
+	bottom: 10px;
+	right: 10px;
 	z-index: 600;
 	display: none;
 }
@@ -2631,7 +2643,7 @@ footer .copyright span:last-child::after {
 	border: 0 none;
 	display: block;
 	height: 6.6rem;
-	width: 6rem;
+	width: 6.6rem;
 	line-height: 6.6rem;
 	text-align: center;
 	background: #cc005f;
@@ -2643,6 +2655,7 @@ footer .copyright span:last-child::after {
 	-webkit-transition: all 0.3s ease-in-out;
 	-ms-transition: all 0.3s ease-in-out;
 	transition: all 0.3s ease-in-out;
+	border-radius: 50%;
 }
 #go-top a i {
 	font-size: 1.6rem;
