@@ -44,7 +44,7 @@
 
 
 
-
+/* For the Hello World */
 .typewriter .wrap{
 	color: #CC005f;
 	font-size: 30px;
@@ -53,6 +53,8 @@
 .typewriter{
 	margin-bottom: 50px;
 }
+
+/* For my skills section */
 table td{
 	text-align: center;
 	border: none;
@@ -60,26 +62,70 @@ table td{
 	width: 50%;
 	position:relative;
 }
-table td:after{
-	content: "";
-	background: orchid;
-	position: absolute;
-	bottom: 0;
-	left: 20%;
-	height: 1px;
-	width: 60%;
-}
-table td:before{
-	content: "";
-	background: orchid;
-	position: absolute;
-	bottom: 20px;
-	left: 15%;
-	height: 60%;
-	width: 10px;
-	border-radius: 50px;
+table td h2{
+	position: relative;
+	z-index: 99;
+	margin-top: 2.1rem;
 }
 
+table td::before{
+	content: "";
+	background: black;
+	position: absolute;
+	bottom: 20px;
+	height: 60%;
+	width: 40%;
+	border-radius: 10px;
+	z-index: 1;
+	box-shadow: 0px 0px 5px #3b3b3b;
+}
+
+table td:after{
+	content: "";
+	background: rgb(39, 39, 39);
+	position: absolute;
+	bottom: 13%;
+	height: 10px;
+	width: 20%;
+	z-index: 9;
+	border-radius: 10px;
+	box-shadow: 0px 0px 10px black;
+}
+
+table td:nth-child(even)::before{
+	left: 33%;
+}
+table td:nth-child(odd)::before{
+	left: 27%;
+}
+table td:nth-child(even)::after{
+	left: 44%;
+}
+table td:nth-child(odd)::after{
+	left: 37%;
+}
+
+
+
+/* Waves */
+.wave{
+	aspect-ratio: 1080/200;
+	width: 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	border: none;
+}
+
+.about-to-education-wave{
+	background-image: url("/svg/about-to-education-wave.svg");
+}
+.education-to-skills-wave{
+	background-image: url("/svg/education-to-skills-wave.svg");
+}
+.skills-to-contact-wave{
+	background-image: url("/svg/skills-to-contact-wave.svg");
+}
 
 
 
@@ -109,21 +155,36 @@ html {
 	.typewriter .wrap{
 		font-size: 18px;
 	}
-	table td:after{
-		bottom: 0;
-		left: 20%;
-		height: 1px;
-		width: 60%;
-		width: 75%;
+	td{
+		padding: 0px;
 	}
+	
 	table td:before{
-		bottom: 20px;
-		left: 10%;
-		height: 60%;
-		width: 10px;
-		border-radius: 50px;
+		bottom: 10px;
+		right: 50%;
+		height: 80%;
+		border-radius: 10px;
 	}
-
+	table td:after{
+		z-index: 9;
+		bottom: 10%;
+		height: 5px;
+		width: 60%;
+	}
+	table td:nth-child(even)::before{
+		left: 2%;
+		width: 95%;
+	}
+	table td:nth-child(odd)::before{
+		left: 10%;
+		width: 80%;
+	}
+	table td:nth-child(even)::after{
+		left: 20%;
+	}
+	table td:nth-child(odd)::after{
+		left: 19%;
+	}
 
 }
 @media only screen and (max-width:400px) {
@@ -412,6 +473,11 @@ th:last-child, td:last-child {
 .table-responsive {
 	overflow-x: auto;
 	-webkit-overflow-scrolling: touch;
+}
+@media only screen and (max-width:768px) {
+	td{
+		padding: 0px;
+	}
 }
 
 /**
@@ -1560,7 +1626,7 @@ header .logo {
 #about {
 	background: #FFFFFF;
 	padding-top: 12rem;
-	padding-bottom: 15rem;
+	/* padding-bottom: 15rem; not needed because of the wave svg */
 }
 #about .section-intro {
 	margin-bottom: 3rem;
@@ -1689,8 +1755,8 @@ header .logo {
  * ------------------------------------------------------------------- 
  */
 #resume {
-	padding-top: 12rem;
-	padding-bottom: 12rem;
+	/* padding-top: 12rem; */
+	/* padding-bottom: 12rem; not needed because of the spacer svg */
 }
 
 #resume .resume-header {
@@ -2252,8 +2318,9 @@ header .logo {
  */
 #myskills {
 	background: #151515;
-	padding-top: 7.2rem;
-	padding-bottom: 6rem;
+	/* background: white; */
+	/* padding-top: 7.2rem;
+	padding-bottom: 6rem; */
 	text-align: center;
 }
 #stats .row {
@@ -2319,7 +2386,7 @@ header .logo {
  */
 #contact {
 	background: #0f0909;
-	padding-top: 12rem;
+	/* padding-top: 12rem;  won't be needing because of the wave */
 	padding-bottom: 7.2rem;
 }
 #contact .section-intro h1 {
