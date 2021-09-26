@@ -54,6 +54,7 @@
 	margin-bottom: 50px;
 }
 
+
 /* For my skills section */
 table td{
 	text-align: center;
@@ -67,6 +68,10 @@ table td h2{
 	z-index: 99;
 	margin-top: 2.1rem;
 }
+
+/* Before is Table Box */
+/* After is Table Style Component */
+
 
 table td::before{
 	content: "";
@@ -82,11 +87,11 @@ table td::before{
 
 table td:after{
 	content: "";
-	background: rgb(39, 39, 39);
+	background: #313131;
 	position: absolute;
-	bottom: 13%;
-	height: 10px;
-	width: 20%;
+	bottom: 25%;
+	height: 50px;
+	width: 20px;
 	z-index: 9;
 	border-radius: 10px;
 	box-shadow: 0px 0px 10px black;
@@ -98,12 +103,31 @@ table td:nth-child(even)::before{
 table td:nth-child(odd)::before{
 	left: 27%;
 }
+
 table td:nth-child(even)::after{
-	left: 44%;
+	left: 71.5%;
 }
 table td:nth-child(odd)::after{
-	left: 37%;
+	left: 65%;
 }
+
+
+
+/* images for the programming languages */
+td img{
+	width: 70px;
+	position: absolute;
+	padding: 10px;
+	z-index: 10;
+	background: white;
+	box-shadow: 0px 0px 10px grey;
+	border-radius: 50%;
+	left: 25%;
+}
+#imgEven{
+	left: 30%;
+}
+
 
 
 
@@ -167,23 +191,39 @@ html {
 	}
 	table td:after{
 		z-index: 9;
-		bottom: 10%;
-		height: 5px;
-		width: 60%;
+		bottom: 27%;
+		height: 40px;
+		width: 15px;
 	}
+
 	table td:nth-child(even)::before{
 		left: 2%;
 		width: 95%;
 	}
 	table td:nth-child(odd)::before{
 		left: 10%;
-		width: 80%;
+		width: 70%;
 	}
+
 	table td:nth-child(even)::after{
-		left: 20%;
+		left: 92%;
 	}
 	table td:nth-child(odd)::after{
-		left: 19%;
+		left: 75%;
+	}
+
+
+	/* images for the programming languages */
+	#myskills .col-twelve{
+		padding: 0px;
+	}
+	td img{
+		width: 55px;
+		left: 2%;
+		bottom: 10px;
+	}
+	#imgEven{
+		left: -12%;
 	}
 
 }
@@ -2318,6 +2358,8 @@ header .logo {
  */
 #myskills {
 	background: #151515;
+	/* background: url('../images/skills-bg.jpg');
+	background- */
 	/* background: white; */
 	padding-top: 10rem;
 	/* padding-bottom: 6rem; */
