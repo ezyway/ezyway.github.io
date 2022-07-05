@@ -1685,8 +1685,9 @@ header .logo {
 	float: left;
 }
 .intro-info .lead {
-	text-align: left;
-	padding-left: 13rem;
+	text-align: justify;
+	padding-left: 5rem;
+	padding-right: 5rem;
 }
 
 .about-content {
@@ -1735,7 +1736,7 @@ header .logo {
 	width: 250px;
 }
 .button-section [class*="col-"] .button:first-child {
-	margin-right: 4rem;
+	/* margin-right: 4rem; */
 }
 
 /**
