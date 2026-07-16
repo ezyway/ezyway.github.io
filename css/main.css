@@ -2776,4 +2776,103 @@ footer .copyright span:last-child::after {
 	background: #000000;
 }
 
+/* ===================================================================
+ * 18. projects - (_layout.scss)
+ * ------------------------------------------------------------------- */
+#projects {
+	padding-top: 10rem;
+}
+.projects-grid {
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-flow: row wrap;
+	-ms-flex-flow: row wrap;
+	flex-flow: row wrap;
+	margin-top: 3rem;
+	padding: 0 15px;
+}
+.project-card-col {
+	width: 50%;
+	padding: 0 15px;
+	margin-bottom: 30px;
+	box-sizing: border-box;
+}
+.project-card {
+	background: #FFFFFF;
+	border-radius: 8px;
+	padding: 3.5rem;
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+	-webkit-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+	text-align: left;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+.project-card:hover {
+	-webkit-transform: translateY(-8px);
+	transform: translateY(-8px);
+	box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+}
+.project-card-icon {
+	color: #FF0077;
+	font-size: 3rem;
+	margin-bottom: 1.5rem;
+}
+.project-card h3 {
+	font-family: "poppins-bold", sans-serif;
+	font-size: 2.2rem;
+	margin-bottom: 1.2rem;
+	color: #313131;
+}
+.project-card p {
+	font-size: 1.5rem;
+	line-height: 1.8;
+	color: #6e6e6e;
+	margin-bottom: 2rem;
+	flex-grow: 1;
+}
+.project-tags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin-bottom: 2rem;
+}
+.project-tags span {
+	font-size: 1.1rem;
+	font-family: "poppins-medium", sans-serif;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	background: #F1F1F1;
+	color: #313131;
+	padding: 4px 10px;
+	border-radius: 4px;
+	border: 1px solid #E1E1E1;
+}
+.project-card:hover .project-tags span {
+	background: #FFE5F0;
+	color: #FF0077;
+	border-color: #FFD0E5;
+}
+.project-link {
+	font-family: "poppins-medium", sans-serif;
+	font-size: 1.4rem;
+	color: #FF0077;
+	text-decoration: none;
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	transition: color 0.2s ease;
+}
+.project-link:hover {
+	color: #313131;
+}
+
+@media only screen and (max-width: 768px) {
+	.project-card-col {
+		width: 100%;
+	}
+}
+
 /*# sourceMappingURL=main.css.map */

@@ -94,6 +94,19 @@
 			css.type = "text/css";
 			css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
 			document.body.appendChild(css);
+
+			// Dynamic Age Calculation (June 1999)
+			var birthDate = new Date(1999, 5, 1);
+			var today = new Date();
+			var age = today.getFullYear() - birthDate.getFullYear();
+			var m = today.getMonth() - birthDate.getMonth();
+			if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+				age--;
+			}
+			var ageEl = document.getElementById('dynamic-age');
+			if (ageEl) {
+				ageEl.textContent = age + " Years";
+			}
 		};
 	</script>
 
@@ -119,6 +132,7 @@
 						<li class="current"><a class="smoothscroll"  href="#intro" title="">My Profile</a></li>
 						<li><a class="smoothscroll"  href="#about" title="">About</a></li>
 						<li><a class="smoothscroll"  href="#resume" title="">Resume</a></li>
+						<li><a class="smoothscroll"  href="#projects" title="">Projects</a></li>
 						<li><a class="smoothscroll"  href="#myskills" title="">My Skills</a></li>
 						<li><a class="smoothscroll"  href="#contact" title="">Contact</a></li>
 					</ul>
@@ -158,7 +172,7 @@
    	</div> <!-- /intro-content --> 
 
    	<ul class="intro-social">        
-         <li><a href="https://www.linkedin.com/in/sreyas-cv/" target="blank"><i class="fa fa-linkedin"></i></a></li>
+         <li><a href="https://linkedin.com/in/cvbiro" target="blank"><i class="fa fa-linkedin"></i></a></li>
          <li><a href="https://github.com/ezyway" target="blank"><i class="fa fa-github"></i></a></li>
       </ul> <!-- /intro-social -->      	
    </section> <!-- /intro -->
@@ -179,8 +193,8 @@
 
    				<!-- <img src="images/profile-pic.jpg" alt="Profile Picture"> -->
 
-   				<p class="lead">&emsp;&emsp;&emsp;A driven individual looking for a platform to push himself and others with him towards a better future...</p>
-   				<p class="lead">&emsp;&emsp;&emsp;I've completed my MCA (Master in Computer Applications) from <a href="https://cusat.ac.in/" target="blank">CUSAT (Cochin University of Science and Technology)</a> , Kerala, India. I'm pursuing my Post-Graduate Certificate in Cyber Security from <a href="https://saskpolytech.ca/" target="blank">Saskatchewan Polytechnic</a>, Saskatchewan, Canada</p>
+    				<p class="lead">&emsp;&emsp;&emsp;Software Engineer specializing in AI systems and backend infrastructure, with hands-on experience building production-grade multi-agent platforms powered by LLMs. Designed and deployed agentic architectures supporting 20+ legacy agents along with dynamic agent generation via an agent-builder framework, enabling complex, multi-stage workflows across scientific and enterprise domains.</p>
+    				<p class="lead">&emsp;&emsp;&emsp;Strong in Python, FastAPI, and cloud-native systems, with proven ability to translate research-driven prototypes into scalable, production-ready AI systems. Experienced in collaborating cross-functionally with domain experts to deliver end-to-end intelligent systems.</p>
    			</div>   			
 
    		</div>   		
@@ -195,12 +209,10 @@
    				<li>
    					<strong>Fullname: </strong>Sreyas Cheeran Velikoth
    				</li>
-   				<li>
-   					<strong>Age: </strong> 23 Years
-   				</li>
-   				<li>
-   					<strong>Email: </strong><a href="mailto:sreyas.code@gmail.com">sreyas.code@gmail.com</a>
-   				</li>
+    				<li><strong>Age: </strong><span id="dynamic-age" style="display: inline;"></span></li>
+    				<li>
+    					<strong>Email: </strong><a href="mailto:cvbiro.career@gmail.com">cvbiro.career@gmail.com</a>
+    				</li>
 
    			</ul> <!-- /info-list -->
 
@@ -367,10 +379,89 @@
    		</div> <!-- /col-twelve -->
    		
    	</div> <!-- /resume-timeline -->
-
-		<div class="wave education-to-skills-wave" width="100%"></div>
 		
-	</section> <!-- /features -->
+	</section> <!-- /resume -->
+
+   <!-- projects Section
+   ================================================== -->
+   <section id="projects" class="grey-section">
+
+      <div class="row section-intro">
+         <div class="col-twelve">
+            <h5>Projects</h5>
+            <h1>Check out some of my work.</h1>
+         </div>
+      </div>
+
+      <div class="row projects-grid">
+         <!-- Card 1: Windows Malware Classification -->
+         <div class="project-card-col">
+            <div class="project-card">
+               <div class="project-card-icon"><i class="fa fa-shield"></i></div>
+               <h3>Windows Malware Classification</h3>
+               <p>A hybrid Deep Learning classification system utilizing Cuckoo Sandbox for dynamic analysis and TensorFlow to identify and categorize Windows malware binaries.</p>
+               <div class="project-tags">
+                  <span>Python</span>
+                  <span>TensorFlow</span>
+                  <span>Machine Learning</span>
+                  <span>Cyber Security</span>
+               </div>
+               <a href="https://github.com/ezyway" target="_blank" class="project-link"><i class="fa fa-github"></i> View GitHub</a>
+            </div>
+         </div>
+
+         <!-- Card 2: AMD Website Concept -->
+         <div class="project-card-col">
+            <div class="project-card">
+               <div class="project-card-icon"><i class="fa fa-laptop"></i></div>
+               <h3>AMD Website Concept</h3>
+               <p>A fully responsive product-focused website clone and customization for AMD, featuring a robust PHP backend, jQuery interface, and MySQL database.</p>
+               <div class="project-tags">
+                  <span>PHP</span>
+                  <span>jQuery</span>
+                  <span>MySQL</span>
+                  <span>Bootstrap</span>
+               </div>
+               <a href="https://github.com/ezyway" target="_blank" class="project-link"><i class="fa fa-github"></i> View GitHub</a>
+            </div>
+         </div>
+
+         <!-- Card 3: Intel Website Concept -->
+         <div class="project-card-col">
+            <div class="project-card">
+               <div class="project-card-icon"><i class="fa fa-code-fork"></i></div>
+               <h3>Intel Website Concept</h3>
+               <p>A web portal developed for Intel, incorporating dynamically generated pages, product specification sheets, and administration dashboard utilizing custom SQL queries.</p>
+               <div class="project-tags">
+                  <span>PHP</span>
+                  <span>jQuery</span>
+                  <span>MySQL</span>
+                  <span>HTML5</span>
+               </div>
+               <a href="https://github.com/ezyway" target="_blank" class="project-link"><i class="fa fa-github"></i> View GitHub</a>
+            </div>
+         </div>
+
+         <!-- Card 4: Body Measurement App -->
+         <div class="project-card-col">
+            <div class="project-card">
+               <div class="project-card-icon"><i class="fa fa-mobile-phone"></i></div>
+               <h3>Body Measurement App</h3>
+               <p>An Android application developed to log, track, and visualize physical body measurements and fitness progress metrics, using SQLite storage.</p>
+               <div class="project-tags">
+                  <span>Android</span>
+                  <span>Java</span>
+                  <span>SQLite</span>
+                  <span>Mobile Dev</span>
+               </div>
+               <a href="https://github.com/ezyway" target="_blank" class="project-link"><i class="fa fa-github"></i> View GitHub</a>
+            </div>
+         </div>
+      </div>
+
+      <div class="wave education-to-skills-wave" width="100%"></div>
+
+   </section> <!-- /projects -->
 
 
 	
@@ -437,13 +528,13 @@
    		<div class="col-six tab-full">
    			<div class="icon"><i class="icon-pin"></i></div>
    			<h5>Where to find me</h5>
-   			<p>Saskatoon, Saskatchewan, Canada</p>
+    			<p>Hyderabad, Telangana, India</p>
    		</div>
 
    		<div class="col-six tab-full collapse">
    			<div class="icon"><i class="icon-mail"></i></div>
    			<h5>Email Me At</h5>
-   			<p><a href="mailto:sreyas.code@gmail.com" style="color:#6e6e6e">sreyas.code@gmail.com</a></p>
+    			<p><a href="mailto:cvbiro.career@gmail.com" style="color:#6e6e6e">cvbiro.career@gmail.com</a></p>
 
    		</div>
    		
@@ -461,7 +552,7 @@
      		<div class="col-twelve tab-full social">
 
      			<ul class="footer-social">        
-					<li><a href="https://www.linkedin.com/in/sreyas-cv/" target="blank"><i class="fa fa-linkedin"></i></a></li>
+					<li><a href="https://linkedin.com/in/cvbiro" target="blank"><i class="fa fa-linkedin"></i></a></li>
 					<li><a href="https://github.com/ezyway" target="blank"><i class="fa fa-github"></i></a></li>
 			   </ul> 
 	      		
