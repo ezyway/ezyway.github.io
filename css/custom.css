@@ -480,3 +480,73 @@
 	-webkit-transform: scale(0.95);
 	transform: scale(0.95);
 }
+
+/* 4. Skills Section Custom Grid & Card Styling */
+#myskills {
+	background: #151515 !important; /* Restore original background to match SVG wave transitions */
+	padding-top: 10rem;
+	padding-bottom: 0 !important; /* Let wave sit directly at the bottom edge */
+}
+#myskills h5 {
+	color: #ff0077;
+	text-align: center;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	margin-bottom: 5rem;
+}
+.skills-grid {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 2rem;
+	max-width: 900px;
+	margin: 0 auto;
+	padding: 0 20px 8rem 20px; /* added 8rem padding-bottom to separate content from wave */
+}
+.skill-card {
+	background: #1d1d1d;
+	border: 1px solid rgba(255, 255, 255, 0.04);
+	border-radius: 12px;
+	padding: 1.5rem 2.5rem;
+	display: flex;
+	align-items: center;
+	gap: 1.5rem;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+	cursor: pointer;
+	
+	/* Scroll Animation Initial State */
+	opacity: 0;
+	transform: translateY(20px);
+	transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.4s, box-shadow 0.4s;
+}
+.skills-grid.is-visible .skill-card {
+	opacity: 1;
+	transform: translateY(0);
+}
+.skill-card:hover {
+	transform: translateY(-5px);
+	border-color: rgba(255, 0, 119, 0.25);
+	box-shadow: 0 10px 25px rgba(255, 0, 119, 0.08), 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+.skill-icon-wrap {
+	width: 3.6rem;
+	height: 3.6rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.skill-card:hover .skill-icon-wrap {
+	transform: scale(1.15) rotate(5deg);
+}
+.skill-icon-wrap img {
+	max-width: 100%;
+	max-height: 100%;
+	object-fit: contain;
+}
+.skill-card h4 {
+	font-family: "poppins-semibold", sans-serif;
+	font-size: 1.6rem;
+	color: #ffffff;
+	margin: 0;
+}

@@ -197,23 +197,36 @@ document.addEventListener("DOMContentLoaded", function() {
     projectsGrid.innerHTML = projHtml;
   }
 
-  // 5. Render Skills
-  const skillsTbody = document.getElementById("skills-table-body");
-  if (skillsTbody && resumeData.skills) {
+  // 5. Render Skills (Interactive Pill Grid)
+  const skillsGrid = document.getElementById("skills-grid-wrap");
+  if (skillsGrid && resumeData.skills) {
     let skillsHtml = "";
-    for (let i = 0; i < resumeData.skills.length; i += 2) {
-      const skill1 = resumeData.skills[i];
-      const skill2 = resumeData.skills[i + 1];
-      skillsHtml += `<tr>`;
-      skillsHtml += `<td> <img src="${skill1.icon}"> <h2 style="color:#ff0077">${skill1.name}</h2></td>`;
-      if (skill2) {
-        skillsHtml += `<td> <img src="${skill2.icon}" class="img-even"> <h2 style="color:#ff0077">${skill2.name}</h2></td>`;
-      } else {
-        skillsHtml += `<td></td>`;
-      }
-      skillsHtml += `</tr>`;
+    resumeData.skills.forEach((skill, index) => {
+      skillsHtml += `
+        <div class="skill-card" style="transition-delay: ${index * 0.05}s">
+          <div class="skill-icon-wrap">
+            <img src="${skill.icon}" alt="${skill.name} icon">
+          </div>
+          <h4>${skill.name}</h4>
+        </div>
+      `;
+    });
+    skillsGrid.innerHTML = skillsHtml;
+
+    // Trigger scroll fade-in using IntersectionObserver
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            skillsGrid.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      observer.observe(skillsGrid);
+    } else {
+      skillsGrid.classList.add('is-visible');
     }
-    skillsTbody.innerHTML = skillsHtml;
   }
 
   // Initialize interactive timeline accordion logic
