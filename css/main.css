@@ -1828,6 +1828,7 @@ header .logo {
 #resume .timeline-block {
 	position: relative;
 	padding-top: 1.5rem;
+	clear: both;
 }
 #resume .timeline-ico {
 	height: 4.8rem;
