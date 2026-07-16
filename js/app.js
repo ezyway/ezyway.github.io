@@ -116,9 +116,14 @@ document.addEventListener("DOMContentLoaded", function() {
     resumeData.experiences.forEach((exp, index) => {
       const dateText = (exp.start === exp.end) ? formatDate(exp.start) : `${formatDate(exp.start)} - ${formatDate(exp.end)}`;
       const isExpandedClass = index === 0 ? "is-expanded" : "";
+      const icoClass = exp.logo ? "timeline-ico has-logo" : "timeline-ico";
+      const icoContent = exp.logo 
+        ? `<img src="${exp.logo}" alt="${exp.company} logo" class="timeline-logo-img">`
+        : `<i class="fa fa-briefcase"></i>`;
+        
       expHtml += `
         <div class="timeline-block ${isExpandedClass}" tabindex="0" data-start="${exp.start}" data-end="${exp.end}" data-category="${exp.category}">
-          <div class="timeline-ico"><i class="fa fa-briefcase"></i></div>
+          <div class="${icoClass}">${icoContent}</div>
           <div class="timeline-header">
             <h3>${exp.role}</h3>
             <p class="timeline-time-header">${dateText}</p>
@@ -143,9 +148,14 @@ document.addEventListener("DOMContentLoaded", function() {
     let eduHtml = "";
     resumeData.education.forEach((edu) => {
       const dateText = (edu.start === edu.end) ? formatDate(edu.start) : `${formatDate(edu.start)} - ${formatDate(edu.end)}`;
+      const icoClass = edu.logo ? "timeline-ico has-logo" : "timeline-ico";
+      const icoContent = edu.logo 
+        ? `<img src="${edu.logo}" alt="${edu.institution} logo" class="timeline-logo-img">`
+        : `<i class="fa fa-graduation-cap"></i>`;
+
       eduHtml += `
         <div class="timeline-block" tabindex="0" data-start="${edu.start}" data-end="${edu.end}">
-          <div class="timeline-ico"><i class="fa fa-graduation-cap"></i></div>
+          <div class="${icoClass}">${icoContent}</div>
           <div class="timeline-header">
             <h3>${edu.degree}</h3>
             <p class="timeline-time-header">${dateText}</p>

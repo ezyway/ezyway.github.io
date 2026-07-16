@@ -9,6 +9,7 @@ services:
     restart: unless-stopped
     volumes:
       - ./index.html:/usr/share/nginx/html/index.html:ro
+      - ./samples.html:/usr/share/nginx/html/samples.html:ro
       - ./favi.ico:/usr/share/nginx/html/favi.ico:ro
       - ./zfavicon.png:/usr/share/nginx/html/zfavicon.png:ro
       - ./css:/usr/share/nginx/html/css:ro
