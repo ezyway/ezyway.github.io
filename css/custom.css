@@ -1,0 +1,277 @@
+/* ===================================================================
+ * custom styles & override rules
+ * ------------------------------------------------------------------- */
+
+/* 1. Accordion expanded details & animation transitions */
+#resume .timeline-details {
+	max-height: 0;
+	overflow: hidden;
+	opacity: 0;
+	transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, margin-top 0.4s ease;
+	margin-top: 0;
+}
+#resume .timeline-block.is-expanded .timeline-details {
+	max-height: 1200px;
+	opacity: 1;
+	margin-top: 1.5rem;
+}
+
+/* Animated date/time and duration transitions on accordion toggle */
+#resume .timeline-time-header {
+	margin-top: 0;
+	margin-bottom: 0;
+	opacity: 0;
+	max-height: 0;
+	overflow: hidden;
+	transform: translateX(80px);
+	transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), max-height 0.4s ease, margin-top 0.4s ease;
+	pointer-events: none;
+}
+
+#resume .timeline-block.is-expanded .timeline-time-header {
+	opacity: 1;
+	max-height: 40px;
+	margin-top: 0.2rem;
+	transform: translateX(0);
+	pointer-events: auto;
+}
+
+#resume .timeline-duration {
+	margin-top: 0.1rem;
+	margin-bottom: 0;
+	font-family: "poppins-regular", sans-serif;
+	font-size: 1.4rem;
+	color: #888888;
+	opacity: 1;
+	transform: translateY(-8px);
+	transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), margin-top 0.4s ease, color 0.3s ease;
+}
+
+#resume .timeline-block.is-expanded .timeline-duration {
+	transform: translateY(0);
+	margin-top: 0.2rem;
+}
+
+#resume .timeline-block:hover .timeline-duration {
+	color: #ff0077;
+}
+
+#resume .timeline-time-content {
+	margin-top: 0;
+	margin-bottom: 0;
+	font-family: "poppins-regular", sans-serif;
+	font-size: 1.6rem;
+	color: #888888;
+	opacity: 1;
+	transform: translateX(0);
+	transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), max-height 0.4s ease, margin-top 0.4s ease;
+	max-height: 40px;
+	overflow: hidden;
+}
+
+#resume .timeline-block.is-expanded .timeline-time-content {
+	opacity: 0;
+	transform: translateX(-80px);
+	max-height: 0;
+	margin-top: 0;
+	pointer-events: none;
+}
+
+@media only screen and (max-width: 768px) {
+	#resume .timeline-time-header {
+		transform: translateY(-20px);
+	}
+	#resume .timeline-block.is-expanded .timeline-time-header {
+		transform: translateY(0);
+	}
+	#resume .timeline-block.is-expanded .timeline-time-content {
+		transform: translateY(-20px);
+	}
+}
+
+/* 2. Projects grid & cards styling */
+#projects {
+	padding-top: 10rem;
+}
+.projects-grid {
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-flow: row wrap;
+	-ms-flex-flow: row wrap;
+	flex-flow: row wrap;
+	margin-top: 3rem;
+	padding: 0 15px;
+}
+.project-card-col {
+	width: 50%;
+	padding: 0 15px;
+	margin-bottom: 30px;
+	box-sizing: border-box;
+}
+.project-card {
+	background: #FFFFFF;
+	border-radius: 8px;
+	padding: 3.5rem;
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+	-webkit-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+	text-align: left;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+.project-card:hover {
+	-webkit-transform: translateY(-8px);
+	transform: translateY(-8px);
+	box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+}
+.project-card-icon {
+	color: #FF0077;
+	font-size: 3rem;
+	margin-bottom: 1.5rem;
+}
+.project-card h3 {
+	font-family: "poppins-bold", sans-serif;
+	font-size: 2.2rem;
+	margin-bottom: 1.2rem;
+	color: #313131;
+}
+.project-card p {
+	font-size: 1.5rem;
+	line-height: 1.8;
+	color: #6e6e6e;
+	margin-bottom: 2rem;
+	flex-grow: 1;
+}
+.project-tags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin-bottom: 2rem;
+}
+.project-tags span {
+	font-size: 1.1rem;
+	font-family: "poppins-medium", sans-serif;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	background: #F1F1F1;
+	color: #313131;
+	padding: 4px 10px;
+	border-radius: 4px;
+	border: 1px solid #E1E1E1;
+}
+.project-card:hover .project-tags span {
+	background: #FFE5F0;
+	color: #FF0077;
+	border-color: #FFD0E5;
+}
+.project-link {
+	font-family: "poppins-medium", sans-serif;
+	font-size: 1.4rem;
+	color: #FF0077;
+	text-decoration: none;
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	transition: color 0.2s ease;
+}
+.project-link:hover {
+	color: #313131;
+}
+
+@media only screen and (max-width: 768px) {
+	.project-card-col {
+		width: 100%;
+	}
+}
+
+/* 3. Work Experience Filter Pills */
+.filter-pills-container {
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-justify-content: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	gap: 1.5rem;
+	margin-top: 2.5rem;
+	margin-bottom: 4.5rem;
+	-webkit-flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+}
+
+.filter-pill {
+	background: #ffffff;
+	border: 2px solid #d1d1d1;
+	color: #6e6e6e;
+	padding: 0.8rem 2.4rem;
+	font-family: "poppins-semibold", sans-serif;
+	font-size: 1.4rem;
+	text-transform: uppercase;
+	letter-spacing: 0.15rem;
+	border-radius: 50px;
+	cursor: pointer;
+	-webkit-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+	transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+	outline: none;
+	line-height: 1.5;
+	box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.filter-pill:hover {
+	color: #ff0077;
+	border-color: #ff0077;
+	background: #ffffff;
+	-webkit-transform: translateY(-2px);
+	transform: translateY(-2px);
+	box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.filter-pill.active {
+	background-color: #ff0077;
+	border-color: #ff0077;
+	color: #ffffff;
+	box-shadow: 0 4px 15px rgba(255, 0, 119, 0.4);
+}
+
+.filter-pill.active:hover {
+	background-color: #e6006b;
+	border-color: #e6006b;
+	color: #ffffff;
+}
+
+.filter-pill:focus-visible {
+	outline: 2px solid #ff0077;
+	outline-offset: 3px;
+}
+
+#resume .timeline-block {
+	-webkit-transition: -webkit-transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), 
+	                    opacity 0.4s ease, 
+	                    max-height 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), 
+	                    margin 0.4s ease, 
+	                    padding 0.4s ease;
+	transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), 
+	            opacity 0.4s ease, 
+	            max-height 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), 
+	            margin 0.4s ease, 
+	            padding 0.4s ease;
+	max-height: 2000px;
+	opacity: 1;
+	overflow: hidden;
+}
+
+#resume .timeline-block.is-filtered-out {
+	max-height: 0 !important;
+	opacity: 0 !important;
+	padding-top: 0 !important;
+	padding-bottom: 0 !important;
+	margin-top: 0 !important;
+	margin-bottom: 0 !important;
+	border: none !important;
+	pointer-events: none;
+	-webkit-transform: scale(0.95);
+	transform: scale(0.95);
+}

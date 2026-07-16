@@ -17,6 +17,7 @@
    <link rel="stylesheet" href="css/base.css">  
    <link rel="stylesheet" href="css/main.css">
    <link rel="stylesheet" href="css/vendor.css">
+   <link rel="stylesheet" href="css/custom.css">
 
    <!-- script
    ================================================== -->   
@@ -32,83 +33,7 @@
 
 
 
-   <!-- Custom Scripts
-	================================================== -->
-	<!-- Making Navigate text click the menu -->
-	<script>
-		function navClick(){ document.getElementById("menu").click(); }
-	</script>
-	<script>
-		var TxtType = function(el, toRotate, period) {
-			this.toRotate = toRotate;
-			this.el = el;
-			this.loopNum = 0;
-			this.period = parseInt(period, 10) || 2000;
-			this.txt = '';
-			this.tick();
-			this.isDeleting = false;
-		};
-
-		TxtType.prototype.tick = function() {
-			var i = this.loopNum % this.toRotate.length;
-			var fullTxt = this.toRotate[i];
-
-			if (this.isDeleting) {
-				this.txt = fullTxt.substring(0, this.txt.length - 1);
-			} else {
-				this.txt = fullTxt.substring(0, this.txt.length + 1);
-			}
-
-			this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
-
-			var that = this;
-			var delta = 200 - Math.random() * 100;
-
-			if (this.isDeleting) { delta /= 2; }
-
-			if (!this.isDeleting && this.txt === fullTxt) {
-				delta = this.period;
-				this.isDeleting = true;
-			} else if (this.isDeleting && this.txt === '') {
-				this.isDeleting = false;
-				this.loopNum++;
-				delta = 500;
-			}
-
-			setTimeout(function() {
-			that.tick();
-			}, delta);
-		};
-
-		window.onload = function() {
-			var elements = document.getElementsByClassName('typewrite');
-			for (var i=0; i<elements.length; i++) {
-					var toRotate = elements[i].getAttribute('data-type');
-					var period = elements[i].getAttribute('data-period');
-				if (toRotate) {
-					new TxtType(elements[i], JSON.parse(toRotate), period);
-				}
-			}
-			// INJECT CSS
-			var css = document.createElement("style");
-			css.type = "text/css";
-			css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
-			document.body.appendChild(css);
-
-			// Dynamic Age Calculation (June 1999)
-			var birthDate = new Date(1999, 5, 1);
-			var today = new Date();
-			var age = today.getFullYear() - birthDate.getFullYear();
-			var m = today.getMonth() - birthDate.getMonth();
-			if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-				age--;
-			}
-			var ageEl = document.getElementById('dynamic-age');
-			if (ageEl) {
-				ageEl.textContent = age + " Years";
-			}
-		};
-	</script>
+	<!-- Logic extracted and moved to js/app.js -->
 
 	
 
@@ -119,8 +44,6 @@
 	<!-- header 
    ================================================== -->
    <header>   	
-   	<div class="row">
-
    		<div class="top-bar">
 			
    			<a class="menu-toggle" href="#"><span id="menu">Menu</span></a>
@@ -138,8 +61,6 @@
 					</ul>
 				</nav>    		
    		</div> <!-- /top-bar --> 
-   		
-   	</div> <!-- /row --> 		
    </header> <!-- /header -->
 
 	<!-- intro section
@@ -245,105 +166,22 @@
    		</div>   		
    	</div> <!-- /section-intro--> 
 
-   	<div class="row resume-timeline">
+    	<div class="row resume-timeline">
 
-   		<div class="col-twelve resume-header"><h2>Work Experience</h2></div> <!-- /resume-header -->
+    		<div class="col-twelve resume-header">
+    			<h2>Work Experience</h2>
+    			<div class="filter-pills-container">
+    				<button class="filter-pill active" aria-pressed="true" data-filter="dev">Dev</button>
+    				<button class="filter-pill" aria-pressed="false" data-filter="ai-dev">AI Dev</button>
+    				<button class="filter-pill" aria-pressed="false" data-filter="exploring">Exploring World</button>
+    			</div>
+    		</div> <!-- /resume-header -->
 
-   		<div class="col-twelve">
-   			<div class="timeline-wrap">
-
-   				<div class="timeline-block">
-   					<div class="timeline-ico"><i class="fa fa-briefcase"></i></div>
-   					<div class="timeline-header"><h3>Jr. Full Stack Developer</h3><p>April 2026 - Present</p></div>
-   					<div class="timeline-content">
-   						<h4>Aganitha, Hyderabad, India</h4>
-   						<p>Design and deploy production-grade multi-agent platforms powered by LLMs and agentic architectures supporting 20+ legacy agents. Build and maintain genomic data analysis pipelines, big data systems, and ML workflows. Re-architect complex scientific workflows into scalable, cloud-native services using Python, FastAPI, and Docker on AWS.</p>
-   					</div>
-   				</div> <!-- /timeline-block -->
-
-   				<div class="timeline-block">
-   					<div class="timeline-ico"><i class="fa fa-briefcase"></i></div>
-   					<div class="timeline-header"><h3>Jr. Developer Intern</h3><p>September 2025 - March 2026</p></div>
-   					<div class="timeline-content">
-   						<h4>Aganitha, Hyderabad, India</h4>
-   						<p>Developed and productionized machine learning and deep learning pipelines for High Content Analysis (HCA) of skin tissue data to study chemical effects. Built Variant Effect Predictor (VEP) agents, GWAS data analysis pipelines, and integrated Strapi CMS for dynamic agent discovery. Engineered NLP-driven interfaces to abstract complex scientific workflows.</p>
-   					</div>
-   				</div> <!-- /timeline-block -->
-
-   				<div class="timeline-block">
-   					<div class="timeline-ico"><i class="fa fa-briefcase"></i></div>
-   					<div class="timeline-header"><h3>Software Developer Instructor Trainee</h3><p>June 2025 - July 2025</p></div>
-   					<div class="timeline-content">
-   						<h4>NxtWave, Hyderabad, Telangana, India</h4>
-   						<p>Joined NxtWave to learn modern teaching methods. Delivered instructor-led training on programming fundamentals, data structures, and algorithms. Conducted live coding sessions in Python, JavaScript, HTML, and CSS to prepare students for industry requirements.</p>
-   					</div>
-   				</div> <!-- /timeline-block -->
-
-   				<div class="timeline-block">
-   					<div class="timeline-ico"><i class="fa fa-briefcase"></i></div>
-   					<div class="timeline-header"><h3>Web Developer</h3><p>February 2025 - May 2025</p></div>
-   					<div class="timeline-content">
-   						<h4>Shri V.J. Modha College, Porbandar, Gujarat, India</h4>
-   						<p>Led end-to-end development of a PHP-based, responsive college website featuring academic reports, student attendance tracking, events, and results announcements. Designed frontend using HTML5, CSS3, and JavaScript, and planned a secure admin panel for content and user management.</p>
-   					</div>
-   				</div> <!-- /timeline-block -->
-
-   				<div class="timeline-block">
-   					<div class="timeline-ico"><i class="fa fa-briefcase"></i></div>
-   					<div class="timeline-header"><h3>Cannista</h3><p>July 2024 - November 2024</p></div>
-   					<div class="timeline-content">
-   						<h4>Fire & Flower, Saskatoon, Saskatchewan, Canada</h4>
-   						<p>Educated customers on responsible cannabis use while ensuring compliance with all regulatory standards. Guided customers in selecting products safely, handled transactions with care, and maintained a secure and compliant retail environment with a strong understanding of safety protocols.</p>
-   					</div>
-   				</div> <!-- /timeline-block -->
-
-   				<div class="timeline-block">
-   					<div class="timeline-ico"><i class="fa fa-briefcase"></i></div>
-   					<div class="timeline-header"><h3>Store Associate</h3><p>February 2023 - November 2024</p></div>
-   					<div class="timeline-content">
-   						<h4>Walmart, Saskatoon, Saskatchewan, Canada</h4>
-   						<p>Responsible for maintaining a well-organized shopping environment by managing cart collection, assisting customers, and providing general support across departments. Maintained store standards and addressed maintenance needs as a handyman.</p>
-   					</div>
-   				</div> <!-- /timeline-block -->
-
-   				<div class="timeline-block">
-   					<div class="timeline-ico"><i class="fa fa-briefcase"></i></div>
-   					<div class="timeline-header"><h3>Web Developer</h3><p>June 2023 - November 2023</p></div>
-   					<div class="timeline-content">
-   						<h4>A1 Snack Mart, Saskatoon, Saskatchewan, Canada</h4>
-   						<p>Built and deployed a responsive web application for a convenience store using HTML5, CSS, Bootstrap 5, jQuery, PHP, and MySQL. Integrated an employee management system incorporating payroll processing, time tracking, and record keeping, reducing weekly manual effort. Implemented QR Codes for advertising.</p>
-   					</div>
-   				</div> <!-- /timeline-block -->
-
-   				<div class="timeline-block">
-   					<div class="timeline-ico"><i class="fa fa-briefcase"></i></div>
-   					<div class="timeline-header"><h3>Programming Language Teacher</h3><p>December 2021 - January 2022</p></div>
-   					<div class="timeline-content">
-   						<h4>Wisdemy, Kochi, Kerala, India</h4>
-   						<p>Assumed the mantle of a Java tutor, dedicatedly teaching OOP concepts and basic CLI-based programs in Java to facilitate the student's journey towards programming proficiency.</p>
-   					</div>
-   				</div> <!-- /timeline-block -->
-
-   				<div class="timeline-block">
-   					<div class="timeline-ico"><i class="fa fa-briefcase"></i></div>
-   					<div class="timeline-header"><h3>Computer Lab Technician</h3><p>June 2017 - August 2020</p></div>
-   					<div class="timeline-content">
-   						<h4>Shri V.J. Modha College, Porbandar, Gujarat, India</h4>
-   						<p>Led a dynamic team of volunteers managing computer systems and network infrastructure. Maintained systems, performed data backups, troubleshot hardware/network issues, and orchestrated computer-based examinations for external organizations.</p>
-   					</div>
-   				</div> <!-- /timeline-block -->
-
-   				<div class="timeline-block">
-   					<div class="timeline-ico"><i class="fa fa-briefcase"></i></div>
-   					<div class="timeline-header"><h3>Webcaster for Election</h3><p>December 2017</p></div>
-   					<div class="timeline-content">
-   						<h4>Election Commission of India, Porbandar, Gujarat, India</h4>
-   						<p>Managed multiple cameras, inspected EVM venues, and perfected camera positioning to livestream voting ballots to the central control room, ensuring prompt resolution of any webcasting issues during the election.</p>
-   					</div>
-   				</div> <!-- /timeline-block -->
-
-   			</div> <!-- /timeline-wrap -->
-   		</div> <!-- /col-twelve -->
+    		<div class="col-twelve">
+    			<div id="experience-timeline-wrap" class="timeline-wrap">
+    				<!-- Dynamically populated from js/data.js -->
+    			</div> <!-- /timeline-wrap -->
+    		</div> <!-- /col-twelve -->
 
    	</div> <!-- /resume-timeline -->
 
@@ -356,60 +194,10 @@
    		</div> <!-- /resume-header -->
 
    		<div class="col-twelve">
-
-   			<div class="timeline-wrap">
-
-   				<div class="timeline-block">
-   					<div class="timeline-ico"><i class="fa fa-graduation-cap"></i></div>
-   					<div class="timeline-header"><h3>Postgraduate Degree in Cyber Security</h3><p>January 2023 - October 2023</p></div>
-   					<div class="timeline-content">
-   						<h4>Saskatchewan Polytechnic, Saskatoon, Saskatchewan, Canada</h4>
-   						<p>Completed post-graduate certificate program focusing on information security, network defense, threat analysis, and risk management.</p>
-   					</div>
-   				</div> <!-- /timeline-block -->
-
-   				<div class="timeline-block">
-   					<div class="timeline-ico"><i class="fa fa-graduation-cap"></i></div>
-   					<div class="timeline-header"><h3>Master of Computer Applications</h3><p>December 2020 - June 2022</p></div>
-   					<div class="timeline-content">
-   						<h4>Cochin University of Science and Technology, Kochi, Kerala, India</h4>
-   						<p>Focus on advanced computer science and software development. 
-   							<br>Research Paper: <b>Windows Malware Classification using Dynamic Analysis</b> (co-authored with Prof. Dr. Vinod P.)
-   							<ul>
-   							Projects:
-   								<li> Intel Website - Developed using PHP, jQuery, MySQL, HTML5, CSS, and Bootstrap.
-   								<li> Windows Malware Classification - Developed using Python, TensorFlow, Cuckoo Sandbox, Machine Learning, Deep Learning, and Hybrid Deep Learning.
-   							</ul>
-   						</p>
-   					</div>
-   				</div> <!-- /timeline-block -->
-
-   				<div class="timeline-block">
-   					<div class="timeline-ico"><i class="fa fa-graduation-cap"></i></div>
-   					<div class="timeline-header"><h3>Bachelor's in Computer Applications</h3><p>June 2017 - August 2020</p></div>
-   					<div class="timeline-content">
-   						<h4>Shri V.J. Modha College, Porbandar, Gujarat, India</h4>
-   						<p> 
-   							Under Bhakta Kavi Narsinh Mehta University (BKNMU)
-   							<ul>
-   							Projects:
-   								<li> AMD Website - E-commerce clone built with PHP, jQuery, MySQL, HTML5, CSS, and Bootstrap.
-   								<li> Body Measurement Android App - Fitness tracker developed in Android using Java and SQLite.
-   							</ul>
-   							<ul>
-   							Presentations and Practicals:
-   								<li> Remote Access Trojans (RATs) analysis using Quasar RAT and Metasploit on Kali Linux.
-   								<li> Phishing Attack analysis (including browser-in-the-browser attacks).
-   								<li> Android custom ROM compilation and installation.
-   								<li> System administrator tasks including multi-boot OS installation, and setting up switches/routers.
-   							</ul>
-   						</p>
-   					</div>
-   				</div> <!-- /timeline-block -->
-
-   			</div> <!-- /timeline-wrap -->
-
-   		</div> <!-- /col-twelve -->
+    			<div id="education-timeline-wrap" class="timeline-wrap">
+    				<!-- Dynamically populated from js/data.js -->
+    			</div> <!-- /timeline-wrap -->
+    		</div> <!-- /col-twelve -->
 
    	</div> <!-- /resume-timeline -->
 		
@@ -426,70 +214,8 @@
          </div>
       </div>
 
-      <div class="row projects-grid">
-         <!-- Card 1: Windows Malware Classification -->
-         <div class="project-card-col">
-            <div class="project-card">
-               <div class="project-card-icon"><i class="fa fa-shield"></i></div>
-               <h3>Windows Malware Classification</h3>
-               <p>A hybrid Deep Learning classification system utilizing Cuckoo Sandbox for dynamic analysis and TensorFlow to identify and categorize Windows malware binaries.</p>
-               <div class="project-tags">
-                  <span>Python</span>
-                  <span>TensorFlow</span>
-                  <span>Machine Learning</span>
-                  <span>Cyber Security</span>
-               </div>
-               <a href="https://github.com/ezyway" target="_blank" class="project-link"><i class="fa fa-github"></i> View GitHub</a>
-            </div>
-         </div>
-
-         <!-- Card 2: AMD Website Concept -->
-         <div class="project-card-col">
-            <div class="project-card">
-               <div class="project-card-icon"><i class="fa fa-laptop"></i></div>
-               <h3>AMD Website Concept</h3>
-               <p>A fully responsive product-focused website clone and customization for AMD, featuring a robust PHP backend, jQuery interface, and MySQL database.</p>
-               <div class="project-tags">
-                  <span>PHP</span>
-                  <span>jQuery</span>
-                  <span>MySQL</span>
-                  <span>Bootstrap</span>
-               </div>
-               <a href="https://github.com/ezyway" target="_blank" class="project-link"><i class="fa fa-github"></i> View GitHub</a>
-            </div>
-         </div>
-
-         <!-- Card 3: Intel Website Concept -->
-         <div class="project-card-col">
-            <div class="project-card">
-               <div class="project-card-icon"><i class="fa fa-code-fork"></i></div>
-               <h3>Intel Website Concept</h3>
-               <p>A web portal developed for Intel, incorporating dynamically generated pages, product specification sheets, and administration dashboard utilizing custom SQL queries.</p>
-               <div class="project-tags">
-                  <span>PHP</span>
-                  <span>jQuery</span>
-                  <span>MySQL</span>
-                  <span>HTML5</span>
-               </div>
-               <a href="https://github.com/ezyway" target="_blank" class="project-link"><i class="fa fa-github"></i> View GitHub</a>
-            </div>
-         </div>
-
-         <!-- Card 4: Body Measurement App -->
-         <div class="project-card-col">
-            <div class="project-card">
-               <div class="project-card-icon"><i class="fa fa-mobile-phone"></i></div>
-               <h3>Body Measurement App</h3>
-               <p>An Android application developed to log, track, and visualize physical body measurements and fitness progress metrics, using SQLite storage.</p>
-               <div class="project-tags">
-                  <span>Android</span>
-                  <span>Java</span>
-                  <span>SQLite</span>
-                  <span>Mobile Dev</span>
-               </div>
-               <a href="https://github.com/ezyway" target="_blank" class="project-link"><i class="fa fa-github"></i> View GitHub</a>
-            </div>
-         </div>
+      <div id="projects-grid-wrap" class="row projects-grid">
+         <!-- Dynamically populated from js/data.js -->
       </div>
 
       <div class="wave education-to-skills-wave" width="100%"></div>
@@ -512,28 +238,8 @@
 				<div class="table-responsive">
 
 					<table width="80vh">
-						<tbody>
-						  	<tr>
-								<td> <img src="images/icons/c.png"> <h2 style="color:#ff0077">C</h2></td>
-								<td> <img src="images/icons/cplusplus.png" id="imgEven"> <h2 style="color:#ff0077">C++</h2></td>
-							</tr>
-							<tr>
-								<td> <img src="images/icons/csharp.png"> <h2 style="color:#ff0077">C#</h2></td>
-								<td> <img src="images/icons/python.png" id="imgEven"> <h2 style="color:#ff0077">Python</h2></td>
-							</tr>
-							<tr>
-								<td> <img src="images/icons/java.png"> <h2 style="color:#ff0077">JAVA</h2></td>
-								<td> <img src="images/icons/html5.png" id="imgEven"> <h2 style="color:#ff0077">HTML</h2></td>
-								
-							</tr>
-							<tr>
-								<td> <img src="images/icons/css3.png"> <h2 style="color:#ff0077">CSS</h2></td>		    
-								<td> <img src="images/icons/javascript.png" id="imgEven"> <h2 style="color:#ff0077">JavaScript</h2></td>		 
-							</tr>
-							<tr>   
-								<td> <img src="images/icons/php.png"> <h2 style="color:#ff0077">PHP</h2></td>		    
-								<td> <img src="images/icons/asp.png" id="imgEven"> <h2 style="color:#ff0077">ASP</h2></td>		    
-						  	</tr>
+						<tbody id="skills-table-body">
+							<!-- Dynamically populated from js/data.js -->
 						</tbody>
 					  </table>
   
@@ -609,11 +315,12 @@
    </div> 
 
    <!-- Java Script
-   ================================================== --> 
-   <script src="js/jquery-2.1.3.min.js"></script>
+   ================================================== -->   <script src="js/jquery-2.1.3.min.js"></script>
    <script src="js/plugins.js"></script>
    <script src="js/main.js"></script>
+   <script src="js/data.js"></script>
+   <script src="js/app.js"></script>
 
-</body>
+ </body>
 
 </html>
