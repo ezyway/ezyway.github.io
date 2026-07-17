@@ -178,6 +178,24 @@ const resumeData = {
     { name: "CSS", icon: "images/icons/css3.png" },
     { name: "JavaScript", icon: "images/icons/javascript.png" },
     { name: "PHP", icon: "images/icons/php.png" },
-    { name: "ASP", icon: "images/icons/asp.png" }
+    { name: "ASP", icon: "images/icons/asp.png" },
+    { name: "Bootstrap", icon: "images/icons/bootstrap.png" },
+    { name: "jQuery", icon: "fa-code" },
+    { name: "Node.js", icon: "fa-terminal" },
+    { name: "Next.js", icon: "fa-desktop" },
+    { name: "FastAPI", icon: "fa-bolt" },
+    { name: "Docker", icon: "fa-cubes" },
+    { name: "AWS", icon: "fa-cloud" },
+    { name: "SLURM", icon: "fa-tasks" },
+    { name: "Redis", icon: "fa-database" },
+    { name: "PostgreSQL", icon: "fa-database" },
+    { name: "MySQL", icon: "fa-database" },
+    { name: "Machine Learning", icon: "fa-area-chart" },
+    { name: "Agentic AI", icon: "fa-cogs" },
+    { name: "Google ADK", icon: "fa-google" },
+    { name: "Genomics Pipelines", icon: "fa-sitemap" },
+    { name: "Cyber Security", icon: "fa-shield" },
+    { name: "Git", icon: "fa-git" },
+    { name: "Linux", icon: "fa-linux" }
   ]
 };

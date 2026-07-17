@@ -197,36 +197,127 @@ document.addEventListener("DOMContentLoaded", function() {
     projectsGrid.innerHTML = projHtml;
   }
 
-  // 5. Render Skills (Interactive Pill Grid)
-  const skillsGrid = document.getElementById("skills-grid-wrap");
-  if (skillsGrid && resumeData.skills) {
+  // 5. Render Skills (2D Orbit)
+  const skillsSphere = document.getElementById("skills-sphere-wrap");
+  if (skillsSphere && resumeData.skills) {
     let skillsHtml = "";
-    resumeData.skills.forEach((skill, index) => {
+    resumeData.skills.forEach((skill) => {
+      let iconHtml = "";
+      if (skill.icon) {
+        if (skill.icon.startsWith("fa-") || skill.icon.startsWith("fa ")) {
+          iconHtml = `<i class="fa ${skill.icon}"></i>`;
+        } else {
+          iconHtml = `<img src="${skill.icon}" alt="${skill.name} icon">`;
+        }
+      } else {
+        iconHtml = `<i class="fa fa-code"></i>`;
+      }
       skillsHtml += `
-        <div class="skill-card" style="transition-delay: ${index * 0.05}s">
-          <div class="skill-icon-wrap">
-            <img src="${skill.icon}" alt="${skill.name} icon">
-          </div>
+        <div class="skill-card">
+          <div class="skill-icon-wrap">${iconHtml}</div>
           <h4>${skill.name}</h4>
         </div>
       `;
     });
-    skillsGrid.innerHTML = skillsHtml;
+    skillsSphere.innerHTML = skillsHtml;
 
-    // Trigger scroll fade-in using IntersectionObserver
-    if ('IntersectionObserver' in window) {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            skillsGrid.classList.add('is-visible');
-            observer.unobserve(entry.target);
+    // 2D floating animation with collision avoidance
+    const container = skillsSphere;
+    const cards = container.querySelectorAll(".skill-card");
+    const count = cards.length;
+    if (count === 0) return;
+
+    const items = [];
+    const padding = 10;
+
+    function rand(min, max) { return Math.random() * (max - min) + min; }
+
+    cards.forEach((card) => {
+      const maxX = Math.max(container.clientWidth - card.offsetWidth - padding, 50);
+      const maxY = Math.max(container.clientHeight - card.offsetHeight - padding, 50);
+      card.style.left = rand(padding, maxX) + "px";
+      card.style.top = rand(padding, maxY) + "px";
+      items.push({
+        el: card,
+        x: parseFloat(card.style.left),
+        y: parseFloat(card.style.top),
+        vx: rand(-0.4, 0.4),
+        vy: rand(-0.4, 0.4)
+      });
+    });
+
+    function update() {
+      const cw = container.clientWidth;
+      const ch = container.clientHeight;
+
+      for (let i = 0; i < items.length; i++) {
+        const a = items[i];
+        const aw = a.el.offsetWidth;
+        const ah = a.el.offsetHeight;
+
+        // Move
+        a.x += a.vx;
+        a.y += a.vy;
+
+        // Wall bounce
+        if (a.x < padding) { a.x = padding; a.vx *= -1; }
+        if (a.y < padding) { a.y = padding; a.vy *= -1; }
+        if (a.x + aw > cw - padding) { a.x = cw - padding - aw; a.vx *= -1; }
+        if (a.y + ah > ch - padding) { a.y = ch - padding - ah; a.vy *= -1; }
+
+        // Slow random direction changes
+        if (Math.random() < 0.005) { a.vx += rand(-0.15, 0.15); }
+        if (Math.random() < 0.005) { a.vy += rand(-0.15, 0.15); }
+
+        // Clamp speed
+        const spd = Math.sqrt(a.vx * a.vx + a.vy * a.vy);
+        if (spd > 1) { a.vx = (a.vx / spd) * 1; a.vy = (a.vy / spd) * 1; }
+        if (spd < 0.15 && Math.random() < 0.01) { a.vx += rand(-0.1, 0.1); a.vy += rand(-0.1, 0.1); }
+      }
+
+      // Collision avoidance — gentle separation
+      for (let i = 0; i < items.length; i++) {
+        for (let j = i + 1; j < items.length; j++) {
+          const a = items[i], b = items[j];
+          const aw = a.el.offsetWidth, ah = a.el.offsetHeight;
+          const bw = b.el.offsetWidth, bh = b.el.offsetHeight;
+
+          if (a.x < b.x + bw && a.x + aw > b.x && a.y < b.y + bh && a.y + ah > b.y) {
+            const cx1 = a.x + aw / 2, cy1 = a.y + ah / 2;
+            const cx2 = b.x + bw / 2, cy2 = b.y + bh / 2;
+            const dx = cx2 - cx1 || 0.01;
+            const dy = cy2 - cy1 || 0.01;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            const nx = dx / dist, ny = dy / dist;
+            const force = 0.08;
+            a.vx -= nx * force; a.vy -= ny * force;
+            b.vx += nx * force; b.vy += ny * force;
           }
-        });
-      }, { threshold: 0.15 });
-      observer.observe(skillsGrid);
-    } else {
-      skillsGrid.classList.add('is-visible');
+        }
+      }
+
+      // Apply positions
+      items.forEach((item) => {
+        item.el.style.left = item.x + "px";
+        item.el.style.top = item.y + "px";
+      });
+
+      requestAnimationFrame(update);
     }
+
+    update();
+
+    window.addEventListener("resize", () => {
+      // Re-clamp positions after resize
+      const cw = container.clientWidth;
+      const ch = container.clientHeight;
+      items.forEach((item) => {
+        const w = item.el.offsetWidth;
+        const h = item.el.offsetHeight;
+        item.x = Math.max(padding, Math.min(item.x, cw - w - padding));
+        item.y = Math.max(padding, Math.min(item.y, ch - h - padding));
+      });
+    });
   }
 
   // Initialize interactive timeline accordion logic

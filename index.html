@@ -14,10 +14,10 @@
 
  	<!-- CSS
    ================================================== -->
-   <link rel="stylesheet" href="css/base.css">  
-   <link rel="stylesheet" href="css/main.css">
-   <link rel="stylesheet" href="css/vendor.css">
-   <link rel="stylesheet" href="css/custom.css?v=1.1.1">
+	<link rel="stylesheet" href="css/base.css?v=1.1.4">
+	<link rel="stylesheet" href="css/main.css?v=1.1.4">
+	<link rel="stylesheet" href="css/vendor.css?v=1.1.4">
+	<link rel="stylesheet" href="css/custom.css?v=1.1.4">
 
    <!-- script
    ================================================== -->   
@@ -65,160 +65,136 @@
 
 	<!-- intro section
    ================================================== -->
-   <section id="intro">   
+   <div class="page-bg" aria-hidden="true"></div>
+   <div class="page-blur-overlay" aria-hidden="true"></div>
+   <div id="fluid-bg" aria-hidden="true"></div>
 
-   	<div class="intro-overlay"></div>	
+   <section id="intro">
+    	<div class="intro-content">
+			<div class="intro-hero-top">
+				<div class="intro-glass-panel">
+					<h1>I'm Sreyas</h1>
 
-   	<div class="intro-content">
-   		<div class="row">
+					<p class="intro-position">
+						<span>you can call me CV</span>
+					</p>
 
-   			<div class="col-twelve">
-
-	   			<div class="typewriter">
-					<a href="" class="typewrite" data-period="2000" data-type='[ "printf(\"Hello World\");", "cout<<\"Hello World\";", "print(\"Hello World\")", "echo \"Hello World\";","System.out.println(\"Hello World\");","Console.log(\"Hello World\");" ]'>
-						<span class="wrap"></span>
-					</a>
+					<div class="typewriter">
+						<a href="" class="typewrite" data-period="2000" data-type='[ "printf(\"Hello World\");", "cout<<\"Hello World\";", "print(\"Hello World\")", "echo \"Hello World\";","System.out.println(\"Hello World\");","Console.log(\"Hello World\");" ]'>
+							<span class="wrap"></span>
+						</a>
+					</div>
 				</div>
-	   			<h1>I'm Sreyas</h1>
+			</div>
 
-	   			<p class="intro-position">
-	   				<span>you can call me CV</span>
-	   			</p>
+			<div class="intro-hero-bottom">
+				<a class="scroll-cue smoothscroll" href="#about" title="More About Me">
+					<i class="fa fa-chevron-down"></i>
+					<i class="fa fa-chevron-down"></i>
+					<i class="fa fa-chevron-down"></i>
+				</a>
+			</div>
+	   	</div> <!-- /intro-content --> 
 
-	   			<a class="button stroke smoothscroll" href="#about" title="">More About Me</a>
+    </section> <!-- /intro -->
 
-	   		</div>  
-   			
-   		</div>   		 		
-   	</div> <!-- /intro-content --> 
+	<div class="intro-social-glass">
+		<ul class="intro-social">
+			<li><a href="https://linkedin.com/in/cvbiro" target="blank" title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
+			<li><a href="https://github.com/ezyway" target="blank" title="GitHub"><i class="fa fa-github"></i></a></li>
+			<li><a href="mailto:cvbiro.career@gmail.com" title="Email Me"><i class="fa fa-envelope"></i></a></li>
+		</ul>
+	</div>
 
-   	<ul class="intro-social">        
-         <li><a href="https://linkedin.com/in/cvbiro" target="blank"><i class="fa fa-linkedin"></i></a></li>
-         <li><a href="https://github.com/ezyway" target="blank"><i class="fa fa-github"></i></a></li>
-      </ul> <!-- /intro-social -->      	
-   </section> <!-- /intro -->
-
-   
 
    <!-- about section
    ================================================== -->
-   <section id="about">  
+   <section id="about">
 
-   	<div class="row section-intro">
-   		<div class="col-twelve">
+    	<div class="about-glass-card">
+    		<div class="row section-intro">
+    			<div class="col-twelve">
 
-   			<h5>About</h5>
-   			<h1>Let me introduce myself.</h1>
+    				<h5>About</h5>
+    				<h1>Let me introduce myself.</h1>
 
-   			<div class="intro-info">
+    				<div class="intro-info">
 
-   				<!-- <img src="images/profile-pic.jpg" alt="Profile Picture"> -->
+    					<!-- <img src="images/profile-pic.jpg" alt="Profile Picture"> -->
 
-    				<p class="lead">&emsp;&emsp;&emsp;Software Engineer specializing in AI systems and backend infrastructure, with hands-on experience building production-grade multi-agent platforms powered by LLMs. Designed and deployed agentic architectures supporting 20+ legacy agents along with dynamic agent generation via an agent-builder framework, enabling complex, multi-stage workflows across scientific and enterprise domains.</p>
-    				<p class="lead">&emsp;&emsp;&emsp;Strong in Python, FastAPI, and cloud-native systems, with proven ability to translate research-driven prototypes into scalable, production-ready AI systems. Experienced in collaborating cross-functionally with domain experts to deliver end-to-end intelligent systems.</p>
-   			</div>   			
+    					<p class="lead">&emsp;&emsp;&emsp;Software Engineer specializing in AI systems and backend infrastructure, with hands-on experience building production-grade multi-agent platforms powered by LLMs. Designed and deployed agentic architectures supporting 20+ legacy agents along with dynamic agent generation via an agent-builder framework, enabling complex, multi-stage workflows across scientific and enterprise domains.</p>
+    					<p class="lead">&emsp;&emsp;&emsp;Strong in Python, FastAPI, and cloud-native systems, with proven ability to translate research-driven prototypes into scalable, production-ready AI systems. Experienced in collaborating cross-functionally with domain experts to deliver end-to-end intelligent systems.</p>
+    				</div>   			
+    			</div>   		
+    	</div> <!-- /section-intro -->
 
-   		</div>   		
-   	</div> <!-- /section-intro -->
+	   </div>
 
-   	<div class="row about-content">
-
-
-   			
-
-   			<ul class="info-list" style="text-align: center;">
-   				<li>
-   					<strong>Fullname: </strong>Sreyas Cheeran Velikoth
-   				</li>
-    				<li><strong>Age: </strong><span id="dynamic-age" style="display: inline;"></span></li>
-    				<li>
-    					<strong>Email: </strong><a href="mailto:cvbiro.career@gmail.com">cvbiro.career@gmail.com</a>
-    				</li>
-
-   			</ul> <!-- /info-list -->
-
-
-   		
-
-   	</div>
-
-   	<!-- <div class="row button-section">
-   		<div class="col-twelve">
-   			<a href="**********" title="Download CV" class="button button-primary">Download CV</a>
-   		</div>   		
-   	</div> -->
-
-	   <div class="wave about-to-education-wave"></div>
-	   
-   </section> <!-- /process-->    
+   </section> <!-- /process-->
 
 
    <!-- resume Section
    ================================================== -->
-	<section id="resume" class="grey-section">
+	<section id="resume">
 
-		<div class="row section-intro">
-   		<div class="col-twelve">
+		<div class="resume-glass-card">
+			<div class="row section-intro">
+	    		<div class="col-twelve">
 
-   			<h5>Resume</h5>
-   			<h1>More of my credentials.</h1>
+	    			<h5>Resume</h5>
+	    			<h1>More of my credentials.</h1>
 
-   		</div>   		
-   	</div> <!-- /section-intro--> 
+	    		</div>   		
+	    	</div> <!-- /section-intro--> 
 
-    	<div class="row resume-timeline">
+	    	<div class="row resume-timeline">
 
-    		<div class="col-twelve resume-header">
-    			<h2>Work Experience</h2>
-    			<div class="filter-pills-container">
-    				<button class="filter-pill active" aria-pressed="true" data-filter="dev">Dev</button>
-    				<button class="filter-pill" aria-pressed="false" data-filter="ai-dev">AI Dev</button>
-    				<button class="filter-pill" aria-pressed="false" data-filter="exploring">Exploring World</button>
-    			</div>
-    		</div> <!-- /resume-header -->
+	    		<div class="col-twelve resume-header">
+	    			<h2>Work Experience</h2>
+	    			<div class="filter-pills-container">
+	    				<button class="filter-pill active" aria-pressed="true" data-filter="dev">Dev</button>
+	    				<button class="filter-pill" aria-pressed="false" data-filter="ai-dev">AI Dev</button>
+	    				<button class="filter-pill" aria-pressed="false" data-filter="exploring">Exploring World</button>
+	    			</div>
+	    		</div> <!-- /resume-header -->
 
-    		<div class="col-twelve">
-    			<div id="experience-timeline-wrap" class="timeline-wrap">
-    				<!-- Dynamically populated from js/data.js -->
-    			</div> <!-- /timeline-wrap -->
-    		</div> <!-- /col-twelve -->
+	    		<div class="col-twelve">
+	    			<div id="experience-timeline-wrap" class="timeline-wrap"></div>
+	    		</div>
 
-   	</div> <!-- /resume-timeline -->
+	    	</div> <!-- /resume-timeline -->
 
-   	<div class="row resume-timeline">
+	    	<div class="row resume-timeline">
 
-   		<div class="col-twelve resume-header">
+	    		<div class="col-twelve resume-header">
+	    			<h2>Education</h2>
+	    		</div>
 
-   			<h2>Education</h2>
+	    		<div class="col-twelve">
+	    			<div id="education-timeline-wrap" class="timeline-wrap"></div>
+	    		</div>
 
-   		</div> <!-- /resume-header -->
-
-   		<div class="col-twelve">
-    			<div id="education-timeline-wrap" class="timeline-wrap">
-    				<!-- Dynamically populated from js/data.js -->
-    			</div> <!-- /timeline-wrap -->
-    		</div> <!-- /col-twelve -->
-
-   	</div> <!-- /resume-timeline -->
+	    	</div> <!-- /resume-timeline -->
+		</div>
 		
 	</section> <!-- /resume -->
 
    <!-- projects Section
    ================================================== -->
-   <section id="projects" class="grey-section">
+   <section id="projects">
 
-      <div class="row section-intro">
-         <div class="col-twelve">
-            <h5>Projects</h5>
-            <h1>Check out some of my work.</h1>
+      <div class="projects-glass-card">
+         <div class="row section-intro">
+            <div class="col-twelve">
+               <h5>Projects</h5>
+               <h1>Check out some of my work.</h1>
+            </div>
+         </div>
+
+         <div id="projects-grid-wrap" class="row projects-grid">
+            <!-- Dynamically populated from js/data.js -->
          </div>
       </div>
-
-      <div id="projects-grid-wrap" class="row projects-grid">
-         <!-- Dynamically populated from js/data.js -->
-      </div>
-
-      <div class="wave education-to-skills-wave" width="100%"></div>
 
    </section> <!-- /projects -->
 
@@ -226,20 +202,23 @@
 	
 
 
-	<!-- stats Section
+	<!-- skills Section
    ================================================== -->
 	<section id="myskills">
-		<div class="row section-intro">
-			<div class="col-twelve">
-				<h5>My Skills</h5>
+
+		<div class="skills-glass-card">
+			<div class="row section-intro">
+				<div class="col-twelve">
+					<h5>My Skills</h5>
+				</div>
+			</div>
+
+			<div id="skills-sphere-wrap" class="skills-sphere-container">
+				<!-- Dynamically populated from js/data.js -->
 			</div>
 		</div>
-				
-				<div id="skills-grid-wrap" class="skills-grid">
-					<!-- Dynamically populated from js/data.js -->
-				</div>
-		<div class="wave skills-to-contact-wave"></div>
-	</section> <!-- /stats -->
+
+	</section> <!-- /skills -->
 
 	
 	
@@ -247,73 +226,54 @@
    ================================================== -->
 	<section id="contact">
 
-		<div class="row section-intro">
-			<div class="col-twelve">
+		<div class="contact-glass-card">
+			<div class="row section-intro">
+				<div class="col-twelve">
  
-				<h5>Contact</h5>
-				<h1>I'd Love To Hear From You.</h1>
+					<h5>Contact</h5>
+					<h1>I'd Love To Hear From You.</h1>
  
-			</div> 
-		</div> <!-- /section-intro -->
+				</div> 
+			</div> <!-- /section-intro -->
 
-   	<div class="row contact-info">
+			<div class="row contact-info">
 
-   		<div class="col-six tab-full">
-   			<div class="icon"><i class="icon-pin"></i></div>
-   			<h5>Where to find me</h5>
-    			<p>Hyderabad, Telangana, India</p>
-   		</div>
+				<div class="col-six tab-full">
+					<div class="icon"><i class="icon-pin"></i></div>
+					<h5>Where to find me</h5>
+					<p>Hyderabad, Telangana, India</p>
+				</div>
 
-   		<div class="col-six tab-full collapse">
-   			<div class="icon"><i class="icon-mail"></i></div>
-   			<h5>Email Me At</h5>
-    			<p><a href="mailto:cvbiro.career@gmail.com" style="color:#6e6e6e">cvbiro.career@gmail.com</a></p>
+				<div class="col-six tab-full collapse">
+					<div class="icon"><i class="icon-mail"></i></div>
+					<h5>Email Me At</h5>
+					<p><a href="mailto:cvbiro.career@gmail.com">cvbiro.career@gmail.com</a></p>
+				</div>
 
-   		</div>
-   		
-   	</div> <!-- /contact-info -->
-		
+			</div> <!-- /contact-info -->
+		</div>
+
 	</section> <!-- /contact -->
 
-
-   <!-- footer
-   ================================================== -->
-
-   <footer>
-     	<div class="row">
-
-     		<div class="col-twelve tab-full social">
-
-     			<ul class="footer-social">        
-					<li><a href="https://linkedin.com/in/cvbiro" target="blank"><i class="fa fa-linkedin"></i></a></li>
-					<li><a href="https://github.com/ezyway" target="blank"><i class="fa fa-github"></i></a></li>
-			   </ul> 
-	      		
-	      </div>
-
-      	<div class="col-eight tab-full">
-	      	<div class="copyright">
-		        	<span>Made with ❤ by me </span>         	
-		         </div>		                  
-	      	</div>
-
-	      	<div id="go-top">
-		         <a class="smoothscroll" title="Back to Top" href="#top"><i class="fa fa-long-arrow-up"></i></a>
-		      </div>
-
-      	</div> <!-- /row -->     	
-   </footer>  
+   <div id="go-top">
+      <a class="smoothscroll" title="Back to Top" href="#top">
+         <i class="fa fa-chevron-up"></i>
+         <i class="fa fa-chevron-up"></i>
+      </a>
+   </div>
 
    <div id="preloader"> 
     	<div id="loader"></div>
    </div> 
 
    <!-- Java Script
-   ================================================== -->   <script src="js/jquery-2.1.3.min.js"></script>
-   <script src="js/plugins.js"></script>
-   <script src="js/main.js"></script>
-    <script src="js/data.js?v=1.1.1"></script>
-    <script src="js/app.js?v=1.1.1"></script>
+   ================================================== -->
+	<script src="js/jquery-2.1.3.min.js?v=1.1.4"></script>
+	<script src="js/plugins.js?v=1.1.4"></script>
+	<script src="js/main.js?v=1.1.4"></script>
+	<script src="js/data.js?v=1.1.4"></script>
+	<script src="js/app.js?v=1.1.4"></script>
+	<script src="js/fluid-bg.js?v=1.1.4"></script>
 
  </body>
 
