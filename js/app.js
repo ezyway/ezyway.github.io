@@ -697,42 +697,6 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   /* Copy Email Button with Apple Tooltip feedback */
-  /* Live Indian Standard Time (IST) Clock in Contact Hub */
-  function updateISTTime() {
-    const clockEl = document.getElementById("ist-live-clock");
-    if (!clockEl) return;
-    try {
-      const now = new Date();
-      const options = {
-        timeZone: "Asia/Kolkata",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: true
-      };
-      const timeString = new Intl.DateTimeFormat("en-US", options).format(now);
-      clockEl.textContent = `${timeString} IST`;
-    } catch (e) {
-      clockEl.textContent = "Active in IST (UTC+5:30)";
-    }
-  }
-  updateISTTime();
-  setInterval(updateISTTime, 1000);
-
-  /* Quick Topic Selector for Email Pre-fill */
-  const topicButtons = document.querySelectorAll(".topic-btn");
-  const mainMailtoBtn = document.getElementById("main-mailto-btn");
-  if (topicButtons.length && mainMailtoBtn) {
-    topicButtons.forEach(btn => {
-      btn.addEventListener("click", () => {
-        topicButtons.forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        const subject = btn.getAttribute("data-subject") || "Let's work together";
-        const body = btn.getAttribute("data-body") || "";
-        mainMailtoBtn.setAttribute("href", `mailto:cvbiro.career@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`);
-      });
-    });
-  }
 
   /* Enhanced Copy Email Button */
   var copyBtns = document.querySelectorAll(".copy-email-pill");
