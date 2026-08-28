@@ -2752,7 +2752,7 @@ section {
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   border: 1px solid var(--glass-border);
-  border-radius: var(--radius-3xl);
+  border-radius: var(--radius-2xl);
   box-shadow: var(--shadow-sm);
   text-align: center;
   position: relative;
