@@ -266,14 +266,6 @@ const resumeData = {
       liveLabel: "Live Website"
     },
     {
-      title: "Cuckoo-Scripts",
-      icon: "fa-terminal",
-      description: "A comprehensive collection of deployment scripts and documentation to configure Cuckoo Sandbox for automated malware analysis.",
-      impact: "Automated sandbox setup from hours of manual work to minutes",
-      tags: ["Shell", "Bash", "Malware Analysis", "Sandbox"],
-      github: "https://github.com/ezyway/Cuckoo-Scripts"
-    },
-    {
       title: "Motion-Detection",
       icon: "fa-video-camera",
       description: "An automated real-time motion detection and video streaming alert system utilizing Python, OpenCV, Ngrok, and the Telegram API.",
@@ -409,9 +401,9 @@ const resumeData = {
           icon: "fa-terminal",
           level: "Production Core",
           category: "languages",
-          app: "DevOps & Cuckoo-Scripts",
-          desc: "Automated sandbox provisioning, multi-node deployment scripts, Linux automation, and CI/CD pipelines.",
-          tags: ["Automation", "Sandbox Provisioning", "POSIX Shell"]
+          app: "DevOps & Automation",
+          desc: "Multi-node deployment scripts, Linux automation, server orchestration, and CI/CD pipelines.",
+          tags: ["Automation", "Server Orchestration", "POSIX Shell"]
         },
         {
           name: "C# / .NET",
