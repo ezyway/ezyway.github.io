@@ -50,6 +50,122 @@ TxtType.prototype.tick = function() {
   }, delta);
 };
 
+/* Animated Dual Linux Console: Terminal CLI Window + Live Logs Window */
+function initHeroTerminal() {
+  var cmdEl = document.getElementById("terminal-command-text");
+  var badgesListEl = document.getElementById("terminal-badges-list");
+  var logsBody = document.getElementById("hero-logs-body");
+  if (!cmdEl || !badgesListEl) return;
+
+  var prompts = [
+    {
+      cmd: "sbatch --partition=gpu-a100 --nodes=4 slurm_genomics_ai.sh",
+      tag: "SLURM:849204",
+      tagType: "green",
+      output: "Allocated 4x NVIDIA A100 GPUs · Multi-agent genomic pipeline initialized"
+    },
+    {
+      cmd: "python vep_agent.py --ensembl-api --gwas-loci chr12:25368462",
+      tag: "GENOMICS-VEP",
+      tagType: "purple",
+      output: "Ensembl API connected · Variant impact scored · Gene relationships mapped"
+    },
+    {
+      cmd: "srun python run_hca_transcriptomics.py --tissue skin_hca",
+      tag: "TRANSCRIPTOMICS",
+      tagType: "cyan",
+      output: "Skin tissue HCA assays processed · Chemical dose-response classified"
+    },
+    {
+      cmd: "python orchestrate_agents.py --coordinator ADK --routing dynamic",
+      tag: "AGENTIC AI",
+      tagType: "green",
+      output: "Google ADK Coordinator active · Specialized scientific agents routed dynamically"
+    },
+    {
+      cmd: "squeue -u sreyas --format='%.10i %.9P %.18j %.8T %.10M'",
+      tag: "HPC/SLURM",
+      tagType: "blue",
+      output: "849204 gpu-a100 genomic_ai RUNNING 04:12:35 · AWS ECS backend synced"
+    }
+  ];
+
+  var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (prefersReducedMotion) {
+    var initialHtml = "";
+    for (var k = 0; k < prompts.length; k++) {
+      var pItem = prompts[k];
+      initialHtml += '<div class="terminal-badge-item">' +
+        '<span class="terminal-output-tag tag-' + pItem.tagType + '">' + pItem.tag + '</span> ' + pItem.output +
+      '</div>';
+    }
+    badgesListEl.innerHTML = initialHtml;
+    cmdEl.textContent = "";
+    return;
+  }
+
+  var currentIndex = 0;
+  var charIndex = 0;
+  var isDeleting = false;
+  var timeoutId = null;
+
+  function scrollToLogsBottom() {
+    if (logsBody) {
+      logsBody.scrollTop = logsBody.scrollHeight;
+    }
+  }
+
+  function typeStep() {
+    var item = prompts[currentIndex];
+    var fullCmd = item.cmd;
+
+    if (!isDeleting) {
+      charIndex++;
+      cmdEl.textContent = fullCmd.substring(0, charIndex);
+
+      if (charIndex < fullCmd.length) {
+        var typingSpeed = 28 + Math.random() * 20;
+        timeoutId = setTimeout(typeStep, typingSpeed);
+      } else {
+        // Command typed completely! Stream badge into Live Logs window
+        timeoutId = setTimeout(function() {
+          var badgeEl = document.createElement("div");
+          badgeEl.className = "terminal-badge-item";
+          badgeEl.innerHTML = '<span class="terminal-output-tag tag-' + item.tagType + '">' + item.tag + '</span> ' + item.output;
+          badgesListEl.appendChild(badgeEl);
+
+          if (badgesListEl.children.length > 20) {
+            badgesListEl.removeChild(badgesListEl.firstElementChild);
+          }
+
+          scrollToLogsBottom();
+
+          // Wait brief reading pause, then command disappears (clears from CLI)
+          timeoutId = setTimeout(function() {
+            isDeleting = true;
+            typeStep();
+          }, 1100);
+        }, 250);
+      }
+    } else {
+      // Deleting command so it disappears from the CLI prompt line
+      charIndex--;
+      cmdEl.textContent = fullCmd.substring(0, charIndex);
+
+      if (charIndex === 0) {
+        isDeleting = false;
+        currentIndex = (currentIndex + 1) % prompts.length;
+        timeoutId = setTimeout(typeStep, 350);
+        return;
+      }
+      var deletingSpeed = 12;
+      timeoutId = setTimeout(typeStep, deletingSpeed);
+    }
+  }
+
+  typeStep();
+}
+
 function calculateDuration(startStr, endStr) {
   if (!startStr) return "";
   
@@ -357,6 +473,9 @@ document.addEventListener("DOMContentLoaded", function() {
     });
     el.textContent = count;
   });
+
+  /* Hero Terminal Animated Prompts */
+  initHeroTerminal();
 
   /* Typewriter Init */
   var elements = document.getElementsByClassName('typewrite');

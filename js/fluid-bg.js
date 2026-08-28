@@ -868,13 +868,8 @@
       pointer.color = generateColor();
     }, { passive: true });
 
-    // fade out as the hero scrolls away (1 -> 0.15 over 80% of the viewport)
-    function updateScrollFade() {
-      var p = Math.min(window.scrollY / (0.8 * window.innerHeight), 1);
-      container.style.opacity = String(1 - 0.85 * p);
-    }
-    window.addEventListener('scroll', updateScrollFade, { passive: true });
-    updateScrollFade();
+    // Maintain constant ambient brightness throughout the entire page (no darkening on scroll)
+    container.style.opacity = '0.9';
 
     function sizeCanvas() {
       var dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -937,7 +932,7 @@
   // fonts win the race for the main thread. Also skips the work entirely when
   // the hero has already been scrolled past before the listener fires.
   function bootWhenIdle() {
-    if (booted || window.scrollY > window.innerHeight) return;
+    if (booted) return;
     booted = true;
     init();
   }

@@ -16,7 +16,7 @@ const resumeData = {
       end: "present",
       category: "ai-dev",
       logo: "images/logos/aganitha.webp",
-      details: "Design and deploy production-grade multi-agent platforms powered by LLMs and agentic architectures supporting 20+ legacy agents. Build and maintain genomic data analysis pipelines, big data systems, and ML workflows. Re-architect complex scientific workflows into scalable, cloud-native services using Python, FastAPI, and Docker on AWS."
+      details: "Design and deploy production-grade multi-agent platforms powered by LLMs and agentic architectures with Google ADK coordinator routing. Build and maintain genomic data analysis pipelines, big data systems, and ML workflows. Re-architect complex scientific workflows into scalable, cloud-native services using Python, FastAPI, and Docker on AWS."
     },
     {
       role: "Jr. Developer Intern",

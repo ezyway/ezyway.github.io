@@ -100,54 +100,79 @@
   <!-- Hero / Intro Section -->
   <section id="intro">
     <div class="page-container">
-      <div class="hero-pill-badge">
-        <i class="fa fa-circle" aria-hidden="true"></i>
-        <span>Available for AI &amp; Backend Engineering</span>
-      </div>
-
       <h1 class="hero-title">
         Engineering <span class="gradient-text">Intelligent</span> Systems
       </h1>
 
       <p class="hero-subtitle">
-        Software Engineer &mdash; Multi-Agent LLM Platforms · Cloud-Native Backend · Genomic AI
+        Software Engineer · Multi-Agent LLM Platforms · Cloud-Native Backend · Genomic AI · Transcriptomics · SLURM HPC · Agent Orchestration
       </p>
 
       <p class="hero-description">
         I architect and ship production-grade agentic platforms &mdash; turning cutting-edge AI research into resilient, scalable cloud systems.
       </p>
 
-      <div class="hero-console-pill">
-        <span class="console-prompt" aria-hidden="true">$</span>
-        <span class="typewrite" data-period="2400" data-type='[ "20+ agents orchestrated · all green", "spawn agent: variant_effect_predictor", "deploy: python · fastapi · aws", "research → production, end to end" ]'>
-          <span class="wrap"></span>
-        </span>
-      </div>
+      <!-- Dual Linux Console & Live Logs Windows -->
+      <div class="hero-consoles-wrapper">
+        <!-- Window 1: Terminal CLI -->
+        <div class="hero-terminal-window linux-terminal terminal-cli-window">
+          <div class="hero-terminal-header linux-header">
+            <div class="linux-title-group">
+              <i class="fa fa-terminal terminal-linux-icon" aria-hidden="true"></i>
+              <span class="terminal-title">sreyas@hpc-cluster: ~/genomics-ai</span>
+            </div>
+            <div class="linux-window-controls">
+              <span class="linux-win-btn btn-min" title="Minimize" aria-hidden="true"><i class="fa fa-minus"></i></span>
+              <span class="linux-win-btn btn-max" title="Maximize" aria-hidden="true"><i class="fa fa-square-o"></i></span>
+              <span class="linux-win-btn btn-close" title="Close" aria-hidden="true"><i class="fa fa-times"></i></span>
+            </div>
+          </div>
+          <div class="hero-terminal-body cli-body" id="hero-terminal-body">
+            <div class="terminal-active-line" id="terminal-active-line">
+              <span class="linux-prompt"><span class="p-user">sreyas@hpc-cluster</span><span class="p-sep">:</span><span class="p-path">~/genomics-ai</span><span class="p-dollar">$</span></span>
+              <span class="t-command" id="terminal-command-text"></span><span class="t-cursor" aria-hidden="true"></span>
+            </div>
+            <div class="terminal-status-hint">
+              <span class="hint-dot"></span>
+              <span>SLURM / HPC Cluster Shell · Active</span>
+            </div>
+          </div>
+        </div>
 
-      <div class="hero-actions">
-        <a href="#projects" class="smoothscroll btn btn-primary">
-          <span>Explore Projects</span> <i class="fa fa-arrow-right" aria-hidden="true"></i>
-        </a>
-        <a href="Profile.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
-          <i class="fa fa-file-pdf-o" aria-hidden="true"></i> <span>View Resume</span>
-        </a>
-        <a href="#contact" class="smoothscroll btn btn-ghost">
-          <i class="fa fa-envelope-o" aria-hidden="true"></i> <span>Get in Touch</span>
-        </a>
+        <!-- Window 2: Live Cluster & Job Logs -->
+        <div class="hero-terminal-window linux-terminal terminal-logs-window">
+          <div class="hero-terminal-header linux-header">
+            <div class="linux-title-group">
+              <span class="logs-live-badge"><span class="pulse-green-dot"></span> LIVE</span>
+              <span class="terminal-title">cluster-events.log — Job Telemetry</span>
+            </div>
+            <div class="linux-window-controls">
+              <span class="linux-win-btn btn-min" title="Minimize" aria-hidden="true"><i class="fa fa-minus"></i></span>
+              <span class="linux-win-btn btn-max" title="Maximize" aria-hidden="true"><i class="fa fa-square-o"></i></span>
+              <span class="linux-win-btn btn-close" title="Close" aria-hidden="true"><i class="fa fa-times"></i></span>
+            </div>
+          </div>
+          <div class="hero-terminal-body logs-body" id="hero-logs-body">
+            <div class="terminal-badges-list" id="terminal-badges-list"></div>
+          </div>
+        </div>
       </div>
 
       <div class="hero-logos-wrapper">
-        <div class="hero-logos-current">
-          <span class="hero-logos-label">Currently at</span>
+        <div class="hero-logos-pill hero-logos-current">
+          <span class="hero-current-label">Currently at</span>
           <img src="images/logos/aganitha.webp" alt="Aganitha" loading="lazy">
-          <strong>Aganitha</strong>
+          <span class="hero-current-name">Aganitha</span>
         </div>
-        <p class="hero-logos-label">Previously collaborated &amp; worked with</p>
-        <div class="hero-logos-grid">
-          <img src="images/logos/nxtwave.webp" alt="NxtWave" loading="lazy">
-          <img src="images/logos/walmart.webp" alt="Walmart" loading="lazy">
-          <img src="images/logos/saskpoly.webp" alt="Saskatchewan Polytechnic" loading="lazy">
-          <img src="images/logos/eci.webp" alt="Election Commission of India" loading="lazy">
+
+        <div class="hero-logos-pill hero-logos-previous">
+          <span class="hero-current-label">Previously worked with</span>
+          <div class="hero-logos-grid">
+            <img src="images/logos/nxtwave.webp" alt="NxtWave" title="NxtWave" loading="lazy">
+            <img src="images/logos/walmart.webp" alt="Walmart" title="Walmart" loading="lazy">
+            <img src="images/logos/saskpoly.webp" alt="Saskatchewan Polytechnic" title="Saskatchewan Polytechnic" loading="lazy">
+            <img src="images/logos/eci.webp" alt="Election Commission of India" title="Election Commission of India" loading="lazy">
+          </div>
         </div>
       </div>
     </div>
@@ -177,7 +202,7 @@
               Software Engineer specializing in AI systems and backend infrastructure, with hands-on experience building production-grade multi-agent platforms powered by LLMs.
             </p>
             <p>
-              Designed and deployed agentic architectures supporting 20+ specialized agents along with dynamic agent generation via an agent-builder framework, enabling complex, multi-stage workflows across scientific, genomic, and enterprise domains.
+              Designed and deployed agentic architectures with Google ADK coordinator routing and dynamic agent generation, enabling complex, multi-stage workflows across scientific, genomic, and enterprise domains.
             </p>
             <p style="margin-top: var(--space-3);">
               Strong in Python, FastAPI, Docker, and AWS cloud-native architectures. Proven track record translating research prototypes into high-performance, fault-tolerant production systems in close collaboration with domain scientists.
@@ -185,17 +210,23 @@
           </div>
         </div>
 
-        <!-- Bento Stats Grid -->
+        <!-- Bento Stats Grid with Extended AI & Backend Card -->
         <div class="bento-stats">
-          <div class="stat-box">
-            <div class="stat-icon"><i class="fa fa-cogs"></i></div>
-            <div class="stat-number">AI &amp; Backend</div>
-            <div class="stat-label">Core Focus</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-icon"><i class="fa fa-sitemap"></i></div>
-            <div class="stat-number" data-count="20" data-suffix="+">20+</div>
-            <div class="stat-label">Orchestrated Agents</div>
+          <div class="stat-box stat-box-wide">
+            <div class="stat-box-header">
+              <div class="stat-icon"><i class="fa fa-cogs"></i></div>
+              <span class="stat-pill-tag">Core Focus</span>
+            </div>
+            <div class="stat-title">AI &amp; Backend Engineering</div>
+            <p class="stat-desc">Multi-Agent Architectures · Cloud-Native Microservices · Genomic &amp; ML Pipelines</p>
+            <div class="stat-skills-chips">
+              <span>Python</span>
+              <span>FastAPI</span>
+              <span>Google ADK</span>
+              <span>AWS ECS</span>
+              <span>Docker</span>
+              <span>SLURM</span>
+            </div>
           </div>
           <div class="stat-box">
             <div class="stat-icon"><i class="fa fa-building-o"></i></div>
