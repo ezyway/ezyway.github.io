@@ -435,53 +435,154 @@
     </div>
   </section>
 
-  <!-- Contact Section -->
+  <!-- Contact & Collaboration Section (Apple Glass Hub) -->
   <section id="contact">
     <div class="page-container">
-      <div class="apple-card">
-        <div class="section-intro" style="margin-bottom: var(--space-8);">
-          <h5>Contact</h5>
-          <h1>Let's Start a Conversation</h1>
-          <p class="lead">Whether you have an upcoming role, an interesting project, or just want to chat AI systems.</p>
-        </div>
-
-        <div class="contact-grid">
-          <div class="contact-info-card">
-            <div class="contact-icon-disc"><i class="fa fa-map-marker"></i></div>
-            <h4>Location</h4>
-            <p>Hyderabad, Telangana, India</p>
+      <div class="apple-card contact-master-card">
+        <!-- Header & Status Pill -->
+        <div class="contact-header">
+          <div class="contact-status-pill">
+            <span class="pulse-dot"></span>
+            <span class="status-text">Available for Full-Time Roles &amp; High-Impact AI Projects</span>
           </div>
-
-          <div class="contact-info-card">
-            <div class="contact-icon-disc"><i class="fa fa-envelope-o"></i></div>
-            <h4>Email</h4>
-            <p><a href="mailto:cvbiro.career@gmail.com">cvbiro.career@gmail.com</a></p>
-            <button class="copy-email-pill" data-email="cvbiro.career@gmail.com" aria-label="Copy email address">
-              <i class="fa fa-clone" aria-hidden="true"></i> <span class="copy-email-label">Copy Email</span>
-            </button>
-          </div>
-        </div>
-
-        <div class="contact-cta-wrapper">
-          <a href="mailto:cvbiro.career@gmail.com?subject=Let's%20work%20together" class="btn btn-primary">
-            <i class="fa fa-paper-plane" aria-hidden="true"></i> <span>Send an Email</span>
-          </a>
-
-          <div class="contact-social-pills">
-            <a href="https://linkedin.com/in/cvbiro" target="_blank" rel="noopener noreferrer" class="social-pill">
-              <i class="fa fa-linkedin"></i> <span>LinkedIn</span>
-            </a>
-            <a href="https://github.com/ezyway" target="_blank" rel="noopener noreferrer" class="social-pill">
-              <i class="fa fa-github"></i> <span>GitHub</span>
-            </a>
-            <a href="mailto:cvbiro.career@gmail.com" class="social-pill">
-              <i class="fa fa-envelope"></i> <span>Email</span>
-            </a>
-          </div>
-
-          <p class="contact-availability-text">
-            Open to full-time engineering roles and collaborative projects in AI systems and cloud backend infrastructure.
+          <h1 class="contact-title">Let's Build Something Exceptional.</h1>
+          <p class="contact-lead">
+            Whether you have a technical opportunity, distributed systems architecture to debate, or an ambitious agentic AI project — I'd love to connect.
           </p>
+        </div>
+
+        <!-- Main Bento Contact Grid -->
+        <div class="contact-bento-grid">
+          
+          <!-- Left Column: Direct Communication & Real-time Location -->
+          <div class="contact-left-col">
+            <!-- Email Channel Card -->
+            <div class="contact-channel-card apple-card">
+              <div class="channel-top">
+                <div class="channel-icon-disc">
+                  <i class="fa fa-envelope-open-o"></i>
+                </div>
+                <div class="channel-meta">
+                  <span class="channel-label">Direct Communication</span>
+                  <h3 class="channel-address">cvbiro.career@gmail.com</h3>
+                </div>
+              </div>
+              <p class="channel-desc">
+                Fastest way to reach me. Typically responds within 12–24 hours.
+              </p>
+              <div class="channel-actions">
+                <a id="main-mailto-btn" href="mailto:cvbiro.career@gmail.com?subject=Full-time%20Engineering%20Role%20Inquiry" class="btn btn-primary channel-btn">
+                  <i class="fa fa-paper-plane"></i> <span>Send Email</span>
+                </a>
+                <button class="copy-email-pill channel-copy-btn" data-email="cvbiro.career@gmail.com" aria-label="Copy email address">
+                  <i class="fa fa-clone"></i> <span class="copy-email-label">Copy Address</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Location & Working Hours Card with Live IST Time -->
+            <div class="contact-location-card apple-card">
+              <div class="location-top">
+                <div class="location-icon-disc">
+                  <i class="fa fa-globe"></i>
+                </div>
+                <div class="location-titles">
+                  <span class="location-label">Base Location</span>
+                  <h3 class="location-city">Hyderabad, India</h3>
+                </div>
+              </div>
+              <div class="location-time-box">
+                <div class="time-indicator">
+                  <span class="time-label">Local Time (IST · UTC+5:30)</span>
+                  <span id="ist-live-clock" class="ist-live-clock">--:--:-- --</span>
+                </div>
+                <span class="working-hours-badge"><i class="fa fa-clock-o"></i> Active Working Hours</span>
+              </div>
+            </div>
+
+            <!-- Collaboration Pillars Card -->
+            <div class="contact-focus-card apple-card">
+              <span class="focus-label">Areas of Collaboration</span>
+              <div class="focus-tags">
+                <span class="focus-tag"><i class="fa fa-cogs"></i> Agentic AI Orchestration</span>
+                <span class="focus-tag"><i class="fa fa-bolt"></i> High-Throughput FastAPI</span>
+                <span class="focus-tag"><i class="fa fa-database"></i> Distributed In-Memory Systems</span>
+                <span class="focus-tag"><i class="fa fa-shield"></i> HPC &amp; Cyber Forensics</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Interactive Quick Subject Templates & Network Tiles -->
+          <div class="contact-right-col">
+            <!-- Quick Subject Selector -->
+            <div class="contact-topics-card apple-card">
+              <span class="topics-label">Select a Conversation Topic</span>
+              <div class="topic-buttons" role="radiogroup" aria-label="Email Subject Selector">
+                <button class="topic-btn active" data-subject="Full-time Engineering Role Inquiry" data-body="Hi Sreyas,%0D%0A%0D%0AI came across your portfolio and would like to discuss an engineering opportunity with you.">
+                  <i class="fa fa-briefcase"></i> <span>Full-Time Role</span>
+                </button>
+                <button class="topic-btn" data-subject="Agentic AI & Distributed Systems Collaboration" data-body="Hi Sreyas,%0D%0A%0D%0AI'd like to collaborate on an AI systems / backend project.">
+                  <i class="fa fa-code-fork"></i> <span>Project Collab</span>
+                </button>
+                <button class="topic-btn" data-subject="Coffee Chat & Technical Exchange" data-body="Hi Sreyas,%0D%0A%0D%0AWould love to connect and chat about software architecture / Linux tooling.">
+                  <i class="fa fa-coffee"></i> <span>Tech Chat</span>
+                </button>
+              </div>
+              <p class="topic-hint">Clicking a topic pre-fills your email subject and body template.</p>
+            </div>
+
+            <!-- Professional Networks Grid -->
+            <div class="networks-grid">
+              <a href="https://linkedin.com/in/cvbiro" target="_blank" rel="noopener noreferrer" class="network-card apple-card">
+                <div class="network-icon-box linkedin"><i class="fa fa-linkedin"></i></div>
+                <div class="network-info">
+                  <div class="network-header">
+                    <h4>LinkedIn</h4>
+                    <i class="fa fa-external-link"></i>
+                  </div>
+                  <p class="network-handle">in/cvbiro</p>
+                  <span class="network-desc">Career timeline &amp; professional network</span>
+                </div>
+              </a>
+
+              <a href="https://github.com/ezyway" target="_blank" rel="noopener noreferrer" class="network-card apple-card">
+                <div class="network-icon-box github"><i class="fa fa-github"></i></div>
+                <div class="network-info">
+                  <div class="network-header">
+                    <h4>GitHub</h4>
+                    <i class="fa fa-external-link"></i>
+                  </div>
+                  <p class="network-handle">@ezyway</p>
+                  <span class="network-desc">22k+ users, open-source repos &amp; tools</span>
+                </div>
+              </a>
+
+              <a href="https://extensions.gnome.org/extension/6952/rezmon/" target="_blank" rel="noopener noreferrer" class="network-card apple-card">
+                <div class="network-icon-box gnome"><i class="fa fa-sliders"></i></div>
+                <div class="network-info">
+                  <div class="network-header">
+                    <h4>GNOME Marketplace</h4>
+                    <i class="fa fa-external-link"></i>
+                  </div>
+                  <p class="network-handle">RezMon Extension</p>
+                  <span class="network-desc">Hardware monitoring desktop utility</span>
+                </div>
+              </a>
+
+              <a href="Resume.md" target="_blank" class="network-card apple-card">
+                <div class="network-icon-box resume"><i class="fa fa-file-text-o"></i></div>
+                <div class="network-info">
+                  <div class="network-header">
+                    <h4>Resume Document</h4>
+                    <i class="fa fa-arrow-down"></i>
+                  </div>
+                  <p class="network-handle">Resume.md</p>
+                  <span class="network-desc">Full CV, systems background &amp; metrics</span>
+                </div>
+              </a>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
