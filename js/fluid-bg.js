@@ -26,18 +26,14 @@
     AUTO_SPLAT_INTERVAL: 2.5
   };
 
-  // Alkemy's alchemy palette (emerald/amethyst/gold/teal/wine) plus this
-  // site's pink accents (#ff0077, #cc005f). 70% palette / 30% random hue.
+  // Apple Keynote / macOS ambient palette (Apple Blue, Indigo, Purple, Cyan, Emerald)
   var PALETTE = [
-    { r: 0.18, g: 0.83, b: 0.66 },
-    { r: 0.10, g: 0.62, b: 0.48 },
-    { r: 0.61, g: 0.43, b: 1.00 },
-    { r: 0.48, g: 0.30, b: 0.88 },
-    { r: 0.91, g: 0.72, b: 0.25 },
-    { r: 0.20, g: 0.50, b: 0.65 },
-    { r: 0.70, g: 0.20, b: 0.40 },
-    { r: 1.00, g: 0.00, b: 0.47 },
-    { r: 0.80, g: 0.00, b: 0.37 }
+    { r: 0.04, g: 0.52, b: 1.00 }, // Apple Blue
+    { r: 0.37, g: 0.36, b: 0.90 }, // Apple Indigo
+    { r: 0.75, g: 0.35, b: 0.95 }, // Apple Purple
+    { r: 0.39, g: 0.82, b: 1.00 }, // Apple Cyan
+    { r: 0.20, g: 0.84, b: 0.29 }, // Apple Emerald
+    { r: 0.00, g: 0.44, b: 0.89 }  // Apple Sapphire
   ];
 
   var baseVertexShader = [
@@ -930,9 +926,52 @@
     requestAnimationFrame(frame);
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
+  // Performance: don't pay for the WebGL sim on small screens or when the
+  // user prefers reduced motion. The layered background image already covers
+  // the hero visually, so the fluid canvas is an enhancement, not a necessity.
+  var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var smallScreen = window.matchMedia('(max-width: 768px)');
+  var booted = false;
+
+  // Lazy-init: boot the sim only after first paint / idle, so hero text and
+  // fonts win the race for the main thread. Also skips the work entirely when
+  // the hero has already been scrolled past before the listener fires.
+  function bootWhenIdle() {
+    if (booted || window.scrollY > window.innerHeight) return;
+    booted = true;
     init();
+  }
+
+  function capsLifted() {
+    return !reducedMotion.matches && !smallScreen.matches;
+  }
+
+  function scheduleBoot() {
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(bootWhenIdle, { timeout: 2000 });
+    } else {
+      setTimeout(bootWhenIdle, 250);
+    }
+  }
+
+  if (capsLifted()) {
+    scheduleBoot();
+  } else {
+    // Re-boot if the visitor rotates to a desktop viewport or disables
+    // reduced motion while the page is open.
+    var caps = [reducedMotion, smallScreen];
+    function onCapChange() {
+      if (capsLifted()) {
+        caps.forEach(function (m) {
+          if (m.removeEventListener) m.removeEventListener('change', onCapChange);
+          else if (m.removeListener) m.removeListener(onCapChange);
+        });
+        scheduleBoot();
+      }
+    }
+    caps.forEach(function (m) {
+      if (m.addEventListener) m.addEventListener('change', onCapChange);
+      else if (m.addListener) m.addListener(onCapChange);
+    });
   }
 })();

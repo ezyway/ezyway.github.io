@@ -1,274 +1,402 @@
 <!DOCTYPE html>
+<html lang="en" data-theme="dark">
 <head>
+  <!-- Basic Page Needs -->
+  <meta charset="utf-8">
+  <title>Sreyas C.V. | Software Engineer — AI Systems &amp; Backend Infrastructure</title>
+  <meta name="description" content="Sreyas Cheeran Velikoth (CV) — Software Engineer specializing in AI systems, LLM-powered multi-agent platforms, and cloud-native backend infrastructure. Python, FastAPI, AWS.">
+  <meta name="author" content="Sreyas Cheeran Velikoth">
 
-   <!--- basic page needs
-   ================================================== -->
-   <meta charset="utf-8">
-	<title>Sreyas C.V.</title>
-	<meta name="description" content="">  
-	<meta name="author" content="">
+  <!-- Mobile Specific Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#050507">
 
-   <!-- mobile specific metas
-   ================================================== -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Sreyas C.V. | Software Engineer">
+  <meta property="og:description" content="Software Engineer specializing in AI systems, LLM-powered multi-agent platforms, and backend infrastructure.">
+  <meta property="og:url" content="https://ezyway.github.io/">
+  <meta property="og:image" content="https://ezyway.github.io/images/intro-bg.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sreyas C.V. | Software Engineer">
+  <meta name="twitter:description" content="Software Engineer specializing in AI systems, LLM-powered multi-agent platforms, and backend infrastructure.">
+  <meta name="twitter:image" content="https://ezyway.github.io/images/intro-bg.webp">
 
- 	<!-- CSS
-   ================================================== -->
-	<link rel="stylesheet" href="css/base.css?v=1.1.4">
-	<link rel="stylesheet" href="css/main.css?v=1.1.4">
-	<link rel="stylesheet" href="css/vendor.css?v=1.1.4">
-	<link rel="stylesheet" href="css/custom.css?v=1.1.4">
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Sreyas Cheeran Velikoth",
+    "alternateName": "Sreyas CV",
+    "jobTitle": "Software Engineer",
+    "url": "https://ezyway.github.io/",
+    "email": "mailto:cvbiro.career@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Hyderabad",
+      "addressRegion": "Telangana",
+      "addressCountry": "IN"
+    },
+    "sameAs": [
+      "https://linkedin.com/in/cvbiro",
+      "https://github.com/ezyway"
+    ]
+  }
+  </script>
 
-   <!-- script
-   ================================================== -->   
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/v4-shims.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="css/icons.css?v=2.1.0">
+  <link rel="stylesheet" href="css/apple-design.css?v=2.1.0">
 
-   <!-- favicons
-	================================================== -->
-	<!-- <link rel="icon" type="image/png" href="zfavicon.png"> -->
-	<link rel="icon" href="favi.ico" type="image/x-icon" />
-	
-
-
-
-
-	<!-- Logic extracted and moved to js/app.js -->
-
-	
-
+  <!-- Favicon -->
+  <link rel="icon" href="favi.ico" type="image/x-icon">
 </head>
 
 <body id="top">
 
-	<!-- header 
-   ================================================== -->
-   <header>   	
-   		<div class="top-bar">
-			
-   			<a class="menu-toggle" href="#"><span id="menu">Menu</span></a>
+  <a class="skip-link" href="#about">Skip to content</a>
+  <div class="scroll-progress" aria-hidden="true"><span class="scroll-progress-bar"></span></div>
 
-	   		<div class="logo" onclick="navClick()">Explore Me</div>		      
+  <!-- Ambient Fluid Canvas & Mesh Background -->
+  <div id="fluid-bg" aria-hidden="true"></div>
+  <div class="ambient-glow-mesh" aria-hidden="true"></div>
 
-		   	<nav id="main-nav-wrap">
-					<ul class="main-navigation">
-						<li class="current"><a class="smoothscroll"  href="#intro" title="">My Profile</a></li>
-						<li><a class="smoothscroll"  href="#about" title="">About</a></li>
-						<li><a class="smoothscroll"  href="#resume" title="">Resume</a></li>
-						<li><a class="smoothscroll"  href="#projects" title="">Projects</a></li>
-						<li><a class="smoothscroll"  href="#myskills" title="">My Skills</a></li>
-						<li><a class="smoothscroll"  href="#contact" title="">Contact</a></li>
-					</ul>
-				</nav>    		
-   		</div> <!-- /top-bar --> 
-   </header> <!-- /header -->
+  <!-- Header / Apple Floating Navigation Island -->
+  <header>
+    <div class="nav-island">
+      <a class="brand-logo smoothscroll" href="#intro">
+        <span class="brand-badge" aria-hidden="true"></span>
+        <span>Sreyas C.V.</span>
+      </a>
 
-	<!-- intro section
-   ================================================== -->
-   <div class="page-bg" aria-hidden="true"></div>
-   <div class="page-blur-overlay" aria-hidden="true"></div>
-   <div id="fluid-bg" aria-hidden="true"></div>
+      <nav id="main-nav-wrap" aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li class="current"><a class="smoothscroll" href="#intro">Overview</a></li>
+          <li><a class="smoothscroll" href="#about">About</a></li>
+          <li><a class="smoothscroll" href="#resume">Experience</a></li>
+          <li><a class="smoothscroll" href="#projects">Projects</a></li>
+          <li><a class="smoothscroll" href="#myskills">Skills</a></li>
+          <li><a class="smoothscroll" href="#contact">Contact</a></li>
+        </ul>
+      </nav>
 
-   <section id="intro">
-    	<div class="intro-content">
-			<div class="intro-hero-top">
-				<div class="intro-glass-panel">
-					<h1>I'm Sreyas</h1>
+      <div class="nav-actions">
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Switch to Light Mode">
+          <i class="fa fa-sun-o" aria-hidden="true"></i>
+        </button>
+        <a href="#contact" class="smoothscroll nav-cta-btn">
+          <span>Connect</span> <i class="fa fa-arrow-right" aria-hidden="true"></i>
+        </a>
+        <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <i class="fa fa-bars" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </header>
 
-					<p class="intro-position">
-						<span>you can call me CV</span>
-					</p>
-
-					<div class="typewriter">
-						<a href="" class="typewrite" data-period="2000" data-type='[ "printf(\"Hello World\");", "cout<<\"Hello World\";", "print(\"Hello World\")", "echo \"Hello World\";","System.out.println(\"Hello World\");","Console.log(\"Hello World\");" ]'>
-							<span class="wrap"></span>
-						</a>
-					</div>
-				</div>
-			</div>
-
-			<div class="intro-hero-bottom">
-				<a class="scroll-cue smoothscroll" href="#about" title="More About Me">
-					<i class="fa fa-chevron-down"></i>
-					<i class="fa fa-chevron-down"></i>
-					<i class="fa fa-chevron-down"></i>
-				</a>
-			</div>
-	   	</div> <!-- /intro-content --> 
-
-    </section> <!-- /intro -->
-
-	<div class="intro-social-glass">
-		<ul class="intro-social">
-			<li><a href="https://linkedin.com/in/cvbiro" target="blank" title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
-			<li><a href="https://github.com/ezyway" target="blank" title="GitHub"><i class="fa fa-github"></i></a></li>
-			<li><a href="mailto:cvbiro.career@gmail.com" title="Email Me"><i class="fa fa-envelope"></i></a></li>
-		</ul>
-	</div>
-
-
-   <!-- about section
-   ================================================== -->
-   <section id="about">
-
-    	<div class="about-glass-card">
-    		<div class="row section-intro">
-    			<div class="col-twelve">
-
-    				<h5>About</h5>
-    				<h1>Let me introduce myself.</h1>
-
-    				<div class="intro-info">
-
-    					<!-- <img src="images/profile-pic.jpg" alt="Profile Picture"> -->
-
-    					<p class="lead">&emsp;&emsp;&emsp;Software Engineer specializing in AI systems and backend infrastructure, with hands-on experience building production-grade multi-agent platforms powered by LLMs. Designed and deployed agentic architectures supporting 20+ legacy agents along with dynamic agent generation via an agent-builder framework, enabling complex, multi-stage workflows across scientific and enterprise domains.</p>
-    					<p class="lead">&emsp;&emsp;&emsp;Strong in Python, FastAPI, and cloud-native systems, with proven ability to translate research-driven prototypes into scalable, production-ready AI systems. Experienced in collaborating cross-functionally with domain experts to deliver end-to-end intelligent systems.</p>
-    				</div>   			
-    			</div>   		
-    	</div> <!-- /section-intro -->
-
-	   </div>
-
-   </section> <!-- /process-->
-
-
-   <!-- resume Section
-   ================================================== -->
-	<section id="resume">
-
-		<div class="resume-glass-card">
-			<div class="row section-intro">
-	    		<div class="col-twelve">
-
-	    			<h5>Resume</h5>
-	    			<h1>More of my credentials.</h1>
-
-	    		</div>   		
-	    	</div> <!-- /section-intro--> 
-
-	    	<div class="row resume-timeline">
-
-	    		<div class="col-twelve resume-header">
-	    			<h2>Work Experience</h2>
-	    			<div class="filter-pills-container">
-	    				<button class="filter-pill active" aria-pressed="true" data-filter="dev">Dev</button>
-	    				<button class="filter-pill" aria-pressed="false" data-filter="ai-dev">AI Dev</button>
-	    				<button class="filter-pill" aria-pressed="false" data-filter="exploring">Exploring World</button>
-	    			</div>
-	    		</div> <!-- /resume-header -->
-
-	    		<div class="col-twelve">
-	    			<div id="experience-timeline-wrap" class="timeline-wrap"></div>
-	    		</div>
-
-	    	</div> <!-- /resume-timeline -->
-
-	    	<div class="row resume-timeline">
-
-	    		<div class="col-twelve resume-header">
-	    			<h2>Education</h2>
-	    		</div>
-
-	    		<div class="col-twelve">
-	    			<div id="education-timeline-wrap" class="timeline-wrap"></div>
-	    		</div>
-
-	    	</div> <!-- /resume-timeline -->
-		</div>
-		
-	</section> <!-- /resume -->
-
-   <!-- projects Section
-   ================================================== -->
-   <section id="projects">
-
-      <div class="projects-glass-card">
-         <div class="row section-intro">
-            <div class="col-twelve">
-               <h5>Projects</h5>
-               <h1>Check out some of my work.</h1>
-            </div>
-         </div>
-
-         <div id="projects-grid-wrap" class="row projects-grid">
-            <!-- Dynamically populated from js/data.js -->
-         </div>
+  <!-- Hero / Intro Section -->
+  <section id="intro">
+    <div class="page-container">
+      <div class="hero-pill-badge">
+        <i class="fa fa-circle" aria-hidden="true"></i>
+        <span>Available for AI &amp; Backend Engineering</span>
       </div>
 
-   </section> <!-- /projects -->
+      <h1 class="hero-title">
+        Engineering <span class="gradient-text">Intelligent</span> Systems
+      </h1>
 
+      <p class="hero-subtitle">
+        Software Engineer &mdash; Multi-Agent LLM Platforms · Cloud-Native Backend · Genomic AI
+      </p>
 
-	
+      <p class="hero-description">
+        I architect and ship production-grade agentic platforms &mdash; turning cutting-edge AI research into resilient, scalable cloud systems.
+      </p>
 
+      <div class="hero-console-pill">
+        <span class="console-prompt" aria-hidden="true">$</span>
+        <span class="typewrite" data-period="2400" data-type='[ "20+ agents orchestrated · all green", "spawn agent: variant_effect_predictor", "deploy: python · fastapi · aws", "research → production, end to end" ]'>
+          <span class="wrap"></span>
+        </span>
+      </div>
 
-	<!-- skills Section
-   ================================================== -->
-	<section id="myskills">
+      <div class="hero-actions">
+        <a href="#projects" class="smoothscroll btn btn-primary">
+          <span>Explore Projects</span> <i class="fa fa-arrow-right" aria-hidden="true"></i>
+        </a>
+        <a href="Profile.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+          <i class="fa fa-file-pdf-o" aria-hidden="true"></i> <span>View Resume</span>
+        </a>
+        <a href="#contact" class="smoothscroll btn btn-ghost">
+          <i class="fa fa-envelope-o" aria-hidden="true"></i> <span>Get in Touch</span>
+        </a>
+      </div>
 
-		<div class="skills-glass-card">
-			<div class="row section-intro">
-				<div class="col-twelve">
-					<h5>My Skills</h5>
-				</div>
-			</div>
+      <div class="hero-logos-wrapper">
+        <div class="hero-logos-current">
+          <span class="hero-logos-label">Currently at</span>
+          <img src="images/logos/aganitha.webp" alt="Aganitha" loading="lazy">
+          <strong>Aganitha</strong>
+        </div>
+        <p class="hero-logos-label">Previously collaborated &amp; worked with</p>
+        <div class="hero-logos-grid">
+          <img src="images/logos/nxtwave.webp" alt="NxtWave" loading="lazy">
+          <img src="images/logos/walmart.webp" alt="Walmart" loading="lazy">
+          <img src="images/logos/saskpoly.webp" alt="Saskatchewan Polytechnic" loading="lazy">
+          <img src="images/logos/eci.webp" alt="Election Commission of India" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
 
-			<div id="skills-sphere-wrap" class="skills-sphere-container">
-				<!-- Dynamically populated from js/data.js -->
-			</div>
-		</div>
+  <!-- Hero Floating Social Bar -->
+  <div class="intro-social-floating" aria-label="Social Links">
+    <a href="https://linkedin.com/in/cvbiro" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a>
+    <a href="https://github.com/ezyway" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="GitHub"><i class="fa fa-github"></i></a>
+    <a href="mailto:cvbiro.career@gmail.com" title="Email Me" aria-label="Email"><i class="fa fa-envelope"></i></a>
+  </div>
 
-	</section> <!-- /skills -->
+  <!-- About Section (Apple Bento Grid) -->
+  <section id="about">
+    <div class="page-container">
+      <div class="section-intro">
+        <h5>About Me</h5>
+        <h1>Designing for Scale and Intelligence</h1>
+        <p class="lead">Bridging the gap between complex research and production-grade engineering.</p>
+      </div>
 
-	
-	
-   <!-- contact
-   ================================================== -->
-	<section id="contact">
+      <div class="bento-grid">
+        <!-- Bento Main Bio -->
+        <div class="bento-card bento-main">
+          <div>
+            <p class="lead" style="margin-bottom: var(--space-4);">
+              Software Engineer specializing in AI systems and backend infrastructure, with hands-on experience building production-grade multi-agent platforms powered by LLMs.
+            </p>
+            <p>
+              Designed and deployed agentic architectures supporting 20+ specialized agents along with dynamic agent generation via an agent-builder framework, enabling complex, multi-stage workflows across scientific, genomic, and enterprise domains.
+            </p>
+            <p style="margin-top: var(--space-3);">
+              Strong in Python, FastAPI, Docker, and AWS cloud-native architectures. Proven track record translating research prototypes into high-performance, fault-tolerant production systems in close collaboration with domain scientists.
+            </p>
+          </div>
+        </div>
 
-		<div class="contact-glass-card">
-			<div class="row section-intro">
-				<div class="col-twelve">
- 
-					<h5>Contact</h5>
-					<h1>I'd Love To Hear From You.</h1>
- 
-				</div> 
-			</div> <!-- /section-intro -->
+        <!-- Bento Stats Grid -->
+        <div class="bento-stats">
+          <div class="stat-box">
+            <div class="stat-icon"><i class="fa fa-cogs"></i></div>
+            <div class="stat-number">AI &amp; Backend</div>
+            <div class="stat-label">Core Focus</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-icon"><i class="fa fa-sitemap"></i></div>
+            <div class="stat-number" data-count="20" data-suffix="+">20+</div>
+            <div class="stat-label">Orchestrated Agents</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-icon"><i class="fa fa-building-o"></i></div>
+            <div class="stat-number">Aganitha</div>
+            <div class="stat-label">Current Company</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-icon"><i class="fa fa-map-marker"></i></div>
+            <div class="stat-number">Hyderabad</div>
+            <div class="stat-label">Telangana, IN</div>
+          </div>
+        </div>
 
-			<div class="row contact-info">
+        <!-- Capabilities 3-Column Bento -->
+        <div class="capabilities-grid">
+          <div class="capability-card">
+            <div class="capability-icon-disc"><i class="fa fa-magic"></i></div>
+            <h3>Agentic AI Systems</h3>
+            <p>Design and deploy multi-agent LLM platforms with dynamic agent discovery, prompt chaining, tool execution, and complex state orchestration.</p>
+          </div>
 
-				<div class="col-six tab-full">
-					<div class="icon"><i class="icon-pin"></i></div>
-					<h5>Where to find me</h5>
-					<p>Hyderabad, Telangana, India</p>
-				</div>
+          <div class="capability-card">
+            <div class="capability-icon-disc"><i class="fa fa-server"></i></div>
+            <h3>Backend Infrastructure</h3>
+            <p>Build scalable, cloud-native microservices with Python, FastAPI, Docker, and AWS — from low-latency APIs to high-throughput data pipelines.</p>
+          </div>
 
-				<div class="col-six tab-full collapse">
-					<div class="icon"><i class="icon-mail"></i></div>
-					<h5>Email Me At</h5>
-					<p><a href="mailto:cvbiro.career@gmail.com">cvbiro.career@gmail.com</a></p>
-				</div>
+          <div class="capability-card">
+            <div class="capability-icon-disc"><i class="fa fa-flask"></i></div>
+            <h3>Research to Production</h3>
+            <p>Collaborate with scientific domain experts to productionize machine learning pipelines, GWAS genomic tools, and enterprise NLP interfaces.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-			</div> <!-- /contact-info -->
-		</div>
+  <!-- Resume / Experience Section -->
+  <section id="resume">
+    <div class="page-container">
+      <div class="section-intro">
+        <h5>Experience &amp; Education</h5>
+        <h1>Proven Track Record</h1>
+        <p class="lead">A history of building impactful software systems across diverse environments.</p>
+      </div>
 
-	</section> <!-- /contact -->
+      <!-- Segmented Control Filters -->
+      <div class="segmented-control-wrapper">
+        <div class="segmented-control" role="tablist" aria-label="Experience Filter">
+          <button class="filter-pill active" aria-pressed="true" data-filter="dev" role="tab">
+            <span>All Dev</span>
+            <span class="pill-count" data-count="dev"></span>
+          </button>
+          <button class="filter-pill" aria-pressed="false" data-filter="ai-dev" role="tab">
+            <span>AI Dev</span>
+            <span class="pill-count" data-count="ai-dev"></span>
+          </button>
+          <button class="filter-pill" aria-pressed="false" data-filter="exploring" role="tab">
+            <span>Exploring World</span>
+            <span class="pill-count" data-count="exploring"></span>
+          </button>
+        </div>
+      </div>
 
-   <div id="go-top">
-      <a class="smoothscroll" title="Back to Top" href="#top">
-         <i class="fa fa-chevron-up"></i>
-         <i class="fa fa-chevron-up"></i>
+      <!-- Work Experience Timeline Accordion -->
+      <div id="experience-timeline-wrap" class="timeline-wrap">
+        <!-- Dynamically populated from js/data.js -->
+      </div>
+
+      <!-- Education Section Title & Timeline -->
+      <div class="timeline-wrap" style="margin-top: var(--space-12);">
+        <h2 class="timeline-section-title">
+          <i class="fa fa-graduation-cap" style="color: var(--accent-blue);"></i> Education &amp; Research
+        </h2>
+      </div>
+
+      <div id="education-timeline-wrap" class="timeline-wrap">
+        <!-- Dynamically populated from js/data.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Projects Section -->
+  <section id="projects">
+    <div class="page-container">
+      <div class="section-intro">
+        <h5>Featured Projects</h5>
+        <h1>Built with Craft &amp; Precision</h1>
+        <p class="lead">Open-source tools, system utilities, and experimental architectures.</p>
+      </div>
+
+      <div id="projects-grid-wrap" class="projects-grid">
+        <!-- Dynamically populated from js/data.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Apple Call to Action Banner -->
+  <div class="page-container">
+    <div class="cta-banner-wrapper">
+      <div class="cta-banner-inner">
+        <div class="cta-banner-text">
+          <h2>Looking for an AI systems engineer?</h2>
+          <p>I build production-grade multi-agent platforms and backend infrastructure. Let's talk about how I can contribute to your team.</p>
+        </div>
+        <div class="cta-banner-actions">
+          <a href="#contact" class="smoothscroll btn btn-primary">
+            <span>Let's Work Together</span> <i class="fa fa-arrow-right" aria-hidden="true"></i>
+          </a>
+          <a href="Profile.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
+            <i class="fa fa-file-pdf-o" aria-hidden="true"></i> <span>Download Resume</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Skills Section -->
+  <section id="myskills">
+    <div class="page-container">
+      <div class="section-intro">
+        <h5>Technical Stack</h5>
+        <h1>Tools &amp; Technologies</h1>
+        <p class="lead">Languages, frameworks, and infrastructure tools I leverage to build robust software.</p>
+      </div>
+
+      <div id="skills-sphere-wrap" class="skills-groups">
+        <!-- Dynamically populated from js/data.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="page-container">
+      <div class="apple-card">
+        <div class="section-intro" style="margin-bottom: var(--space-8);">
+          <h5>Contact</h5>
+          <h1>Let's Start a Conversation</h1>
+          <p class="lead">Whether you have an upcoming role, an interesting project, or just want to chat AI systems.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-info-card">
+            <div class="contact-icon-disc"><i class="fa fa-map-marker"></i></div>
+            <h4>Location</h4>
+            <p>Hyderabad, Telangana, India</p>
+          </div>
+
+          <div class="contact-info-card">
+            <div class="contact-icon-disc"><i class="fa fa-envelope-o"></i></div>
+            <h4>Email</h4>
+            <p><a href="mailto:cvbiro.career@gmail.com">cvbiro.career@gmail.com</a></p>
+            <button class="copy-email-pill" data-email="cvbiro.career@gmail.com" aria-label="Copy email address">
+              <i class="fa fa-clone" aria-hidden="true"></i> <span class="copy-email-label">Copy Email</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="contact-cta-wrapper">
+          <a href="mailto:cvbiro.career@gmail.com?subject=Let's%20work%20together" class="btn btn-primary">
+            <i class="fa fa-paper-plane" aria-hidden="true"></i> <span>Send an Email</span>
+          </a>
+
+          <div class="contact-social-pills">
+            <a href="https://linkedin.com/in/cvbiro" target="_blank" rel="noopener noreferrer" class="social-pill">
+              <i class="fa fa-linkedin"></i> <span>LinkedIn</span>
+            </a>
+            <a href="https://github.com/ezyway" target="_blank" rel="noopener noreferrer" class="social-pill">
+              <i class="fa fa-github"></i> <span>GitHub</span>
+            </a>
+            <a href="mailto:cvbiro.career@gmail.com" class="social-pill">
+              <i class="fa fa-envelope"></i> <span>Email</span>
+            </a>
+          </div>
+
+          <p class="contact-availability-text">
+            Open to full-time engineering roles and collaborative projects in AI systems and cloud backend infrastructure.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Minimalist Apple Footer -->
+  <footer>
+    <div class="page-container footer-inner">
+      <p class="footer-copy">
+        &copy; <span id="footer-year"></span> Sreyas Cheeran Velikoth. Built with semantic HTML, CSS &amp; JS.
+      </p>
+      <a href="#top" class="smoothscroll footer-back-top">
+        <span>Back to top</span> <i class="fa fa-chevron-up" aria-hidden="true"></i>
       </a>
-   </div>
+    </div>
+  </footer>
 
-   <!-- Java Script
-   ================================================== -->
-	<script src="js/jquery-2.1.3.min.js?v=1.1.4"></script>
-	<script src="js/plugins.js?v=1.1.4"></script>
-	<script src="js/main.js?v=1.1.4"></script>
-	<script src="js/data.js?v=1.1.4"></script>
-	<script src="js/app.js?v=1.1.4"></script>
-	<script src="js/fluid-bg.js?v=1.1.4"></script>
+  <!-- JavaScript Files -->
+  <script src="js/data.js?v=2.0.0"></script>
+  <script src="js/app.js?v=2.0.0"></script>
+  <script src="js/main.js?v=2.0.0"></script>
+  <script src="js/fluid-bg.js?v=2.0.0"></script>
 
- </body>
-
+</body>
 </html>

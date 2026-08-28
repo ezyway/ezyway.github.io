@@ -18,7 +18,6 @@ COPY js/ ./js/
 COPY svg/ ./svg/
 COPY index.html ./
 COPY favi.ico ./
-COPY zfavicon.png ./
 
 # Document that the container listens on port 80
 EXPOSE 80

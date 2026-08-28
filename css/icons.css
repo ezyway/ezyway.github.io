@@ -1,0 +1,214 @@
+/* ===================================================================
+ * Apple Design System - Reimplemented Icon Suite
+ * Powered by Font Awesome 6 + WebFonts with Full Backward Compatibility
+ * =================================================================== */
+
+@font-face {
+  font-family: 'Font Awesome 6 Free';
+  font-style: normal;
+  font-weight: 900;
+  font-display: block;
+  src: url("../fonts/fontawesome/fa-solid-900.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'Font Awesome 6 Free';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url("../fonts/fontawesome/fa-regular-400.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'Font Awesome 6 Brands';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url("../fonts/fontawesome/fa-brands-400.woff2") format("woff2");
+}
+
+/* Base Icon Styling */
+.fa,
+.fas,
+.far,
+.fab,
+.fa-solid,
+.fa-regular,
+.fa-brands {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-rendering: auto;
+  vertical-align: -0.125em;
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+}
+
+.fab,
+.fa-brands {
+  font-family: 'Font Awesome 6 Brands' !important;
+  font-weight: 400 !important;
+}
+
+.far,
+.fa-regular {
+  font-family: 'Font Awesome 6 Free' !important;
+  font-weight: 400 !important;
+}
+
+/* ===================================================================
+ * Brand Icons (Brands Font)
+ * =================================================================== */
+.fa-linkedin:before,
+.fa-linkedin-in:before {
+  font-family: 'Font Awesome 6 Brands' !important;
+  font-weight: 400 !important;
+  content: "\f08c";
+}
+
+.fa-github:before,
+.fa-github-alt:before {
+  font-family: 'Font Awesome 6 Brands' !important;
+  font-weight: 400 !important;
+  content: "\f09b";
+}
+
+.fa-google:before {
+  font-family: 'Font Awesome 6 Brands' !important;
+  font-weight: 400 !important;
+  content: "\f1a0";
+}
+
+.fa-git:before,
+.fa-git-alt:before {
+  font-family: 'Font Awesome 6 Brands' !important;
+  font-weight: 400 !important;
+  content: "\f1d3";
+}
+
+.fa-linux:before {
+  font-family: 'Font Awesome 6 Brands' !important;
+  font-weight: 400 !important;
+  content: "\f17c";
+}
+
+.fa-docker:before {
+  font-family: 'Font Awesome 6 Brands' !important;
+  font-weight: 400 !important;
+  content: "\f395";
+}
+
+.fa-aws:before {
+  font-family: 'Font Awesome 6 Brands' !important;
+  font-weight: 400 !important;
+  content: "\f375";
+}
+
+.fa-python:before {
+  font-family: 'Font Awesome 6 Brands' !important;
+  font-weight: 400 !important;
+  content: "\f3e2";
+}
+
+.fa-js:before,
+.fa-js-square:before {
+  font-family: 'Font Awesome 6 Brands' !important;
+  font-weight: 400 !important;
+  content: "\f3b8";
+}
+
+/* ===================================================================
+ * Solid / General UI Icons
+ * =================================================================== */
+.fa-arrow-right:before { content: "\f061"; }
+.fa-arrow-left:before { content: "\f060"; }
+.fa-arrow-up:before { content: "\f062"; }
+.fa-arrow-down:before { content: "\f063"; }
+.fa-chevron-down:before { content: "\f078"; }
+.fa-chevron-up:before { content: "\f077"; }
+.fa-chevron-right:before { content: "\f054"; }
+.fa-chevron-left:before { content: "\f053"; }
+
+.fa-bars:before { content: "\f0c9"; }
+.fa-times:before,
+.fa-xmark:before,
+.fa-close:before { content: "\f00d"; }
+
+.fa-circle:before { content: "\f111"; }
+.fa-sun:before,
+.fa-sun-o:before { content: "\f185"; }
+.fa-moon:before,
+.fa-moon-o:before { content: "\f186"; }
+
+.fa-envelope:before { content: "\f0e0"; }
+.fa-envelope-o:before {
+  font-family: 'Font Awesome 6 Free' !important;
+  font-weight: 400 !important;
+  content: "\f0e0";
+}
+
+.fa-file-pdf:before,
+.fa-file-pdf-o:before { content: "\f1c1"; }
+.fa-file-text:before,
+.fa-file-text-o:before,
+.fa-file-lines:before { content: "\f15c"; }
+
+.fa-paper-plane:before,
+.fa-paper-plane-o:before { content: "\f1d8"; }
+.fa-copy:before,
+.fa-clone:before { content: "\f24d"; }
+
+.fa-briefcase:before { content: "\f0b1"; }
+.fa-graduation-cap:before { content: "\f19d"; }
+
+.fa-bolt:before,
+.fa-flash:before { content: "\f0e7"; }
+.fa-magic:before,
+.fa-wand-magic-sparkles:before { content: "\f0d0"; }
+.fa-server:before { content: "\f233"; }
+.fa-flask:before { content: "\f0c3"; }
+.fa-terminal:before { content: "\f120"; }
+.fa-code:before { content: "\f121"; }
+.fa-laptop:before,
+.fa-laptop-code:before { content: "\f109"; }
+.fa-desktop:before { content: "\f108"; }
+
+.fa-dashboard:before,
+.fa-tachometer:before,
+.fa-gauge:before,
+.fa-gauge-high:before { content: "\f0e4"; }
+
+.fa-video-camera:before,
+.fa-video:before { content: "\f03d"; }
+
+.fa-cogs:before,
+.fa-gears:before,
+.fa-gear:before,
+.fa-cog:before { content: "\f085"; }
+
+.fa-sitemap:before { content: "\f0e8"; }
+.fa-building:before,
+.fa-building-o:before { content: "\f1ad"; }
+.fa-map-marker:before,
+.fa-location-dot:before,
+.fa-map-pin:before,
+.icon-pin:before { content: "\f3c5"; }
+.icon-mail:before { content: "\f0e0"; }
+
+.fa-area-chart:before,
+.fa-chart-area:before,
+.fa-line-chart:before,
+.fa-chart-line:before { content: "\f1fe"; }
+
+.fa-cloud:before { content: "\f0c2"; }
+.fa-cubes:before { content: "\f1b3"; }
+.fa-cube:before { content: "\f1b2"; }
+.fa-tasks:before,
+.fa-list-check:before { content: "\f0ae"; }
+.fa-database:before { content: "\f1c0"; }
+.fa-shield:before,
+.fa-shield-halved:before,
+.fa-shield-alt:before { content: "\f3ed"; }

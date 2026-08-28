@@ -126,7 +126,7 @@ const resumeData = {
       start: "2020-12",
       end: "2022-06",
       logo: "images/logos/cusat.webp",
-      details: "Focus on advanced computer science and software development.<br>Research Paper: <b>Windows Malware Classification using Dynamic Analysis</b> (co-authored with Prof. Dr. Vinod P.)<ul>Projects:<li> Intel Website - Developed using PHP, jQuery, MySQL, HTML5, CSS, and Bootstrap.<li> Windows Malware Classification - Developed using Python, TensorFlow, Cuckoo Sandbox, Machine Learning, Deep Learning, and Hybrid Deep Learning.</ul>"
+      details: "Focus on advanced computer science and software development.<br>Research Paper: <b>Windows Malware Classification using Dynamic Analysis</b> (co-authored with Prof. Dr. Vinod P.)<div class='timeline-sublist'><span class='timeline-sublist-title'>Projects:</span><ul><li>Intel Website - Developed using PHP, jQuery, MySQL, HTML5, CSS, and Bootstrap.</li><li>Windows Malware Classification - Developed using Python, TensorFlow, Cuckoo Sandbox, Machine Learning, Deep Learning, and Hybrid Deep Learning.</li></ul></div>"
     },
     {
       degree: "Bachelor's in Computer Applications",
@@ -135,7 +135,7 @@ const resumeData = {
       start: "2017-06",
       end: "2020-08",
       logo: "images/logos/vjmodha.webp",
-      details: "Under Bhakta Kavi Narsinh Mehta University (BKNMU)<ul>Projects:<li> AMD Website - E-commerce clone built with PHP, jQuery, MySQL, HTML5, CSS, and Bootstrap.<li> Body Measurement Android App - Fitness tracker developed in Android using Java and SQLite.</ul><ul>Presentations and Practicals:<li> Remote Access Trojans (RATs) analysis using Quasar RAT and Metasploit on Kali Linux.<li> Phishing Attack analysis (including browser-in-the-browser attacks).<li> Android custom ROM compilation and installation.<li> System administrator tasks including multi-boot OS installation, and setting up switches/routers.</ul>"
+      details: "Under Bhakta Kavi Narsinh Mehta University (BKNMU)<div class='timeline-sublist'><span class='timeline-sublist-title'>Projects:</span><ul><li>AMD Website - E-commerce clone built with PHP, jQuery, MySQL, HTML5, CSS, and Bootstrap.</li><li>Body Measurement Android App - Fitness tracker developed in Android using Java and SQLite.</li></ul></div><div class='timeline-sublist'><span class='timeline-sublist-title'>Presentations and Practicals:</span><ul><li>Remote Access Trojans (RATs) analysis using Quasar RAT and Metasploit on Kali Linux.</li><li>Phishing Attack analysis (including browser-in-the-browser attacks).</li><li>Android custom ROM compilation and installation.</li><li>System administrator tasks including multi-boot OS installation, and setting up switches/routers.</li></ul></div>"
     }
   ],
   projects: [
@@ -143,6 +143,7 @@ const resumeData = {
       title: "RezMon",
       icon: "fa-dashboard",
       description: "A GNOME Shell system monitor extension displaying live CPU, RAM, and network statistics directly in the system tray.",
+      impact: "Published on extensions.gnome.org for Linux desktop users",
       tags: ["JavaScript", "GNOME", "Linux", "System Tool"],
       github: "https://github.com/ezyway/RezMon"
     },
@@ -150,6 +151,7 @@ const resumeData = {
       title: "Cuckoo-Scripts",
       icon: "fa-terminal",
       description: "A comprehensive collection of deployment scripts and documentation to configure Cuckoo Sandbox for automated malware analysis.",
+      impact: "Automated sandbox setup from hours of manual work to minutes",
       tags: ["Shell", "Bash", "Malware Analysis", "Sandbox"],
       github: "https://github.com/ezyway/Cuckoo-Scripts"
     },
@@ -157,6 +159,7 @@ const resumeData = {
       title: "EFI-AN515-52-593F",
       icon: "fa-laptop",
       description: "Optimized Hackintosh OpenCore EFI configuration files to run macOS seamlessly on Acer Nitro 5 (AN515-52) laptops.",
+      impact: "Community-adopted config for stable macOS on Acer Nitro 5",
       tags: ["Hackintosh", "macOS", "Hardware Tuning", "OpenCore"],
       github: "https://github.com/ezyway/EFI-AN515-52-593F"
     },
@@ -164,38 +167,59 @@ const resumeData = {
       title: "Motion-Detection",
       icon: "fa-video-camera",
       description: "An automated real-time motion detection and video streaming alert system utilizing Python, OpenCV, Ngrok, and the Telegram API.",
+      impact: "Real-time security alerts with sub-second latency",
       tags: ["Python", "OpenCV", "Telegram API", "IoT Security"],
       github: "https://github.com/ezyway/Motion-Detection"
     }
   ],
   skills: [
-    { name: "C", icon: "images/icons/c.png" },
-    { name: "C++", icon: "images/icons/cplusplus.png" },
-    { name: "C#", icon: "images/icons/csharp.png" },
-    { name: "Python", icon: "images/icons/python.png" },
-    { name: "JAVA", icon: "images/icons/java.png" },
-    { name: "HTML", icon: "images/icons/html5.png" },
-    { name: "CSS", icon: "images/icons/css3.png" },
-    { name: "JavaScript", icon: "images/icons/javascript.png" },
-    { name: "PHP", icon: "images/icons/php.png" },
-    { name: "ASP", icon: "images/icons/asp.png" },
-    { name: "Bootstrap", icon: "images/icons/bootstrap.png" },
-    { name: "jQuery", icon: "fa-code" },
-    { name: "Node.js", icon: "fa-terminal" },
-    { name: "Next.js", icon: "fa-desktop" },
-    { name: "FastAPI", icon: "fa-bolt" },
-    { name: "Docker", icon: "fa-cubes" },
-    { name: "AWS", icon: "fa-cloud" },
-    { name: "SLURM", icon: "fa-tasks" },
-    { name: "Redis", icon: "fa-database" },
-    { name: "PostgreSQL", icon: "fa-database" },
-    { name: "MySQL", icon: "fa-database" },
-    { name: "Machine Learning", icon: "fa-area-chart" },
-    { name: "Agentic AI", icon: "fa-cogs" },
-    { name: "Google ADK", icon: "fa-google" },
-    { name: "Genomics Pipelines", icon: "fa-sitemap" },
-    { name: "Cyber Security", icon: "fa-shield" },
-    { name: "Git", icon: "fa-git" },
-    { name: "Linux", icon: "fa-linux" }
+    {
+      group: "Languages",
+      items: [
+        { name: "Python", icon: "images/icons/python.webp" },
+        { name: "JavaScript", icon: "images/icons/javascript.webp" },
+        { name: "JAVA", icon: "images/icons/java.webp" },
+        { name: "C", icon: "images/icons/c.webp" },
+        { name: "C++", icon: "images/icons/cplusplus.webp" },
+        { name: "C#", icon: "images/icons/csharp.webp" },
+        { name: "PHP", icon: "images/icons/php.webp" },
+        { name: "HTML", icon: "images/icons/html5.webp" },
+        { name: "CSS", icon: "images/icons/css3.webp" }
+      ]
+    },
+    {
+      group: "Frameworks & Backend",
+      items: [
+        { name: "FastAPI", icon: "fa-bolt" },
+        { name: "Node.js", icon: "fa-terminal" },
+        { name: "Next.js", icon: "fa-desktop" },
+        { name: "Bootstrap", icon: "images/icons/bootstrap.webp" },
+        { name: "jQuery", icon: "fa-code" },
+        { name: "ASP", icon: "images/icons/asp.webp" }
+      ]
+    },
+    {
+      group: "AI & Machine Learning",
+      items: [
+        { name: "Agentic AI", icon: "fa-cogs" },
+        { name: "Google ADK", icon: "fa-google" },
+        { name: "Machine Learning", icon: "fa-area-chart" },
+        { name: "Genomics Pipelines", icon: "fa-sitemap" }
+      ]
+    },
+    {
+      group: "Cloud, Data & DevOps",
+      items: [
+        { name: "AWS", icon: "fa-cloud" },
+        { name: "Docker", icon: "fa-cubes" },
+        { name: "SLURM", icon: "fa-tasks" },
+        { name: "Redis", icon: "fa-database" },
+        { name: "PostgreSQL", icon: "fa-database" },
+        { name: "MySQL", icon: "fa-database" },
+        { name: "Git", icon: "fa-git" },
+        { name: "Linux", icon: "fa-linux" },
+        { name: "Cyber Security", icon: "fa-shield" }
+      ]
+    }
   ]
 };

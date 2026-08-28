@@ -1,21 +1,14 @@
-function navClick() { 
-  const menu = document.getElementById("menu");
-  if (menu) menu.click(); 
-}
-
-// helper to format dates (e.g. 2026-04 -> April 2026)
 function formatDate(str) {
   if (!str) return "";
   if (str.toLowerCase() === "present") return "Present";
   const [year, month] = str.split("-");
   const monthNames = [
-    "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
+    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
   ];
   return `${monthNames[parseInt(month, 10) - 1]} ${year}`;
 }
 
-// Typewriter Animation
 var TxtType = function(el, toRotate, period) {
   this.toRotate = toRotate;
   this.el = el;
@@ -39,7 +32,7 @@ TxtType.prototype.tick = function() {
   this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
 
   var that = this;
-  var delta = 200 - Math.random() * 100;
+  var delta = 150 - Math.random() * 80;
 
   if (this.isDeleting) { delta /= 2; }
 
@@ -52,12 +45,11 @@ TxtType.prototype.tick = function() {
     delta = 500;
   }
 
-  setTimeout(function() {
+  this._timer = setTimeout(function() {
     that.tick();
   }, delta);
 };
 
-// Calculate duration between dates
 function calculateDuration(startStr, endStr) {
   if (!startStr) return "";
   
@@ -83,58 +75,93 @@ function calculateDuration(startStr, endStr) {
   
   var parts = [];
   if (years > 0) {
-    parts.push(years === 1 ? "1 year" : years + " years");
+    parts.push(years === 1 ? "1 yr" : years + " yrs");
   }
   if (months > 0) {
-    parts.push(months === 1 ? "1 month" : months + " months");
+    parts.push(months === 1 ? "1 mo" : months + " mos");
   }
   
   return parts.join(" ");
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-  // 1. Dynamic Age Calculation
-  const birthDateStr = resumeData.profile.birthDate;
-  if (birthDateStr) {
-    const birthDate = new Date(birthDateStr);
-    const today = new Date();
-    let age = today.getFullYear() - birthDate.getFullYear();
-    const m = today.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-      age--;
-    }
-    const ageEl = document.getElementById('dynamic-age');
-    if (ageEl) {
-      ageEl.textContent = age + " Years";
-    }
+/* Theme Management */
+function initTheme() {
+  var savedTheme = localStorage.getItem("portfolio-theme");
+  var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  var theme = savedTheme || (prefersDark ? "dark" : "light");
+
+  document.documentElement.setAttribute("data-theme", theme);
+  updateThemeIcon(theme);
+
+  var themeToggleBtn = document.getElementById("theme-toggle");
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener("click", function() {
+      var currentTheme = document.documentElement.getAttribute("data-theme") || "dark";
+      var newTheme = currentTheme === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", newTheme);
+      localStorage.setItem("portfolio-theme", newTheme);
+      updateThemeIcon(newTheme);
+    });
   }
 
-  // 2. Render Experiences Timeline
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function(e) {
+    if (!localStorage.getItem("portfolio-theme")) {
+      var newTheme = e.matches ? "dark" : "light";
+      document.documentElement.setAttribute("data-theme", newTheme);
+      updateThemeIcon(newTheme);
+    }
+  });
+}
+
+function updateThemeIcon(theme) {
+  var themeToggleBtn = document.getElementById("theme-toggle");
+  if (!themeToggleBtn) return;
+  if (theme === "light") {
+    themeToggleBtn.innerHTML = '<i class="fa fa-moon-o" aria-hidden="true"></i>';
+    themeToggleBtn.setAttribute("aria-label", "Switch to Dark Mode");
+  } else {
+    themeToggleBtn.innerHTML = '<i class="fa fa-sun-o" aria-hidden="true"></i>';
+    themeToggleBtn.setAttribute("aria-label", "Switch to Light Mode");
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  initTheme();
+
+  var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* Render Experience Timeline */
   const expTimeline = document.getElementById("experience-timeline-wrap");
   if (expTimeline && resumeData.experiences) {
     let expHtml = "";
     resumeData.experiences.forEach((exp, index) => {
-      const dateText = (exp.start === exp.end) ? formatDate(exp.start) : `${formatDate(exp.start)} - ${formatDate(exp.end)}`;
+      const dateText = (exp.start === exp.end) ? formatDate(exp.start) : `${formatDate(exp.start)} – ${formatDate(exp.end)}`;
+      const durationText = calculateDuration(exp.start, exp.end);
       const isExpandedClass = index === 0 ? "is-expanded" : "";
-      const icoClass = exp.logo ? "timeline-ico has-logo" : "timeline-ico";
-      const icoContent = exp.logo 
-        ? `<img src="${exp.logo}" alt="${exp.company} logo" class="timeline-logo-img">`
+      const logoContent = exp.logo 
+        ? `<img src="${exp.logo}" alt="${exp.company} logo" loading="lazy">`
         : `<i class="fa fa-briefcase"></i>`;
         
       expHtml += `
-        <div class="timeline-block ${isExpandedClass}" tabindex="0" data-start="${exp.start}" data-end="${exp.end}" data-category="${exp.category}">
-          <div class="${icoClass}">${icoContent}</div>
-          <div class="timeline-header">
-            <h3>${exp.role}</h3>
-            <p class="timeline-time-header">${dateText}</p>
-            <p class="timeline-duration"></p>
-          </div>
-          <div class="timeline-content">
-            <h4>${exp.company}, ${exp.location} <span class="timeline-toggle"><i class="fa fa-chevron-down"></i></span></h4>
-            <p class="timeline-time-content">${dateText}</p>
-            <div class="timeline-details">
-              <p>${exp.details}</p>
+        <div class="timeline-block ${isExpandedClass}" tabindex="0" role="button" aria-expanded="${index === 0}" data-start="${exp.start}" data-end="${exp.end}" data-category="${exp.category}">
+          <div class="timeline-header-row">
+            <div class="timeline-left">
+              <div class="timeline-logo-badge">${logoContent}</div>
+              <div class="timeline-titles">
+                <h3>${exp.role}</h3>
+                <p class="timeline-company">${exp.company} · ${exp.location}</p>
+              </div>
             </div>
+            <div class="timeline-meta">
+              <div>
+                <span class="timeline-date-badge">${dateText}</span>
+                ${durationText ? `<span class="timeline-duration-text">${durationText}</span>` : ""}
+              </div>
+              <span class="timeline-expand-icon"><i class="fa fa-chevron-down"></i></span>
+            </div>
+          </div>
+          <div class="timeline-details">
+            <p>${exp.details}</p>
           </div>
         </div>
       `;
@@ -142,31 +169,37 @@ document.addEventListener("DOMContentLoaded", function() {
     expTimeline.innerHTML = expHtml;
   }
 
-  // 3. Render Education Timeline
+  /* Render Education Timeline */
   const eduTimeline = document.getElementById("education-timeline-wrap");
   if (eduTimeline && resumeData.education) {
     let eduHtml = "";
     resumeData.education.forEach((edu) => {
-      const dateText = (edu.start === edu.end) ? formatDate(edu.start) : `${formatDate(edu.start)} - ${formatDate(edu.end)}`;
-      const icoClass = edu.logo ? "timeline-ico has-logo" : "timeline-ico";
-      const icoContent = edu.logo 
-        ? `<img src="${edu.logo}" alt="${edu.institution} logo" class="timeline-logo-img">`
+      const dateText = (edu.start === edu.end) ? formatDate(edu.start) : `${formatDate(edu.start)} – ${formatDate(edu.end)}`;
+      const durationText = calculateDuration(edu.start, edu.end);
+      const logoContent = edu.logo 
+        ? `<img src="${edu.logo}" alt="${edu.institution} logo" loading="lazy">`
         : `<i class="fa fa-graduation-cap"></i>`;
 
       eduHtml += `
-        <div class="timeline-block" tabindex="0" data-start="${edu.start}" data-end="${edu.end}">
-          <div class="${icoClass}">${icoContent}</div>
-          <div class="timeline-header">
-            <h3>${edu.degree}</h3>
-            <p class="timeline-time-header">${dateText}</p>
-            <p class="timeline-duration"></p>
-          </div>
-          <div class="timeline-content">
-            <h4>${edu.institution}, ${edu.location} <span class="timeline-toggle"><i class="fa fa-chevron-down"></i></span></h4>
-            <p class="timeline-time-content">${dateText}</p>
-            <div class="timeline-details">
-              <p>${edu.details}</p>
+        <div class="timeline-block" tabindex="0" role="button" aria-expanded="false" data-start="${edu.start}" data-end="${edu.end}">
+          <div class="timeline-header-row">
+            <div class="timeline-left">
+              <div class="timeline-logo-badge">${logoContent}</div>
+              <div class="timeline-titles">
+                <h3>${edu.degree}</h3>
+                <p class="timeline-company">${edu.institution} · ${edu.location}</p>
+              </div>
             </div>
+            <div class="timeline-meta">
+              <div>
+                <span class="timeline-date-badge">${dateText}</span>
+                ${durationText ? `<span class="timeline-duration-text">${durationText}</span>` : ""}
+              </div>
+              <span class="timeline-expand-icon"><i class="fa fa-chevron-down"></i></span>
+            </div>
+          </div>
+          <div class="timeline-details">
+            <p>${edu.details}</p>
           </div>
         </div>
       `;
@@ -174,22 +207,33 @@ document.addEventListener("DOMContentLoaded", function() {
     eduTimeline.innerHTML = eduHtml;
   }
 
-  // 4. Render Projects
+  /* Render Projects Grid */
   const projectsGrid = document.getElementById("projects-grid-wrap");
   if (projectsGrid && resumeData.projects) {
     let projHtml = "";
-    resumeData.projects.forEach((proj) => {
+    resumeData.projects.forEach((proj, index) => {
       const tagsHtml = proj.tags.map(tag => `<span>${tag}</span>`).join("");
+      const isFeatured = index === 0;
       projHtml += `
-        <div class="project-card-col">
-          <div class="project-card">
-            <div class="project-card-icon"><i class="fa ${proj.icon}"></i></div>
+        <div class="project-card" data-tilt>
+          <div>
+            <div class="project-top">
+              <div class="project-icon-disc"><i class="fa ${proj.icon}"></i></div>
+              ${isFeatured ? `<span class="project-featured-badge">Featured</span>` : ""}
+            </div>
             <h3>${proj.title}</h3>
             <p>${proj.description}</p>
+            ${proj.impact ? `<div class="project-impact"><i class="fa fa-bolt"></i> ${proj.impact}</div>` : ""}
+          </div>
+          <div>
             <div class="project-tags">
               ${tagsHtml}
             </div>
-            <a href="${proj.github}" target="_blank" class="project-link"><i class="fa fa-github"></i> View GitHub</a>
+            <div class="project-card-footer">
+              <a href="${proj.github}" target="_blank" rel="noopener noreferrer" class="project-link-pill">
+                <i class="fa fa-github"></i> View on GitHub
+              </a>
+            </div>
           </div>
         </div>
       `;
@@ -197,166 +241,71 @@ document.addEventListener("DOMContentLoaded", function() {
     projectsGrid.innerHTML = projHtml;
   }
 
-  // 5. Render Skills (2D Orbit)
-  const skillsSphere = document.getElementById("skills-sphere-wrap");
-  if (skillsSphere && resumeData.skills) {
+  /* Render Skills Grid */
+  const skillsWrap = document.getElementById("skills-sphere-wrap");
+  if (skillsWrap && resumeData.skills) {
     let skillsHtml = "";
-    resumeData.skills.forEach((skill) => {
-      let iconHtml = "";
-      if (skill.icon) {
-        if (skill.icon.startsWith("fa-") || skill.icon.startsWith("fa ")) {
-          iconHtml = `<i class="fa ${skill.icon}"></i>`;
+    resumeData.skills.forEach((group) => {
+      let itemsHtml = "";
+      group.items.forEach((skill) => {
+        let iconHtml = "";
+        if (skill.icon) {
+          if (skill.icon.startsWith("fa-") || skill.icon.startsWith("fa ")) {
+            iconHtml = `<i class="fa ${skill.icon}"></i>`;
+          } else {
+            iconHtml = `<img src="${skill.icon}" alt="${skill.name} icon" loading="lazy">`;
+          }
         } else {
-          iconHtml = `<img src="${skill.icon}" alt="${skill.name} icon">`;
+          iconHtml = `<i class="fa fa-code"></i>`;
         }
-      } else {
-        iconHtml = `<i class="fa fa-code"></i>`;
-      }
+        itemsHtml += `
+          <div class="skill-chip">
+            <span class="skill-chip-icon">${iconHtml}</span>
+            <span class="skill-chip-name">${skill.name}</span>
+          </div>
+        `;
+      });
       skillsHtml += `
-        <div class="skill-card">
-          <div class="skill-icon-wrap">${iconHtml}</div>
-          <h4>${skill.name}</h4>
+        <div class="skill-group">
+          <h3 class="skill-group-title">${group.group}</h3>
+          <div class="skill-group-chips">${itemsHtml}</div>
         </div>
       `;
     });
-    skillsSphere.innerHTML = skillsHtml;
-
-    // 2D floating animation with collision avoidance
-    const container = skillsSphere;
-    const cards = container.querySelectorAll(".skill-card");
-    const count = cards.length;
-    if (count === 0) return;
-
-    const items = [];
-    const padding = 10;
-
-    function rand(min, max) { return Math.random() * (max - min) + min; }
-
-    cards.forEach((card) => {
-      const maxX = Math.max(container.clientWidth - card.offsetWidth - padding, 50);
-      const maxY = Math.max(container.clientHeight - card.offsetHeight - padding, 50);
-      card.style.left = rand(padding, maxX) + "px";
-      card.style.top = rand(padding, maxY) + "px";
-      items.push({
-        el: card,
-        x: parseFloat(card.style.left),
-        y: parseFloat(card.style.top),
-        vx: rand(-0.4, 0.4),
-        vy: rand(-0.4, 0.4)
-      });
-    });
-
-    function update() {
-      const cw = container.clientWidth;
-      const ch = container.clientHeight;
-
-      for (let i = 0; i < items.length; i++) {
-        const a = items[i];
-        const aw = a.el.offsetWidth;
-        const ah = a.el.offsetHeight;
-
-        // Move
-        a.x += a.vx;
-        a.y += a.vy;
-
-        // Wall bounce
-        if (a.x < padding) { a.x = padding; a.vx *= -1; }
-        if (a.y < padding) { a.y = padding; a.vy *= -1; }
-        if (a.x + aw > cw - padding) { a.x = cw - padding - aw; a.vx *= -1; }
-        if (a.y + ah > ch - padding) { a.y = ch - padding - ah; a.vy *= -1; }
-
-        // Slow random direction changes
-        if (Math.random() < 0.005) { a.vx += rand(-0.15, 0.15); }
-        if (Math.random() < 0.005) { a.vy += rand(-0.15, 0.15); }
-
-        // Clamp speed
-        const spd = Math.sqrt(a.vx * a.vx + a.vy * a.vy);
-        if (spd > 1) { a.vx = (a.vx / spd) * 1; a.vy = (a.vy / spd) * 1; }
-        if (spd < 0.15 && Math.random() < 0.01) { a.vx += rand(-0.1, 0.1); a.vy += rand(-0.1, 0.1); }
-      }
-
-      // Collision avoidance — gentle separation
-      for (let i = 0; i < items.length; i++) {
-        for (let j = i + 1; j < items.length; j++) {
-          const a = items[i], b = items[j];
-          const aw = a.el.offsetWidth, ah = a.el.offsetHeight;
-          const bw = b.el.offsetWidth, bh = b.el.offsetHeight;
-
-          if (a.x < b.x + bw && a.x + aw > b.x && a.y < b.y + bh && a.y + ah > b.y) {
-            const cx1 = a.x + aw / 2, cy1 = a.y + ah / 2;
-            const cx2 = b.x + bw / 2, cy2 = b.y + bh / 2;
-            const dx = cx2 - cx1 || 0.01;
-            const dy = cy2 - cy1 || 0.01;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            const nx = dx / dist, ny = dy / dist;
-            const force = 0.08;
-            a.vx -= nx * force; a.vy -= ny * force;
-            b.vx += nx * force; b.vy += ny * force;
-          }
-        }
-      }
-
-      // Apply positions
-      items.forEach((item) => {
-        item.el.style.left = item.x + "px";
-        item.el.style.top = item.y + "px";
-      });
-
-      requestAnimationFrame(update);
-    }
-
-    update();
-
-    window.addEventListener("resize", () => {
-      // Re-clamp positions after resize
-      const cw = container.clientWidth;
-      const ch = container.clientHeight;
-      items.forEach((item) => {
-        const w = item.el.offsetWidth;
-        const h = item.el.offsetHeight;
-        item.x = Math.max(padding, Math.min(item.x, cw - w - padding));
-        item.y = Math.max(padding, Math.min(item.y, ch - h - padding));
-      });
-    });
+    skillsWrap.innerHTML = skillsHtml;
   }
 
-  // Initialize interactive timeline accordion logic
+  /* Timeline Accordion Interaction */
   const timelineBlocks = document.querySelectorAll("#resume .timeline-block");
   timelineBlocks.forEach(function(block) {
-    var start = block.getAttribute("data-start");
-    var end = block.getAttribute("data-end");
-    if (start && end) {
-      var durationText = calculateDuration(start, end);
-      var durationEl = block.querySelector(".timeline-duration");
-      if (durationEl) {
-        durationEl.textContent = durationText;
-      }
+    function toggleBlock() {
+      if (block.classList.contains("is-filtered-out")) return;
+      var expanded = block.classList.toggle("is-expanded");
+      block.setAttribute("aria-expanded", String(expanded));
     }
 
     block.addEventListener("click", function(e) {
       if (e.target.closest("a")) return;
       if (window.getSelection().toString() !== "") return;
-      if (block.classList.contains("is-filtered-out")) return;
-      block.classList.toggle("is-expanded");
+      toggleBlock();
     });
     
     block.addEventListener("keydown", function(e) {
       if (e.key === "Enter" || e.key === " ") {
         if (document.activeElement && document.activeElement.tagName === "A") return;
-        if (block.classList.contains("is-filtered-out")) return;
         e.preventDefault();
-        block.classList.toggle("is-expanded");
+        toggleBlock();
       }
     });
   });
 
-  // Work Experience Filtering Logic
+  /* Filter Pills for Experience */
   var filterPills = document.querySelectorAll(".filter-pill");
-  var experienceBlocks = document.querySelectorAll("#resume .timeline-block[data-category]");
+  var experienceBlocks = document.querySelectorAll("#resume #experience-timeline-wrap .timeline-block[data-category]");
 
   function updateFilters() {
     var activePill = document.querySelector(".filter-pill.active");
-    var activeFilter = activePill ? activePill.getAttribute("data-filter") : "";
+    var activeFilter = activePill ? activePill.getAttribute("data-filter") : "dev";
 
     experienceBlocks.forEach(function(block) {
       var category = block.getAttribute("data-category");
@@ -393,19 +342,130 @@ document.addEventListener("DOMContentLoaded", function() {
 
   updateFilters();
 
-  // Initialize Typewrite effects
+  /* Update Count Badges */
+  var pillCounts = document.querySelectorAll(".pill-count");
+  pillCounts.forEach(function(el) {
+    var filter = el.getAttribute("data-count");
+    var count = 0;
+    experienceBlocks.forEach(function(block) {
+      var category = block.getAttribute("data-category");
+      if (filter === "dev") {
+        if (category === "dev" || category === "ai-dev") count++;
+      } else if (category === filter) {
+        count++;
+      }
+    });
+    el.textContent = count;
+  });
+
+  /* Typewriter Init */
   var elements = document.getElementsByClassName('typewrite');
   for (var i = 0; i < elements.length; i++) {
     var toRotate = elements[i].getAttribute('data-type');
     var period = elements[i].getAttribute('data-period');
     if (toRotate) {
-      new TxtType(elements[i], JSON.parse(toRotate), period);
+      var phrases = JSON.parse(toRotate);
+      if (prefersReducedMotion) {
+        elements[i].innerHTML = '<span class="wrap">' + phrases[0] + '</span>';
+      } else {
+        new TxtType(elements[i], phrases, period);
+      }
     }
   }
 
-  // Inject typewriter cursor CSS
-  var css = document.createElement("style");
-  css.type = "text/css";
-  css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
-  document.body.appendChild(css);
+  /* Animated Stat Counters */
+  var statValues = document.querySelectorAll(".stat-number[data-count]");
+  if (statValues.length) {
+    function animateCounter(el) {
+      var target = parseInt(el.getAttribute("data-count"), 10);
+      var suffix = el.getAttribute("data-suffix") || "";
+      if (prefersReducedMotion) {
+        el.textContent = target + suffix;
+        return;
+      }
+      var duration = 1400;
+      var startTime = null;
+      function step(timestamp) {
+        if (!startTime) startTime = timestamp;
+        var progress = Math.min((timestamp - startTime) / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.floor(eased * target) + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    var statsObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          statsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.4 });
+
+    statValues.forEach(function(el) { statsObserver.observe(el); });
+  }
+
+  /* Copy Email Button with Apple Tooltip feedback */
+  var copyBtn = document.querySelector(".copy-email-pill");
+  if (copyBtn) {
+    copyBtn.addEventListener("click", function() {
+      var email = copyBtn.getAttribute("data-email");
+      var label = copyBtn.querySelector(".copy-email-label");
+      function onSuccess() {
+        if (label) label.textContent = "Copied!";
+        copyBtn.classList.add("is-copied");
+        setTimeout(function() {
+          if (label) label.textContent = "Copy Email";
+          copyBtn.classList.remove("is-copied");
+        }, 2000);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).then(onSuccess);
+      } else {
+        var ta = document.createElement("textarea");
+        ta.value = email;
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        document.body.removeChild(ta);
+        onSuccess();
+      }
+    });
+  }
+
+  /* Reveal Animations on Scroll */
+  if (!prefersReducedMotion) {
+    var revealObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-revealed");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: "0px 0px -40px 0px" });
+
+    document.querySelectorAll(".apple-card, .bento-card, .capability-card, .skill-group, .project-card, .cta-banner-inner").forEach(function(el) {
+      el.classList.add("reveal");
+      revealObserver.observe(el);
+    });
+
+    /* Tilt Effect for Projects */
+    if (window.matchMedia("(hover: hover)").matches) {
+      document.querySelectorAll("[data-tilt]").forEach(function(card) {
+        card.addEventListener("mousemove", function(e) {
+          var rect = card.getBoundingClientRect();
+          var x = (e.clientX - rect.left) / rect.width - 0.5;
+          var y = (e.clientY - rect.top) / rect.height - 0.5;
+          card.style.transform = "perspective(900px) rotateY(" + (x * 5) + "deg) rotateX(" + (-y * 5) + "deg) translateY(-6px)";
+        });
+        card.addEventListener("mouseleave", function() {
+          card.style.transform = "";
+        });
+      });
+    }
+  }
 });

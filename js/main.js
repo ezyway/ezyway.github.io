@@ -1,180 +1,129 @@
-/** 
- * ===================================================================
- * main js
- *
- * ------------------------------------------------------------------- 
- */ 
+(function () {
+  "use strict";
 
-(function($) {
+  var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-	"use strict";
+  function ready(fn) {
+    if (document.readyState !== "loading") fn();
+    else document.addEventListener("DOMContentLoaded", fn);
+  }
 
-	/*---------------------------------------------------- */
-	/* Preloader
-	------------------------------------------------------ */ 
-   $(window).load(function() {
+  ready(function () {
+    /* Mobile Navigation Toggle */
+    var toggleButton = document.querySelector(".menu-toggle");
+    var navLinks = document.querySelector(".nav-links");
 
-      // will first fade out the loading animation 
-    	$("#loader").fadeOut("slow", function(){
-
-        // will fade out the whole DIV that covers the website.
-        $("#preloader").delay(300).fadeOut("slow");
-
-      });       
-
-  	})
-
-
-  	/*---------------------------------------------------- */
-  	/* FitText Settings
-  	------------------------------------------------------ */
-  	setTimeout(function() {
-
-   	$('#intro h1').fitText(1, { minFontSize: '42px', maxFontSize: '84px' });
-
-  	}, 100);
-
-
-	/*---------------------------------------------------- */
-	/* FitVids
-	------------------------------------------------------ */ 
-  	$(".fluid-video-wrapper").fitVids();
-
-
-	/*---------------------------------------------------- */
-	/* Owl Carousel
-	------------------------------------------------------ */ 
-	$("#owl-slider").owlCarousel({
-        navigation: false,
-        pagination: true,
-        itemsCustom : [
-	        [0, 1],
-	        [700, 2],
-	        [960, 3]
-	     ],
-        navigationText: false
-    });
-
-
-	/*----------------------------------------------------- */
-	/* Alert Boxes
-  	------------------------------------------------------- */
-	$('.alert-box').on('click', '.close', function() {
-	  $(this).parent().fadeOut(500);
-	});	
-
-
-
-	/*---------------------------------------------------- */
-	/*	Masonry
-	------------------------------------------------------ */
-	var containerProjects = $('#folio-wrapper');
-
-	containerProjects.imagesLoaded( function() {
-
-		containerProjects.masonry( {		  
-		  	itemSelector: '.folio-item',
-		  	resize: true 
-		});
-
-	});
-
-
-	
-	/*-----------------------------------------------------*/
-  	/* Navigation Menu
-   ------------------------------------------------------ */  
-   var toggleButton = $('.menu-toggle'),
-       nav = $('.main-navigation');
-
-   // toggle button
-   toggleButton.on('click', function(e) {
-
-		e.preventDefault();
-		toggleButton.toggleClass('is-clicked');
-		nav.slideToggle();
-
-	});
-
-   // nav items
-  	nav.find('li a').on("click", function() {   
-
-   	// update the toggle button 		
-   	toggleButton.toggleClass('is-clicked'); 
-   	// fadeout the navigation panel
-   	nav.fadeOut();   		
-   	     
-  	});
-
-
-   /*---------------------------------------------------- */
-  	/* Highlight the current section in the navigation bar
-  	------------------------------------------------------ */
-	var sections = $("section"),
-	navigation_links = $("#main-nav-wrap li a");	
-
-	sections.waypoint( {
-
-       handler: function(direction) {
-
-		   var active_section;
-
-			active_section = $('section#' + this.element.id);
-
-			if (direction === "up") active_section = active_section.prev();
-
-			var active_link = $('#main-nav-wrap a[href="#' + active_section.attr("id") + '"]');			
-
-         navigation_links.parent().removeClass("current");
-			active_link.parent().addClass("current");
-
-		}, 
-
-		offset: '25%'
-	});
-
-
-	/*---------------------------------------------------- */
-  	/* Smooth Scrolling
-  	------------------------------------------------------ */
-  	$('.smoothscroll').on('click', function (e) {
-	 	
-	 	e.preventDefault();
-
-   	var target = this.hash,
-    	$target = $(target);
-
-    	$('html, body').stop().animate({
-       	'scrollTop': $target.offset().top
-      }, 800, 'swing', function () {
-      	window.location.hash = target;
+    if (toggleButton && navLinks) {
+      toggleButton.addEventListener("click", function (e) {
+        e.preventDefault();
+        var isOpen = navLinks.classList.toggle("is-open");
+        toggleButton.setAttribute("aria-expanded", String(isOpen));
+        toggleButton.innerHTML = isOpen 
+          ? '<i class="fa fa-times" aria-hidden="true"></i>' 
+          : '<i class="fa fa-bars" aria-hidden="true"></i>';
       });
 
-  	});  
-  
+      navLinks.querySelectorAll("li a").forEach(function (link) {
+        link.addEventListener("click", function () {
+          navLinks.classList.remove("is-open");
+          toggleButton.setAttribute("aria-expanded", "false");
+          toggleButton.innerHTML = '<i class="fa fa-bars" aria-hidden="true"></i>';
+        });
+      });
+    }
 
+    /* Scroll Spy for Active Navigation Link */
+    var sections = Array.prototype.slice.call(document.querySelectorAll("section[id]")).filter(function (s) {
+      return document.querySelector('.nav-links a[href="#' + s.id + '"]');
+    });
+    var navItems = document.querySelectorAll(".nav-links li");
 
- 	/*----------------------------------------------------- */
-  	/* Back to top
-   ------------------------------------------------------- */ 
-	var pxShow = 300; // height on which the button will show
-	var fadeInTime = 400; // how slow/fast you want the button to show
-	var fadeOutTime = 400; // how slow/fast you want the button to hide
-	var scrollSpeed = 300; // how slow/fast you want the button to scroll to top. can be a value, 'slow', 'normal' or 'fast'
+    function highlightNav() {
+      var scrollPos = window.scrollY + window.innerHeight * 0.28;
+      var currentId = sections.length ? sections[0].id : null;
+      
+      sections.forEach(function (section) {
+        if (section.offsetTop <= scrollPos) {
+          currentId = section.id;
+        }
+      });
 
-   // Show or hide the sticky footer button
-	jQuery(window).scroll(function() {
+      navItems.forEach(function (li) {
+        var link = li.querySelector("a");
+        if (link && link.getAttribute("href") === "#" + currentId) {
+          li.classList.add("current");
+        } else {
+          li.classList.remove("current");
+        }
+      });
+    }
 
-		if (!( $("#header-search").hasClass('is-visible'))) {
+    /* Scroll Frame Loop */
+    var scrollTicking = false;
+    var progressBar = document.querySelector(".scroll-progress-bar");
+    var header = document.querySelector("header");
 
-			if (jQuery(window).scrollTop() >= pxShow) {
-				jQuery("#go-top").fadeIn(fadeInTime);
-			} else {
-				jQuery("#go-top").fadeOut(fadeOutTime);
-			}
+    function onScrollFrame() {
+      highlightNav();
 
-		}		
+      if (progressBar) {
+        var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        var pct = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
+        progressBar.style.width = pct + "%";
+      }
 
-	});		
+      if (header) {
+        if (window.scrollY > 40) {
+          header.classList.add("is-scrolled");
+        } else {
+          header.classList.remove("is-scrolled");
+        }
+      }
 
-})(jQuery);
+      scrollTicking = false;
+    }
+
+    window.addEventListener("scroll", function () {
+      if (!scrollTicking) {
+        scrollTicking = true;
+        requestAnimationFrame(onScrollFrame);
+      }
+    }, { passive: true });
+    onScrollFrame();
+
+    /* Smooth Scrolling for Anchor Links */
+    document.querySelectorAll("a[href^='#']").forEach(function (link) {
+      link.addEventListener("click", function (e) {
+        var hash = this.getAttribute("href");
+        if (!hash || hash === "#") return;
+        var target = document.querySelector(hash);
+        if (!target) return;
+        e.preventDefault();
+        target.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth" });
+        if (history.pushState) {
+          history.pushState(null, "", hash);
+        }
+      });
+    });
+
+    /* Floating Social Bar Auto-hide */
+    var socialFloating = document.querySelector(".intro-social-floating");
+    var introSection = document.getElementById("intro");
+    if (socialFloating && introSection) {
+      function toggleSocial() {
+        var introBottom = introSection.offsetTop + introSection.offsetHeight;
+        if (window.scrollY + window.innerHeight * 0.4 > introBottom) {
+          socialFloating.classList.add("is-hidden");
+        } else {
+          socialFloating.classList.remove("is-hidden");
+        }
+      }
+      window.addEventListener("scroll", toggleSocial, { passive: true });
+      toggleSocial();
+    }
+
+    /* Footer Year Auto-update */
+    var yearEl = document.getElementById("footer-year");
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+  });
+})();
