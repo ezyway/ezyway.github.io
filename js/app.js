@@ -257,19 +257,54 @@ document.addEventListener("DOMContentLoaded", function() {
       const logoContent = exp.logo 
         ? `<img src="${exp.logo}" alt="${exp.company} logo" loading="lazy">`
         : `<i class="fa fa-briefcase"></i>`;
-        
+
+      const tagHtml = exp.tag 
+        ? `<span class="timeline-role-tag tag-${exp.tagType || 'default'}">${exp.tag}</span>` 
+        : "";
+
+      const summaryHtml = exp.summary 
+        ? `<p class="timeline-summary">${exp.summary}</p>` 
+        : (exp.details ? `<p class="timeline-summary">${exp.details}</p>` : "");
+
+      let highlightsHtml = "";
+      if (exp.highlights && exp.highlights.length > 0) {
+        highlightsHtml = `
+          <div class="timeline-highlights-box">
+            <h4 class="timeline-highlights-heading"><i class="fa fa-check-circle-o" aria-hidden="true"></i> Key Achievements &amp; Scope</h4>
+            <ul class="timeline-highlights-list">
+              ${exp.highlights.map(h => `<li><span class="bullet-dot"></span><span>${h}</span></li>`).join("")}
+            </ul>
+          </div>
+        `;
+      }
+
+      let skillsHtml = "";
+      if (exp.skills && exp.skills.length > 0) {
+        skillsHtml = `
+          <div class="timeline-skills-box">
+            <span class="timeline-skills-title"><i class="fa fa-code" aria-hidden="true"></i> Tech Stack:</span>
+            <div class="timeline-skills-list">
+              ${exp.skills.map(s => `<span class="exp-skill-tag">${s}</span>`).join("")}
+            </div>
+          </div>
+        `;
+      }
+
       expHtml += `
         <div class="timeline-block ${isExpandedClass}" tabindex="0" role="button" aria-expanded="${index === 0}" data-start="${exp.start}" data-end="${exp.end}" data-category="${exp.category}">
           <div class="timeline-header-row">
             <div class="timeline-left">
               <div class="timeline-logo-badge">${logoContent}</div>
               <div class="timeline-titles">
-                <h3>${exp.role}</h3>
-                <p class="timeline-company">${exp.company} · ${exp.location}</p>
+                <div class="timeline-role-row">
+                  <h3>${exp.role}</h3>
+                  ${tagHtml}
+                </div>
+                <p class="timeline-company">${exp.company} · <span class="timeline-location">${exp.location}</span></p>
               </div>
             </div>
             <div class="timeline-meta">
-              <div>
+              <div class="timeline-date-group">
                 <span class="timeline-date-badge">${dateText}</span>
                 ${durationText ? `<span class="timeline-duration-text">${durationText}</span>` : ""}
               </div>
@@ -277,7 +312,9 @@ document.addEventListener("DOMContentLoaded", function() {
             </div>
           </div>
           <div class="timeline-details">
-            <p>${exp.details}</p>
+            ${summaryHtml}
+            ${highlightsHtml}
+            ${skillsHtml}
           </div>
         </div>
       `;
@@ -285,42 +322,41 @@ document.addEventListener("DOMContentLoaded", function() {
     expTimeline.innerHTML = expHtml;
   }
 
-  /* Render Education Timeline */
-  const eduTimeline = document.getElementById("education-timeline-wrap");
-  if (eduTimeline && resumeData.education) {
+  /* Render Education Cards Grid (Single Row on Desktop) */
+  const eduGrid = document.getElementById("education-grid-wrap");
+  if (eduGrid && resumeData.education) {
     let eduHtml = "";
     resumeData.education.forEach((edu) => {
-      const dateText = (edu.start === edu.end) ? formatDate(edu.start) : `${formatDate(edu.start)} – ${formatDate(edu.end)}`;
-      const durationText = calculateDuration(edu.start, edu.end);
+      const tagsHtml = edu.tags ? edu.tags.map(t => `<span class="edu-tag-chip">${t}</span>`).join("") : "";
       const logoContent = edu.logo 
         ? `<img src="${edu.logo}" alt="${edu.institution} logo" loading="lazy">`
         : `<i class="fa fa-graduation-cap"></i>`;
 
       eduHtml += `
-        <div class="timeline-block" tabindex="0" role="button" aria-expanded="false" data-start="${edu.start}" data-end="${edu.end}">
-          <div class="timeline-header-row">
-            <div class="timeline-left">
-              <div class="timeline-logo-badge">${logoContent}</div>
-              <div class="timeline-titles">
-                <h3>${edu.degree}</h3>
-                <p class="timeline-company">${edu.institution} · ${edu.location}</p>
-              </div>
-            </div>
-            <div class="timeline-meta">
-              <div>
-                <span class="timeline-date-badge">${dateText}</span>
-                ${durationText ? `<span class="timeline-duration-text">${durationText}</span>` : ""}
-              </div>
-              <span class="timeline-expand-icon"><i class="fa fa-chevron-down"></i></span>
-            </div>
+        <div class="education-card apple-card">
+          <div class="edu-card-header">
+            <div class="edu-logo-badge">${logoContent}</div>
+            <span class="edu-badge badge-${edu.badgeType || 'blue'}">${edu.badge}</span>
           </div>
-          <div class="timeline-details">
-            <p>${edu.details}</p>
+          <div class="edu-card-body">
+            <h3 class="edu-degree">${edu.degree}</h3>
+            <p class="edu-institution">${edu.institution}</p>
+            <div class="edu-meta-pills">
+              <span class="edu-meta-pill"><i class="fa fa-calendar-o"></i> ${edu.year}</span>
+              <span class="edu-meta-pill"><i class="fa fa-map-marker"></i> ${edu.location}</span>
+              ${edu.grade ? `<span class="edu-grade-pill"><i class="fa fa-trophy"></i> ${edu.grade}</span>` : ""}
+            </div>
+            <p class="edu-description">${edu.description}</p>
+          </div>
+          <div class="edu-card-footer">
+            <div class="edu-tags-wrapper">
+              ${tagsHtml}
+            </div>
           </div>
         </div>
       `;
     });
-    eduTimeline.innerHTML = eduHtml;
+    eduGrid.innerHTML = eduHtml;
   }
 
   /* Render Projects Grid */
@@ -330,12 +366,35 @@ document.addEventListener("DOMContentLoaded", function() {
     resumeData.projects.forEach((proj, index) => {
       const tagsHtml = proj.tags.map(tag => `<span>${tag}</span>`).join("");
       const isFeatured = index === 0;
+      let linksHtml = "";
+      if (proj.live) {
+        linksHtml += `
+          <a href="${proj.live}" target="_blank" rel="noopener noreferrer" class="project-link-pill primary">
+            <i class="fa fa-external-link"></i> ${proj.liveLabel || "Live Demo"}
+          </a>
+        `;
+      }
+      if (proj.github) {
+        linksHtml += `
+          <a href="${proj.github}" target="_blank" rel="noopener noreferrer" class="project-link-pill">
+            <i class="fa fa-github"></i> GitHub
+          </a>
+        `;
+      }
+      if (proj.extraLink) {
+        linksHtml += `
+          <a href="${proj.extraLink}" target="_blank" rel="noopener noreferrer" class="project-link-pill">
+            <i class="fa ${proj.extraIcon || 'fa-external-link'}"></i> ${proj.extraLabel || "Link"}
+          </a>
+        `;
+      }
+
       projHtml += `
         <div class="project-card" data-tilt>
           <div>
             <div class="project-top">
               <div class="project-icon-disc"><i class="fa ${proj.icon}"></i></div>
-              ${isFeatured ? `<span class="project-featured-badge">Featured</span>` : ""}
+              ${isFeatured ? `<span class="project-featured-badge">Featured · 22k+ Users</span>` : ""}
             </div>
             <h3>${proj.title}</h3>
             <p>${proj.description}</p>
@@ -346,9 +405,7 @@ document.addEventListener("DOMContentLoaded", function() {
               ${tagsHtml}
             </div>
             <div class="project-card-footer">
-              <a href="${proj.github}" target="_blank" rel="noopener noreferrer" class="project-link-pill">
-                <i class="fa fa-github"></i> View on GitHub
-              </a>
+              ${linksHtml}
             </div>
           </div>
         </div>
