@@ -414,38 +414,151 @@ document.addEventListener("DOMContentLoaded", function() {
     projectsGrid.innerHTML = projHtml;
   }
 
-  /* Render Skills Grid */
+  /* Render Rich Interactive Tech Stack Bento Matrix */
   const skillsWrap = document.getElementById("skills-sphere-wrap");
   if (skillsWrap && resumeData.skills) {
     let skillsHtml = "";
-    resumeData.skills.forEach((group) => {
+    let totalSkillsCount = 0;
+
+    resumeData.skills.forEach((group, gIdx) => {
       let itemsHtml = "";
-      group.items.forEach((skill) => {
-        let iconHtml = "";
+      totalSkillsCount += group.items.length;
+
+      group.items.forEach((skill, sIdx) => {
+        let iconContent = "";
         if (skill.icon) {
           if (skill.icon.startsWith("fa-") || skill.icon.startsWith("fa ")) {
-            iconHtml = `<i class="fa ${skill.icon}"></i>`;
+            iconContent = `<i class="fa ${skill.icon}"></i>`;
           } else {
-            iconHtml = `<img src="${skill.icon}" alt="${skill.name} icon" loading="lazy">`;
+            iconContent = `<img src="${skill.icon}" alt="${skill.name} icon" loading="lazy">`;
           }
         } else {
-          iconHtml = `<i class="fa fa-code"></i>`;
+          iconContent = `<i class="fa fa-code"></i>`;
         }
+
+        const isDefaultSelected = gIdx === 0 && sIdx === 0;
+        const tagsJson = JSON.stringify(skill.tags || []).replace(/"/g, "&quot;");
+
         itemsHtml += `
-          <div class="skill-chip">
-            <span class="skill-chip-icon">${iconHtml}</span>
-            <span class="skill-chip-name">${skill.name}</span>
+          <div class="tech-interactive-chip ${isDefaultSelected ? 'is-selected' : ''}"
+               role="button"
+               tabindex="0"
+               data-name="${skill.name}"
+               data-group="${group.group}"
+               data-category="${group.category}"
+               data-level="${skill.level || 'Production Ready'}"
+               data-app="${skill.app || 'Engineering System'}"
+               data-desc="${skill.desc || ''}"
+               data-tags="${tagsJson}"
+               data-icon="${skill.icon}">
+            <div class="tech-chip-icon-disc">${iconContent}</div>
+            <div class="tech-chip-info">
+              <span class="tech-chip-title">${skill.name}</span>
+              <span class="tech-chip-level-dot ${skill.level === 'Production Core' ? 'core' : (skill.level === 'Advanced' ? 'adv' : 'ready')}" title="${skill.level}"></span>
+            </div>
           </div>
         `;
       });
+
       skillsHtml += `
-        <div class="skill-group">
-          <h3 class="skill-group-title">${group.group}</h3>
-          <div class="skill-group-chips">${itemsHtml}</div>
+        <div class="tech-domain-card apple-bento-card" data-domain-category="${group.category}">
+          <div class="tech-domain-header">
+            <div class="tech-domain-left">
+              <div class="tech-domain-icon-disc">
+                <i class="fa ${group.icon}"></i>
+              </div>
+              <div class="tech-domain-titles">
+                <h3 class="tech-domain-name">${group.group}</h3>
+                <p class="tech-domain-desc">${group.description}</p>
+              </div>
+            </div>
+            <span class="tech-domain-count-badge">${group.items.length} Tools</span>
+          </div>
+          <div class="tech-chips-grid">
+            ${itemsHtml}
+          </div>
         </div>
       `;
     });
+
     skillsWrap.innerHTML = skillsHtml;
+
+    // Initialize the Live Tech Inspector HUD
+    initTechStackControls();
+  }
+
+  function initTechStackControls() {
+    const hud = document.getElementById("tech-inspector-hud");
+    const hudIcon = document.getElementById("hud-icon-box");
+    const hudDomain = document.getElementById("hud-domain");
+    const hudStatus = document.getElementById("hud-status");
+    const hudName = document.getElementById("hud-name");
+    const hudDesc = document.getElementById("hud-desc");
+    const hudTags = document.getElementById("hud-tags");
+    const hudApp = document.getElementById("hud-app");
+    const allChips = document.querySelectorAll(".tech-interactive-chip");
+
+    function updateHud(chip) {
+      if (!chip || !hud) return;
+      const name = chip.getAttribute("data-name");
+      const group = chip.getAttribute("data-group");
+      const level = chip.getAttribute("data-level");
+      const app = chip.getAttribute("data-app");
+      const desc = chip.getAttribute("data-desc");
+      const rawTags = chip.getAttribute("data-tags");
+      const icon = chip.getAttribute("data-icon");
+
+      let tags = [];
+      try {
+        tags = JSON.parse(rawTags);
+      } catch (e) {
+        tags = [];
+      }
+
+      if (hudName) hudName.textContent = name;
+      if (hudDomain) hudDomain.textContent = group;
+      if (hudStatus) {
+        hudStatus.innerHTML = `<span class="pulse-dot"></span> ${level}`;
+      }
+      if (hudDesc) hudDesc.textContent = desc;
+      if (hudApp) hudApp.textContent = app;
+
+      if (hudTags) {
+        hudTags.innerHTML = tags.map(t => `<span class="hud-tag">${t}</span>`).join("");
+      }
+
+      if (hudIcon) {
+        if (icon) {
+          if (icon.startsWith("fa-") || icon.startsWith("fa ")) {
+            hudIcon.innerHTML = `<i class="fa ${icon}"></i>`;
+          } else {
+            hudIcon.innerHTML = `<img src="${icon}" alt="${name}" loading="lazy">`;
+          }
+        } else {
+          hudIcon.innerHTML = `<i class="fa fa-code"></i>`;
+        }
+      }
+
+      allChips.forEach(c => c.classList.remove("is-selected"));
+      chip.classList.add("is-selected");
+
+      // Micro-animation trigger
+      hud.classList.remove("hud-pulse");
+      void hud.offsetWidth; // trigger reflow
+      hud.classList.add("hud-pulse");
+    }
+
+    // Attach click and hover listeners to all chips
+    allChips.forEach(chip => {
+      chip.addEventListener("click", () => updateHud(chip));
+      chip.addEventListener("mouseenter", () => updateHud(chip));
+      chip.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          updateHud(chip);
+        }
+      });
+    });
   }
 
   /* Timeline Accordion Interaction */

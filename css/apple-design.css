@@ -2250,76 +2250,497 @@ section {
 }
 
 /* ===================================================================
- * Skills Groups (Apple Chip Grid)
+ * Tech Stack & Systems Architecture (Apple Interactive Matrix & HUD)
  * =================================================================== */
-.skills-groups {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-8);
+/* Tech Matrix 2x2 Bento Grid */
+.tech-matrix-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-5);
 }
 
-.skill-group {
+.tech-domain-card {
   background: var(--bg-card);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   border: 1px solid var(--glass-border);
-  border-radius: var(--radius-xl);
-  padding: var(--space-6) var(--space-8);
-  box-shadow: var(--shadow-sm);
-}
-
-.skill-group-title {
-  font-size: 1.15rem;
-  font-weight: 600;
-  margin-bottom: var(--space-4);
-  color: var(--text-primary);
-  letter-spacing: -0.01em;
-}
-
-.skill-group-chips {
+  border-radius: var(--radius-2xl);
+  padding: 24px 22px 20px 22px;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 14px;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--duration-base) var(--ease-apple),
+              box-shadow var(--duration-base) var(--ease-apple),
+              border-color var(--duration-base) var(--ease-apple);
+}
+
+.tech-domain-card:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+[data-theme="light"] .tech-domain-card:hover {
+  border-color: rgba(0, 0, 0, 0.16);
+}
+
+.tech-domain-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.tech-domain-left {
+  display: flex;
+  align-items: center;
   gap: var(--space-3);
 }
 
-.skill-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  padding: 8px 16px;
-  background: var(--bg-secondary);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-full);
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--text-primary);
-  transition: all var(--duration-fast) var(--ease-apple);
-}
-
-.skill-chip:hover {
-  transform: translateY(-2px);
-  border-color: var(--glass-border-hover);
-  background: var(--bg-tertiary);
-  box-shadow: var(--shadow-sm);
-}
-
-.skill-chip-icon {
-  display: inline-flex;
+.tech-domain-icon-disc {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background: var(--accent-blue-subtle);
+  color: var(--accent-blue);
+  display: flex;
   align-items: center;
   justify-content: center;
-  width: 20px;
-  height: 20px;
+  font-size: 1.15rem;
+  flex-shrink: 0;
+  border: 1px solid rgba(10, 132, 255, 0.2);
 }
 
-.skill-chip-icon img {
+.tech-domain-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1px;
+  letter-spacing: -0.01em;
+}
+
+.tech-domain-desc {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  line-height: 1.3;
+  margin-bottom: 0;
+}
+
+.tech-domain-count-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  border: 1px solid var(--glass-border);
+  white-space: nowrap;
+}
+
+/* Tech Chips Grid */
+.tech-chips-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.tech-interactive-chip {
+  background: var(--bg-secondary);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  padding: 7px 10px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-apple);
+  position: relative;
+  user-select: none;
+}
+
+.tech-interactive-chip:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.28);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="light"] .tech-interactive-chip:hover {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.tech-interactive-chip.is-selected {
+  border-color: var(--accent-blue);
+  background: rgba(10, 132, 255, 0.16);
+  box-shadow: 0 0 12px rgba(10, 132, 255, 0.35);
+}
+
+.tech-interactive-chip.is-search-match {
+  border-color: #30d158;
+  background: rgba(48, 209, 88, 0.15);
+  box-shadow: 0 0 12px rgba(48, 209, 88, 0.3);
+}
+
+.tech-interactive-chip.is-dimmed {
+  opacity: 0.22;
+  filter: grayscale(80%);
+  pointer-events: none;
+}
+
+.tech-chip-icon-disc {
   width: 18px;
   height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.tech-chip-icon-disc img {
+  width: 100%;
+  height: 100%;
   object-fit: contain;
 }
 
-.skill-chip-icon i {
+.tech-chip-icon-disc i {
   font-size: 0.95rem;
   color: var(--accent-blue);
+}
+
+.tech-chip-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 4px;
+}
+
+.tech-chip-title {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tech-chip-level-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.tech-chip-level-dot.core {
+  background: #0a84ff;
+  box-shadow: 0 0 5px #0a84ff;
+}
+
+.tech-chip-level-dot.adv {
+  background: #bf5af2;
+  box-shadow: 0 0 5px #bf5af2;
+}
+
+.tech-chip-level-dot.ready {
+  background: #30d158;
+  box-shadow: 0 0 5px #30d158;
+}
+
+/* ===================================================================
+ * Interactive Tech Inspector HUD (Docked Apple Glass Drawer)
+ * =================================================================== */
+.tech-inspector-hud {
+  background: var(--bg-card);
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  border: 1px solid rgba(10, 132, 255, 0.32);
+  border-radius: var(--radius-2xl);
+  padding: 20px 24px;
+  margin-top: 0;
+  margin-bottom: var(--space-5);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4), 0 0 25px rgba(10, 132, 255, 0.15);
+  transition: all var(--duration-base) var(--ease-apple);
+  position: relative;
+  overflow: hidden;
+}
+
+.tech-inspector-hud.hud-pulse {
+  animation: hudHighlight 350ms var(--ease-apple);
+}
+
+@keyframes hudHighlight {
+  0% { transform: scale(0.995); border-color: rgba(10, 132, 255, 0.6); }
+  100% { transform: scale(1); border-color: rgba(10, 132, 255, 0.32); }
+}
+
+.hud-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+  flex-wrap: wrap;
+}
+
+.hud-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex: 1;
+  min-width: 240px;
+}
+
+.hud-icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-lg);
+  background: var(--accent-blue-subtle);
+  border: 1px solid rgba(10, 132, 255, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-sm);
+  padding: 7px;
+}
+
+.hud-icon-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.hud-icon-box i {
+  font-size: 1.4rem;
+  color: var(--accent-blue);
+}
+
+.hud-titles {
+  display: flex;
+  flex-direction: column;
+}
+
+.hud-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 2px;
+  flex-wrap: wrap;
+}
+
+.hud-domain-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent-blue);
+}
+
+.hud-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #30d158;
+  background: rgba(48, 209, 88, 0.12);
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(48, 209, 88, 0.25);
+}
+
+.pulse-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #30d158;
+  animation: pulseGreen 1.8s infinite;
+}
+
+@keyframes pulseGreen {
+  0% { transform: scale(0.9); opacity: 0.8; }
+  50% { transform: scale(1.3); opacity: 1; box-shadow: 0 0 8px #30d158; }
+  100% { transform: scale(0.9); opacity: 0.8; }
+}
+
+.hud-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  margin-bottom: 0;
+}
+
+.hud-middle {
+  flex: 1.8;
+  min-width: 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.hud-desc {
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--text-secondary);
+  margin-bottom: 0;
+}
+
+.hud-tags {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.hud-tag {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 2px 7px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xs);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+}
+
+.hud-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.hud-stat-box {
+  background: var(--bg-secondary);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  padding: 6px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.hud-stat-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-tertiary);
+  margin-bottom: 2px;
+}
+
+.hud-stat-val {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--accent-blue);
+}
+
+/* ===================================================================
+ * Architecture Workflows Ribbon
+ * =================================================================== */
+.tech-workflows-grid {
+  margin-top: var(--space-5);
+}
+
+.workflow-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-2xl);
+  padding: 22px 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.workflow-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.workflow-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  background: var(--accent-blue-subtle);
+  color: var(--accent-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+.workflow-header h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.workflow-header p {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  margin-bottom: 0;
+}
+
+.workflow-steps {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+  align-items: center;
+  gap: 10px;
+}
+
+.workflow-step {
+  background: var(--bg-secondary);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: all var(--duration-fast) var(--ease-apple);
+}
+
+.workflow-step:hover {
+  transform: translateY(-2px);
+  border-color: rgba(10, 132, 255, 0.4);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+}
+
+.step-num {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: var(--accent-blue);
+  font-family: var(--font-mono);
+  margin-bottom: 2px;
+}
+
+.step-label {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.25;
+  margin-bottom: 2px;
+}
+
+.step-desc {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+}
+
+.workflow-arrow {
+  color: var(--text-tertiary);
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2px;
 }
 
 /* ===================================================================
@@ -2654,6 +3075,36 @@ footer {
 
   .education-grid {
     grid-template-columns: 1fr;
+  }
+
+  .tech-matrix-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hud-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hud-right {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .hud-stat-box {
+    align-items: flex-start;
+    text-align: left;
+    width: 100%;
+  }
+
+  .workflow-steps {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .workflow-arrow {
+    transform: rotate(90deg);
+    padding: 6px 0;
   }
 
   .contact-grid {

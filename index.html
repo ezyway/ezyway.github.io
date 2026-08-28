@@ -349,17 +349,88 @@
     </div>
   </div>
 
-  <!-- Skills Section -->
+  <!-- Skills & Tech Stack Section -->
   <section id="myskills">
     <div class="page-container">
       <div class="section-intro">
-        <h5>Technical Stack</h5>
-        <h1>Tools &amp; Technologies</h1>
-        <p class="lead">Languages, frameworks, and infrastructure tools I leverage to build robust software.</p>
+        <h5>Technical Mastery</h5>
+        <h1>Systems &amp; AI Stack</h1>
+        <p class="lead">Production-tested frameworks, distributed backends, languages, and security tooling I leverage daily.</p>
       </div>
 
-      <div id="skills-sphere-wrap" class="skills-groups">
+      <!-- Interactive Tech Inspector HUD (Docked Apple Glass Drawer on Top) -->
+      <div id="tech-inspector-hud" class="tech-inspector-hud" aria-live="polite">
+        <div class="hud-inner">
+          <div class="hud-left">
+            <div class="hud-icon-box" id="hud-icon-box">
+              <i class="fa fa-google"></i>
+            </div>
+            <div class="hud-titles">
+              <div class="hud-badge-row">
+                <span class="hud-domain-badge" id="hud-domain">AI &amp; Multi-Agent</span>
+                <span class="hud-status-badge" id="hud-status"><span class="pulse-dot"></span> Production Core</span>
+              </div>
+              <h3 class="hud-name" id="hud-name">Google ADK</h3>
+            </div>
+          </div>
+          <div class="hud-middle">
+            <p class="hud-desc" id="hud-desc">Architecting coordinator and specialized domain agents with dynamic query routing and autonomous tool execution.</p>
+            <div class="hud-tags" id="hud-tags">
+              <span class="hud-tag">Multi-Agent</span>
+              <span class="hud-tag">Coordinator Agents</span>
+              <span class="hud-tag">Tool Calling</span>
+            </div>
+          </div>
+          <div class="hud-right">
+            <div class="hud-stat-box">
+              <span class="hud-stat-label">Core Application</span>
+              <span class="hud-stat-val" id="hud-app">Aganitha AI Portfolio</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Tech Matrix Grid -->
+      <div id="skills-sphere-wrap" class="tech-matrix-grid">
         <!-- Dynamically populated from js/data.js -->
+      </div>
+
+      <!-- Architecture Workflows Ribbon / Spotlight Matrix -->
+      <div class="tech-workflows-grid">
+        <div class="workflow-card apple-card">
+          <div class="workflow-header">
+            <div class="workflow-icon"><i class="fa fa-cubes"></i></div>
+            <div>
+              <h4>Agentic AI &amp; HPC Production Pipeline</h4>
+              <p>How my technical stack connects to deliver scalable intelligence</p>
+            </div>
+          </div>
+          <div class="workflow-steps">
+            <div class="workflow-step">
+              <span class="step-num">01</span>
+              <span class="step-label">FastAPI &amp; ADK</span>
+              <span class="step-desc">Coordinator Agent</span>
+            </div>
+            <div class="workflow-arrow"><i class="fa fa-angle-right"></i></div>
+            <div class="workflow-step">
+              <span class="step-num">02</span>
+              <span class="step-label">Domain Agents</span>
+              <span class="step-desc">Genomics / VEP APIs</span>
+            </div>
+            <div class="workflow-arrow"><i class="fa fa-angle-right"></i></div>
+            <div class="workflow-step">
+              <span class="step-num">03</span>
+              <span class="step-label">SLURM &amp; Redis</span>
+              <span class="step-desc">HPC Compute &amp; Cache</span>
+            </div>
+            <div class="workflow-arrow"><i class="fa fa-angle-right"></i></div>
+            <div class="workflow-step">
+              <span class="step-num">04</span>
+              <span class="step-label">Docker &amp; ECS</span>
+              <span class="step-desc">AWS Cloud Deployment</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>

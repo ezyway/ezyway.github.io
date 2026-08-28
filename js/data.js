@@ -292,51 +292,269 @@ const resumeData = {
   ],
   skills: [
     {
-      group: "Languages",
+      group: "Agentic AI & Machine Learning",
+      category: "ai",
+      icon: "fa-cogs",
+      description: "Autonomous multi-agent orchestration, tool-calling pipelines, and computational genomics models.",
       items: [
-        { name: "Python", icon: "images/icons/python.webp" },
-        { name: "JavaScript", icon: "images/icons/javascript.webp" },
-        { name: "JAVA", icon: "images/icons/java.webp" },
-        { name: "C", icon: "images/icons/c.webp" },
-        { name: "C++", icon: "images/icons/cplusplus.webp" },
-        { name: "C#", icon: "images/icons/csharp.webp" },
-        { name: "PHP", icon: "images/icons/php.webp" },
-        { name: "HTML", icon: "images/icons/html5.webp" },
-        { name: "CSS", icon: "images/icons/css3.webp" }
+        {
+          name: "Google ADK",
+          icon: "fa-google",
+          level: "Production Core",
+          category: "ai",
+          app: "Aganitha AI Portfolio",
+          desc: "Architecting coordinator and specialized domain agents with dynamic query routing and autonomous tool execution.",
+          tags: ["Multi-Agent", "Coordinator Agents", "Tool Calling"]
+        },
+        {
+          name: "Agentic AI",
+          icon: "fa-sitemap",
+          level: "Production Core",
+          category: "ai",
+          app: "Enterprise Multi-Agent",
+          desc: "Designing multi-stage agent workflows, Strapi CMS discovery layers, and Variant Effect Predictor (VEP) agents.",
+          tags: ["Agent Discovery", "Workflow Routing", "Strapi CMS"]
+        },
+        {
+          name: "PyTorch / DL",
+          icon: "fa-cube",
+          level: "Advanced",
+          category: "ai",
+          app: "ML/DL Research & HCA",
+          desc: "Deep learning models for High Content Analysis (HCA) of skin tissue data and dynamic malware classification (99% F1).",
+          tags: ["MIMO Deep Learning", "HCA Skin Data", "Model Evaluation"]
+        },
+        {
+          name: "Scikit-learn",
+          icon: "fa-area-chart",
+          level: "Production Ready",
+          category: "ai",
+          app: "GWAS & Data Pipelines",
+          desc: "Statistical feature extraction, GWAS gene relationship analysis, and classification pipelines with NumPy & Pandas.",
+          tags: ["GWAS Analysis", "Feature Extraction", "Pandas & NumPy"]
+        },
+        {
+          name: "NLP & Prompts",
+          icon: "fa-comments-o",
+          level: "Production Core",
+          category: "ai",
+          app: "Biomedical Tooling",
+          desc: "Engineering natural language interfaces that translate complex computational biology workflows for domain researchers.",
+          tags: ["NLP Interfaces", "Prompt Design", "Workflow Abstraction"]
+        },
+        {
+          name: "OpenCV / Vision",
+          icon: "fa-video-camera",
+          level: "Production Ready",
+          category: "ai",
+          app: "Motion-Detection Project",
+          desc: "Real-time frame processing, motion tracking, and automated surveillance alert streaming via Telegram API.",
+          tags: ["Frame Processing", "Motion Tracking", "Stream Ingestion"]
+        }
       ]
     },
     {
-      group: "Frameworks & Backend",
+      group: "Languages & Runtimes",
+      category: "languages",
+      icon: "fa-code",
+      description: "High-performance programming languages for backend microservices, system utilities, and web platforms.",
       items: [
-        { name: "FastAPI", icon: "fa-bolt" },
-        { name: "Node.js", icon: "fa-terminal" },
-        { name: "Next.js", icon: "fa-desktop" },
-        { name: "Bootstrap", icon: "images/icons/bootstrap.webp" },
-        { name: "jQuery", icon: "fa-code" },
-        { name: "ASP", icon: "images/icons/asp.webp" }
+        {
+          name: "Python",
+          icon: "images/icons/python.webp",
+          level: "Production Core",
+          category: "languages",
+          app: "Core Systems & AI",
+          desc: "Primary language for asynchronous backends (AsyncIO), AI agent orchestration, data parsing, and scientific pipelines.",
+          tags: ["AsyncIO", "Multiprocessing", "Type Hints"]
+        },
+        {
+          name: "JavaScript / GJS",
+          icon: "images/icons/javascript.webp",
+          level: "Production Core",
+          category: "languages",
+          app: "RezMon & Web Apps",
+          desc: "Built RezMon GNOME Shell extension (22k+ users) with GJS; client-side canvas physics and reactive UI engineering.",
+          tags: ["GNOME GJS", "Async / Await", "Canvas API"]
+        },
+        {
+          name: "Java",
+          icon: "images/icons/java.webp",
+          level: "Advanced",
+          category: "languages",
+          app: "Teaching & Systems",
+          desc: "Taught OOP, memory models, and data structures at NxtWave & Wisdemy; developed Android Java applications.",
+          tags: ["OOP Architecture", "Data Structures", "JVM"]
+        },
+        {
+          name: "C & C++",
+          icon: "images/icons/cplusplus.webp",
+          level: "Advanced",
+          category: "languages",
+          app: "System & Dynamic Analysis",
+          desc: "Low-level memory management, systems programming, dynamic analysis with GDB, and hardware-near execution.",
+          tags: ["Memory Safety", "Pointers & Structs", "Systems CS"]
+        },
+        {
+          name: "PHP 8.2",
+          icon: "images/icons/php.webp",
+          level: "Production Ready",
+          category: "languages",
+          app: "College & Export Portals",
+          desc: "Modular web application architecture, custom cache-busting systems, and performant server-side rendering.",
+          tags: ["Modern PHP 8.2", "Modular Architecture", "Server-Side"]
+        },
+        {
+          name: "Bash / Shell",
+          icon: "fa-terminal",
+          level: "Production Core",
+          category: "languages",
+          app: "DevOps & Cuckoo-Scripts",
+          desc: "Automated sandbox provisioning, multi-node deployment scripts, Linux automation, and CI/CD pipelines.",
+          tags: ["Automation", "Sandbox Provisioning", "POSIX Shell"]
+        },
+        {
+          name: "C# / .NET",
+          icon: "images/icons/csharp.webp",
+          level: "Proficient",
+          category: "languages",
+          app: "Enterprise Foundations",
+          desc: "Object-oriented software development, enterprise application architecture, and ASP.NET fundamentals.",
+          tags: ["OOP Patterns", ".NET Framework", "Enterprise Dev"]
+        },
+        {
+          name: "HTML5 / CSS3",
+          icon: "images/icons/html5.webp",
+          level: "Production Core",
+          category: "languages",
+          app: "Portfolio & Web Platforms",
+          desc: "Studio-grade responsive layouts, Apple glassmorphic design systems, CSS variables, and fluid animations.",
+          tags: ["Apple Glassmorphism", "Responsive Grids", "CSS Tokens"]
+        }
       ]
     },
     {
-      group: "AI & Machine Learning",
+      group: "Backend, Databases & Distributed Systems",
+      category: "backend",
+      icon: "fa-database",
+      description: "Scalable asynchronous microservices, distributed cache layers, and relational database systems.",
       items: [
-        { name: "Agentic AI", icon: "fa-cogs" },
-        { name: "Google ADK", icon: "fa-google" },
-        { name: "Machine Learning", icon: "fa-area-chart" },
-        { name: "Genomics Pipelines", icon: "fa-sitemap" }
+        {
+          name: "FastAPI",
+          icon: "fa-bolt",
+          level: "Production Core",
+          category: "backend",
+          app: "Aganitha Microservices",
+          desc: "Developing ultra-fast asynchronous REST APIs with Pydantic validation, dependency injection, and OpenAPI schemas.",
+          tags: ["Async REST", "Pydantic Schemas", "High Concurrency"]
+        },
+        {
+          name: "Redis",
+          icon: "fa-database",
+          level: "Production Core",
+          category: "backend",
+          app: "Aganitha Caching & Queues",
+          desc: "In-memory caching of high-throughput genomic data queries, session management, and distributed pub/sub queues.",
+          tags: ["In-Memory Cache", "Pub/Sub Queues", "High Throughput"]
+        },
+        {
+          name: "Node.js / Next.js",
+          icon: "fa-desktop",
+          level: "Production Ready",
+          category: "backend",
+          app: "Full-Stack Web Apps",
+          desc: "Building event-driven backend services, serverless endpoints, and high-performance server-rendered web portals.",
+          tags: ["Event Loop", "SSR / SSG", "REST Endpoints"]
+        },
+        {
+          name: "PostgreSQL",
+          icon: "fa-database",
+          level: "Production Ready",
+          category: "backend",
+          app: "Enterprise Relational DB",
+          desc: "Relational schema design, complex query optimization, indexing strategies, and ACID-compliant transaction stores.",
+          tags: ["Complex Joins", "Indexing", "ACID Compliance"]
+        },
+        {
+          name: "MySQL",
+          icon: "fa-database",
+          level: "Production Core",
+          category: "backend",
+          app: "College & Retail Portals",
+          desc: "Database design and optimization for institutional portals, student result management, and automated payroll systems.",
+          tags: ["Schema Modeling", "Transactions", "Query Tuning"]
+        },
+        {
+          name: "Strapi CMS",
+          icon: "fa-sliders",
+          level: "Production Ready",
+          category: "backend",
+          app: "Agent Dynamic Discovery",
+          desc: "Headless CMS integration as a centralized control plane for dynamic AI agent registration and metadata configuration.",
+          tags: ["Headless CMS", "Dynamic Config", "Agent Discovery"]
+        }
       ]
     },
     {
-      group: "Cloud, Data & DevOps",
+      group: "Cloud, DevOps, HPC & Cyber Security",
+      category: "cloud",
+      icon: "fa-shield",
+      description: "Containerized cloud infrastructure, high-performance compute clusters, and cyber security forensics.",
       items: [
-        { name: "AWS", icon: "fa-cloud" },
-        { name: "Docker", icon: "fa-cubes" },
-        { name: "SLURM", icon: "fa-tasks" },
-        { name: "Redis", icon: "fa-database" },
-        { name: "PostgreSQL", icon: "fa-database" },
-        { name: "MySQL", icon: "fa-database" },
-        { name: "Git", icon: "fa-git" },
-        { name: "Linux", icon: "fa-linux" },
-        { name: "Cyber Security", icon: "fa-shield" }
+        {
+          name: "Docker / Compose",
+          icon: "fa-cubes",
+          level: "Production Core",
+          category: "cloud",
+          app: "Microservices & Web Apps",
+          desc: "Containerizing microservices for AWS deployment, multi-stage builds, and isolated reproducible development environments.",
+          tags: ["Multi-Stage Builds", "Compose Stacks", "Container Security"]
+        },
+        {
+          name: "AWS (ECS & ECR)",
+          icon: "fa-cloud",
+          level: "Production Core",
+          category: "cloud",
+          app: "Aganitha Cloud Infrastructure",
+          desc: "Deploying and orchestrating containerized AI microservices on AWS Elastic Container Service (ECS) and ECR.",
+          tags: ["AWS ECS", "ECR Registries", "Cloud Deployment"]
+        },
+        {
+          name: "SLURM HPC",
+          icon: "fa-tasks",
+          level: "Production Ready",
+          category: "cloud",
+          app: "Genomics HPC Cluster",
+          desc: "Scheduling and dispatching high-throughput computational biology and ML training jobs across distributed nodes.",
+          tags: ["Job Scheduling", "HPC Workloads", "Cluster Resource Mgmt"]
+        },
+        {
+          name: "Linux / Unix",
+          icon: "fa-linux",
+          level: "Production Core",
+          category: "cloud",
+          app: "Servers & Desktop Systems",
+          desc: "Deep Linux administration: kernel diagnostics, systemd services, multi-boot systems, network switches & routers.",
+          tags: ["Systemd", "Kernel Tooling", "Network Config"]
+        },
+        {
+          name: "Cyber Security",
+          icon: "fa-shield",
+          level: "Advanced (Post-Grad)",
+          category: "cloud",
+          app: "Malware Analysis Research",
+          desc: "Automated dynamic malware analysis in isolated sandboxes, threat behavior extraction, and network traffic forensics.",
+          tags: ["Sandbox Analysis", "Threat Modeling", "Digital Forensics"]
+        },
+        {
+          name: "Git / CI-CD",
+          icon: "fa-git",
+          level: "Production Core",
+          category: "cloud",
+          app: "DevOps & Repositories",
+          desc: "Semantic versioning, branching strategies, automated testing hooks, and GitHub Actions CI/CD pipelines.",
+          tags: ["Branching Models", "GitHub Actions", "Release Tagging"]
+        }
       ]
     }
   ]
