@@ -389,15 +389,37 @@ document.addEventListener("DOMContentLoaded", function() {
         `;
       }
 
+      let previewCoverHtml = "";
+      if (proj.live) {
+        const previewUrl = proj.preview || `https://api.microlink.io/?url=${encodeURIComponent(proj.live)}&screenshot=true&meta=false&embed=screenshot.url`;
+        previewCoverHtml = `
+          <div class="project-preview-cover">
+            <img src="${previewUrl}" 
+                 alt="${proj.title} live screenshot" 
+                 loading="lazy" 
+                 class="project-preview-img"
+                 onerror="this.closest('.project-preview-cover').style.display='none';">
+            <div class="project-preview-overlay">
+              <a href="${proj.live}" target="_blank" rel="noopener noreferrer" class="project-preview-link" title="Visit ${proj.title}">
+                <i class="fa fa-external-link"></i> Live Preview
+              </a>
+            </div>
+          </div>
+        `;
+      }
+
       projHtml += `
         <div class="project-card" data-tilt>
           <div>
-            <div class="project-top">
-              <div class="project-icon-disc"><i class="fa ${proj.icon}"></i></div>
+            ${previewCoverHtml}
+            <div class="project-header-row">
+              <div class="project-title-group">
+                <div class="project-icon-disc"><i class="fa ${proj.icon}"></i></div>
+                <h3 class="project-title">${proj.title}</h3>
+              </div>
               ${isFeatured ? `<span class="project-featured-badge">Featured · 22k+ Users</span>` : ""}
             </div>
-            <h3>${proj.title}</h3>
-            <p>${proj.description}</p>
+            <p class="project-desc">${proj.description}</p>
             ${proj.impact ? `<div class="project-impact"><i class="fa fa-bolt"></i> ${proj.impact}</div>` : ""}
           </div>
           <div>

@@ -233,6 +233,7 @@ const resumeData = {
       tags: ["JavaScript", "GNOME Shell", "Linux", "System Monitor"],
       live: "https://extensions.gnome.org/extension/6952/rezmon/",
       liveLabel: "GNOME Extensions",
+      preview: "images/projects/rezmon.png",
       github: "https://github.com/ezyway/RezMon"
     },
     {
@@ -243,6 +244,7 @@ const resumeData = {
       tags: ["PHP", "JavaScript", "HTML5 Canvas", "Docker", "UI/UX Architecture"],
       live: "https://nayoratechnologies.com/",
       liveLabel: "Live Website",
+      preview: "images/projects/nayora.png",
       extraLink: "https://www.linkedin.com/company/nayoratechnologies/",
       extraLabel: "LinkedIn",
       extraIcon: "fa-linkedin"
@@ -254,7 +256,8 @@ const resumeData = {
       impact: "Official academic portal serving thousands in Porbandar, Gujarat",
       tags: ["PHP 8.2", "Apache", "Modular Architecture", "SEO", "Docker"],
       live: "https://www.shrivjmodhacollege.com/",
-      liveLabel: "Live Website"
+      liveLabel: "Live Website",
+      preview: "images/projects/shrivjmodhacollege.png"
     },
     {
       title: "Maruti Nandan Exports",
@@ -263,7 +266,8 @@ const resumeData = {
       impact: "Global export & shipping web presence with responsive product catalog",
       tags: ["PHP", "HTML5/CSS3", "JavaScript", "Logistics", "Docker"],
       live: "https://marutinandan.co/",
-      liveLabel: "Live Website"
+      liveLabel: "Live Website",
+      preview: "images/projects/marutinandan.png"
     },
     {
       title: "Motion-Detection",

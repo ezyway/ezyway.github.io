@@ -1294,14 +1294,14 @@ section {
 }
 
 .hero-logos-current img {
-  height: 34px;
+  height: 38px;
   width: auto;
   border-radius: 6px;
   display: block;
 }
 
 .hero-current-name {
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--text-primary);
   line-height: 1;
@@ -1316,8 +1316,8 @@ section {
 }
 
 .hero-logos-previous .hero-logos-grid img {
-  height: 34px;
-  max-width: 140px;
+  height: 38px;
+  max-width: 150px;
   border-radius: 6px;
   object-fit: contain;
   filter: grayscale(100%) brightness(1.2);
@@ -2331,41 +2331,127 @@ section {
   border-color: var(--glass-border-hover);
 }
 
-.project-top {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+.project-preview-cover {
+  width: 100%;
+  height: 175px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
   margin-bottom: var(--space-4);
+  background: var(--bg-secondary);
+  border: 1px solid var(--glass-border);
+}
+
+.project-preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform var(--duration-base) var(--ease-apple), filter var(--duration-base) var(--ease-apple);
+  display: block;
+}
+
+.project-card:hover .project-preview-img {
+  transform: scale(1.04);
+}
+
+.project-preview-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.65) 100%);
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity var(--duration-fast) var(--ease-apple);
+}
+
+.project-card:hover .project-preview-overlay {
+  opacity: 1;
+}
+
+.project-preview-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  background: var(--accent-blue);
+  color: #ffffff !important;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transform: translateY(6px);
+  transition: all var(--duration-fast) var(--ease-apple);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+}
+
+.project-card:hover .project-preview-link {
+  transform: translateY(0);
+}
+
+.project-preview-link:hover {
+  background: var(--accent-blue-hover);
+  transform: scale(1.05);
+}
+
+.project-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.project-title-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  flex: 1;
 }
 
 .project-icon-disc {
-  width: 48px;
-  height: 48px;
-  border-radius: var(--radius-lg);
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-md);
   background: var(--accent-blue-subtle);
   color: var(--accent-blue);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  border: 1px solid rgba(10, 132, 255, 0.2);
 }
 
 .project-featured-badge {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   padding: 4px 10px;
   background: var(--accent-green-subtle);
   color: var(--accent-green);
   border-radius: var(--radius-full);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
+.project-title,
 .project-card h3 {
-  font-size: 1.45rem;
-  margin-bottom: var(--space-2);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  margin-bottom: 0;
+  line-height: 1.25;
 }
 
+.project-desc,
 .project-card p {
   font-size: 0.95rem;
   line-height: 1.55;
@@ -3515,15 +3601,29 @@ footer {
     gap: var(--space-3);
   }
   .hero-logos-pill {
-    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     text-align: center;
     border-radius: var(--radius-xl);
-    padding: 8px 16px;
+    padding: 10px 16px;
+    gap: 8px;
+  }
+  .hero-logos-current img {
+    height: 38px;
   }
   .hero-logos-previous .hero-logos-grid {
-    flex-wrap: wrap;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
     justify-content: center;
+    gap: 20px;
+    width: 100%;
+  }
+  .hero-logos-previous .hero-logos-grid img {
+    height: 36px;
+    max-width: 110px;
   }
   .cta-banner-inner {
     flex-direction: column;
@@ -3875,8 +3975,20 @@ footer {
   }
 
   .timeline-date-group {
-    align-items: flex-start;
-    gap: 2px;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+  }
+
+  .timeline-date-badge {
+    padding: 3px 10px;
+    font-size: 0.76rem;
+  }
+
+  .timeline-duration-text {
+    font-size: 0.74rem;
+    white-space: nowrap;
   }
 
   .timeline-details {
@@ -3916,6 +4028,11 @@ footer {
     min-height: auto;
     width: 100%;
     box-sizing: border-box;
+  }
+
+  .project-preview-cover {
+    height: 160px;
+    margin-bottom: 14px;
   }
 
   .project-card-footer {
@@ -4338,22 +4455,29 @@ footer {
   /* Logos Ribbon Grid */
   .hero-logos-pill {
     border-radius: var(--radius-lg);
-    padding: 8px 12px;
+    padding: 10px 14px;
     width: 100%;
+    gap: 8px;
+  }
+
+  .hero-logos-current img {
+    height: 34px;
   }
 
   .hero-logos-previous .hero-logos-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
     align-items: center;
-    justify-items: center;
+    justify-content: space-around;
+    gap: 10px;
     width: 100%;
   }
 
   .hero-logos-previous .hero-logos-grid img {
-    height: 26px;
-    max-width: 100px;
+    height: 32px;
+    max-width: 80px;
+    object-fit: contain;
   }
 
   /* Filter Pills */
@@ -4463,6 +4587,32 @@ footer {
   .filter-pill {
     font-size: 0.7rem;
     padding: 5px 2px;
+  }
+
+  .hero-logos-current img {
+    height: 28px;
+  }
+
+  .hero-logos-previous .hero-logos-grid {
+    gap: 6px;
+  }
+
+  .hero-logos-previous .hero-logos-grid img {
+    height: 28px;
+    max-width: 68px;
+  }
+
+  .timeline-date-group {
+    gap: 6px;
+  }
+
+  .timeline-date-badge {
+    padding: 2px 7px;
+    font-size: 0.72rem;
+  }
+
+  .timeline-duration-text {
+    font-size: 0.7rem;
   }
 
   .tech-chips-grid {
