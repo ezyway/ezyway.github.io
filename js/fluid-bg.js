@@ -857,6 +857,17 @@
       pointer.color = generateColor();
     }, { passive: true });
 
+    window.addEventListener('touchstart', function (e) {
+      var t = e.touches[0];
+      if (!t) return;
+      pointer.prevX = t.clientX / window.innerWidth;
+      pointer.prevY = 1 - t.clientY / window.innerHeight;
+      pointer.x = pointer.prevX;
+      pointer.y = pointer.prevY;
+      pointer.moved = true;
+      pointer.color = generateColor();
+    }, { passive: true });
+
     window.addEventListener('touchmove', function (e) {
       var t = e.touches[0];
       if (!t) return;

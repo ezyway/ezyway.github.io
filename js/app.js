@@ -440,7 +440,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const tagsJson = JSON.stringify(skill.tags || []).replace(/"/g, "&quot;");
 
         itemsHtml += `
-          <div class="tech-interactive-chip ${isDefaultSelected ? 'is-selected' : ''}"
+          <div class="tech-interactive-chip"
                role="button"
                tabindex="0"
                data-name="${skill.name}"
@@ -460,19 +460,25 @@ document.addEventListener("DOMContentLoaded", function() {
         `;
       });
 
+      const isFirst = gIdx === 0;
       skillsHtml += `
-        <div class="tech-domain-card apple-bento-card" data-domain-category="${group.category}">
-          <div class="tech-domain-header">
-            <div class="tech-domain-left">
-              <div class="tech-domain-icon-disc">
-                <i class="fa ${group.icon}"></i>
-              </div>
-              <div class="tech-domain-titles">
+        <div class="tech-domain-card apple-bento-card ${isFirst ? 'is-expanded' : 'is-collapsed'}" 
+             data-domain-category="${group.category}"
+             aria-expanded="${isFirst}">
+          <div class="tech-domain-header" role="button" tabindex="0" aria-label="Toggle ${group.group} category">
+            <div class="tech-domain-top-row">
+              <div class="tech-domain-left">
+                <div class="tech-domain-icon-disc">
+                  <i class="fa ${group.icon}"></i>
+                </div>
                 <h3 class="tech-domain-name">${group.group}</h3>
-                <p class="tech-domain-desc">${group.description}</p>
+              </div>
+              <div class="tech-domain-header-actions">
+                <span class="tech-domain-count-badge">${group.items.length} Tools</span>
+                <span class="domain-accordion-chevron" aria-hidden="true"><i class="fa fa-chevron-down"></i></span>
               </div>
             </div>
-            <span class="tech-domain-count-badge">${group.items.length} Tools</span>
+            <p class="tech-domain-desc">${group.description}</p>
           </div>
           <div class="tech-chips-grid">
             ${itemsHtml}
@@ -483,7 +489,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     skillsWrap.innerHTML = skillsHtml;
 
-    // Initialize the Live Tech Inspector HUD
+    // Initialize the Live Tech Inspector HUD & Domain Accordion
     initTechStackControls();
   }
 
@@ -497,6 +503,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const hudTags = document.getElementById("hud-tags");
     const hudApp = document.getElementById("hud-app");
     const allChips = document.querySelectorAll(".tech-interactive-chip");
+    const domainCards = document.querySelectorAll(".tech-domain-card");
 
     function updateHud(chip) {
       if (!chip || !hud) return;
@@ -514,6 +521,9 @@ document.addEventListener("DOMContentLoaded", function() {
       } catch (e) {
         tags = [];
       }
+
+      // Remove placeholder styling once user interacts
+      hud.classList.remove("is-placeholder");
 
       if (hudName) hudName.textContent = name;
       if (hudDomain) hudDomain.textContent = group;
@@ -556,6 +566,42 @@ document.addEventListener("DOMContentLoaded", function() {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
           updateHud(chip);
+        }
+      });
+    });
+
+    // Domain Card Accordion for Mobile (< 900px)
+    domainCards.forEach(card => {
+      const header = card.querySelector(".tech-domain-header");
+      if (!header) return;
+
+      function toggleDomain() {
+        if (window.innerWidth <= 900) {
+          const wasExpanded = card.classList.contains("is-expanded");
+          
+          domainCards.forEach(c => {
+            c.classList.remove("is-expanded");
+            c.classList.add("is-collapsed");
+            c.setAttribute("aria-expanded", "false");
+          });
+
+          if (!wasExpanded) {
+            card.classList.add("is-expanded");
+            card.classList.remove("is-collapsed");
+            card.setAttribute("aria-expanded", "true");
+          }
+        }
+      }
+
+      header.addEventListener("click", (e) => {
+        if (e.target.closest(".tech-interactive-chip")) return;
+        toggleDomain();
+      });
+
+      header.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          toggleDomain();
         }
       });
     });

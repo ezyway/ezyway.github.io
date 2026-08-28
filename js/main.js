@@ -12,22 +12,56 @@
     /* Mobile Navigation Toggle */
     var toggleButton = document.querySelector(".menu-toggle");
     var navLinks = document.querySelector(".nav-links");
+    var navBackdrop = document.getElementById("nav-backdrop");
+
+    function closeMobileNav() {
+      if (!navLinks || !navLinks.classList.contains("is-open")) return;
+      navLinks.classList.remove("is-open");
+      if (navBackdrop) navBackdrop.classList.remove("is-active");
+      document.body.classList.remove("nav-open");
+      if (toggleButton) {
+        toggleButton.setAttribute("aria-expanded", "false");
+        toggleButton.innerHTML = '<i class="fa fa-bars" aria-hidden="true"></i>';
+      }
+    }
+
+    function openMobileNav() {
+      if (!navLinks) return;
+      navLinks.classList.add("is-open");
+      if (navBackdrop) navBackdrop.classList.add("is-active");
+      document.body.classList.add("nav-open");
+      if (toggleButton) {
+        toggleButton.setAttribute("aria-expanded", "true");
+        toggleButton.innerHTML = '<i class="fa fa-times" aria-hidden="true"></i>';
+      }
+    }
 
     if (toggleButton && navLinks) {
       toggleButton.addEventListener("click", function (e) {
         e.preventDefault();
-        var isOpen = navLinks.classList.toggle("is-open");
-        toggleButton.setAttribute("aria-expanded", String(isOpen));
-        toggleButton.innerHTML = isOpen 
-          ? '<i class="fa fa-times" aria-hidden="true"></i>' 
-          : '<i class="fa fa-bars" aria-hidden="true"></i>';
+        e.stopPropagation();
+        if (navLinks.classList.contains("is-open")) {
+          closeMobileNav();
+        } else {
+          openMobileNav();
+        }
+      });
+
+      if (navBackdrop) {
+        navBackdrop.addEventListener("click", function () {
+          closeMobileNav();
+        });
+      }
+
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && navLinks.classList.contains("is-open")) {
+          closeMobileNav();
+        }
       });
 
       navLinks.querySelectorAll("li a").forEach(function (link) {
         link.addEventListener("click", function () {
-          navLinks.classList.remove("is-open");
-          toggleButton.setAttribute("aria-expanded", "false");
-          toggleButton.innerHTML = '<i class="fa fa-bars" aria-hidden="true"></i>';
+          closeMobileNav();
         });
       });
     }
