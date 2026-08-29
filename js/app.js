@@ -164,6 +164,65 @@ function initHeroTerminal() {
   }
 
   typeStep();
+
+  // Interactive Command Chips for direct execution
+  var triggerChips = document.querySelectorAll(".terminal-cmd-chip");
+  triggerChips.forEach(function(chip) {
+    chip.addEventListener("click", function(e) {
+      e.preventDefault();
+      var cmdToRun = chip.getAttribute("data-cmd");
+      if (!cmdToRun) return;
+
+      clearTimeout(timeoutId);
+      cmdEl.textContent = cmdToRun;
+
+      var responseMap = {
+        "sbatch --status": {
+          tag: "SLURM:ONLINE",
+          tagType: "green",
+          output: "4 Nodes · 16x A100 GPUs Active · Cluster Health: Optimal · Queue: 0 pending"
+        },
+        "cat stack.txt": {
+          tag: "TECH-STACK",
+          tagType: "purple",
+          output: "Python 3.12, FastAPI, Google ADK, PyTorch, Docker, AWS ECS, SLURM, Redis"
+        },
+        "python agent.py": {
+          tag: "AGENT:ACTIVE",
+          tagType: "cyan",
+          output: "ADK Coordinator initialized · 4 Domain Agents ready for inference"
+        },
+        "clear": {
+          tag: "SYSTEM",
+          tagType: "blue",
+          output: "Console buffer cleared"
+        }
+      };
+
+      var res = responseMap[cmdToRun] || {
+        tag: "EXEC",
+        tagType: "green",
+        output: "Command executed successfully"
+      };
+
+      if (cmdToRun === "clear") {
+        badgesListEl.innerHTML = "";
+      }
+
+      var badgeEl = document.createElement("div");
+      badgeEl.className = "terminal-badge-item is-user-triggered";
+      badgeEl.innerHTML = '<span class="terminal-output-tag tag-' + res.tagType + '">' + res.tag + '</span> ' + res.output;
+      badgesListEl.appendChild(badgeEl);
+      scrollToLogsBottom();
+
+      // Resume auto-typing loop after 3.5 seconds
+      timeoutId = setTimeout(function() {
+        isDeleting = true;
+        charIndex = cmdToRun.length;
+        typeStep();
+      }, 3500);
+    });
+  });
 }
 
 function calculateDuration(startStr, endStr) {
@@ -359,13 +418,21 @@ document.addEventListener("DOMContentLoaded", function() {
     eduGrid.innerHTML = eduHtml;
   }
 
-  /* Render Projects Grid */
+  /* Render Projects Grid with Category Filtering */
   const projectsGrid = document.getElementById("projects-grid-wrap");
-  if (projectsGrid && resumeData.projects) {
+  const projectFilterPills = document.querySelectorAll("[data-project-filter]");
+
+  function renderProjects(filterCategory = "all") {
+    if (!projectsGrid || !resumeData.projects) return;
+
+    const filteredProjects = resumeData.projects.filter(proj => {
+      if (filterCategory === "all") return true;
+      return proj.category === filterCategory;
+    });
+
     let projHtml = "";
-    resumeData.projects.forEach((proj, index) => {
+    filteredProjects.forEach((proj) => {
       const tagsHtml = proj.tags.map(tag => `<span>${tag}</span>`).join("");
-      const isFeatured = index === 0;
       let linksHtml = "";
       if (proj.live) {
         linksHtml += `
@@ -408,8 +475,10 @@ document.addEventListener("DOMContentLoaded", function() {
         `;
       }
 
+      const badgeHtml = proj.badge ? `<span class="project-stat-badge tag-${proj.badgeType || 'blue'}">${proj.badge}</span>` : "";
+
       projHtml += `
-        <div class="project-card" data-tilt>
+        <div class="project-card" data-tilt data-category="${proj.category || 'all'}">
           <div>
             ${previewCoverHtml}
             <div class="project-header-row">
@@ -417,7 +486,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 <div class="project-icon-disc"><i class="fa ${proj.icon}"></i></div>
                 <h3 class="project-title">${proj.title}</h3>
               </div>
-              ${isFeatured ? `<span class="project-featured-badge">Featured · 22k+ Users</span>` : ""}
+              ${badgeHtml}
             </div>
             <p class="project-desc">${proj.description}</p>
             ${proj.impact ? `<div class="project-impact"><i class="fa fa-bolt"></i> ${proj.impact}</div>` : ""}
@@ -435,6 +504,22 @@ document.addEventListener("DOMContentLoaded", function() {
     });
     projectsGrid.innerHTML = projHtml;
   }
+
+  // Bind project category filter pills
+  projectFilterPills.forEach(pill => {
+    pill.addEventListener("click", () => {
+      projectFilterPills.forEach(p => {
+        p.classList.remove("active");
+        p.setAttribute("aria-pressed", "false");
+      });
+      pill.classList.add("active");
+      pill.setAttribute("aria-pressed", "true");
+      const filter = pill.getAttribute("data-project-filter");
+      renderProjects(filter);
+    });
+  });
+
+  renderProjects("all");
 
   /* Render Rich Interactive Tech Stack Bento Matrix */
   const skillsWrap = document.getElementById("skills-sphere-wrap");
@@ -696,10 +781,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
   updateFilters();
 
-  /* Update Count Badges */
-  var pillCounts = document.querySelectorAll(".pill-count");
-  pillCounts.forEach(function(el) {
+  /* Update Experience Count Badges */
+  var expPillCounts = document.querySelectorAll("#resume .pill-count");
+  expPillCounts.forEach(function(el) {
     var filter = el.getAttribute("data-count");
+    if (!filter) return;
     var count = 0;
     experienceBlocks.forEach(function(block) {
       var category = block.getAttribute("data-category");
@@ -712,8 +798,64 @@ document.addEventListener("DOMContentLoaded", function() {
     el.textContent = count;
   });
 
+  /* Update Project Count Badges */
+  var projPillCounts = document.querySelectorAll("#projects .pill-count");
+  projPillCounts.forEach(function(el) {
+    var filter = el.getAttribute("data-project-count");
+    if (!filter || !resumeData.projects) return;
+    if (filter === "all") {
+      el.textContent = resumeData.projects.length;
+    } else {
+      el.textContent = resumeData.projects.filter(p => p.category === filter).length;
+    }
+  });
+
   /* Hero Terminal Animated Prompts */
   initHeroTerminal();
+
+  /* Interactive Architecture Pipeline Explorer */
+  const archStepsContainer = document.getElementById("architecture-steps-container");
+  const archDetailPanel = document.getElementById("workflow-detail-panel");
+
+  function renderArchitectureDetail(stepId = "01") {
+    if (!archDetailPanel || !resumeData.architectureSteps) return;
+    const stepData = resumeData.architectureSteps.find(s => s.id === stepId) || resumeData.architectureSteps[0];
+    if (!stepData) return;
+
+    const techChips = stepData.tech.map(t => `<span class="arch-tech-chip">${t}</span>`).join("");
+
+    archDetailPanel.innerHTML = `
+      <div class="arch-detail-card">
+        <div class="arch-detail-header">
+          <div class="arch-detail-title-group">
+            <span class="arch-step-badge tag-${stepData.badgeType || 'blue'}">Stage ${stepData.id} · ${stepData.badge}</span>
+            <h4 class="arch-step-title">${stepData.name} <span class="arch-step-role">&mdash; ${stepData.role}</span></h4>
+          </div>
+          <div class="arch-detail-metrics">
+            <i class="fa fa-tachometer"></i> <span>${stepData.metrics}</span>
+          </div>
+        </div>
+        <p class="arch-detail-summary">${stepData.summary}</p>
+        <div class="arch-detail-footer">
+          <span class="arch-tech-label">Architecture Stack:</span>
+          <div class="arch-tech-chips">${techChips}</div>
+        </div>
+      </div>
+    `;
+  }
+
+  if (archStepsContainer) {
+    const stepButtons = archStepsContainer.querySelectorAll(".workflow-step");
+    stepButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        stepButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        const stepId = btn.getAttribute("data-step-id");
+        renderArchitectureDetail(stepId);
+      });
+    });
+    renderArchitectureDetail("01");
+  }
 
   /* Typewriter Init */
   var elements = document.getElementsByClassName('typewrite');

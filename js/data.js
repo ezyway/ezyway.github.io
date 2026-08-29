@@ -228,6 +228,9 @@ const resumeData = {
     {
       title: "RezMon",
       icon: "fa-dashboard",
+      category: "systems",
+      badge: "22K+ Downloads",
+      badgeType: "green",
       description: "A GNOME Shell system monitor extension displaying live CPU, RAM, and network statistics directly in the Linux system tray.",
       impact: "22,000+ Downloads · Published on GNOME Marketplace",
       tags: ["JavaScript", "GNOME Shell", "Linux", "System Monitor"],
@@ -239,6 +242,9 @@ const resumeData = {
     {
       title: "Nayora Technologies",
       icon: "fa-globe",
+      category: "web",
+      badge: "Enterprise Portal",
+      badgeType: "purple",
       description: "Luxury corporate web platform and GCC staffing portal featuring interactive HTML5 canvas fluid ripples, 3D gyro tilt physics, dual-mode capability catalog, and live global timezone hubs.",
       impact: "Enterprise web application & cross-border IT staffing portal",
       tags: ["PHP", "JavaScript", "HTML5 Canvas", "Docker", "UI/UX Architecture"],
@@ -252,6 +258,9 @@ const resumeData = {
     {
       title: "Shri V.J. Modha College",
       icon: "fa-graduation-cap",
+      category: "web",
+      badge: "Academic Portal",
+      badgeType: "blue",
       description: "Official institutional web portal for Shri V.J. Modha College built with a lightweight modular PHP architecture, automated cache-busting, course syllabi, campus lab disclosures, and faculty directories.",
       impact: "Official academic portal serving thousands in Porbandar, Gujarat",
       tags: ["PHP 8.2", "Apache", "Modular Architecture", "SEO", "Docker"],
@@ -262,6 +271,9 @@ const resumeData = {
     {
       title: "Maruti Nandan Exports",
       icon: "fa-ship",
+      category: "web",
+      badge: "Global Logistics",
+      badgeType: "cyan",
       description: "Commercial web platform for global agricultural export and maritime logistics, showcasing international product lines, brand portfolios, quality certifications, and dynamic trade inquiries.",
       impact: "Global export & shipping web presence with responsive product catalog",
       tags: ["PHP", "HTML5/CSS3", "JavaScript", "Logistics", "Docker"],
@@ -272,6 +284,9 @@ const resumeData = {
     {
       title: "Motion-Detection",
       icon: "fa-video-camera",
+      category: "systems",
+      badge: "Real-Time AI Vision",
+      badgeType: "orange",
       description: "An automated real-time motion detection and video streaming alert system utilizing Python, OpenCV, Ngrok, and the Telegram API.",
       impact: "Real-time security alerts with sub-second latency",
       tags: ["Python", "OpenCV", "Telegram API", "IoT Security"],
@@ -280,10 +295,55 @@ const resumeData = {
     {
       title: "EFI-AN515-52-593F",
       icon: "fa-laptop",
+      category: "systems",
+      badge: "Hardware & Kernel",
+      badgeType: "blue",
       description: "Optimized Hackintosh OpenCore EFI configuration files to run macOS seamlessly on Acer Nitro 5 (AN515-52) laptops.",
       impact: "Community-adopted config for stable macOS on Acer Nitro 5",
       tags: ["Hackintosh", "macOS", "Hardware Tuning", "OpenCore"],
       github: "https://github.com/ezyway/EFI-AN515-52-593F"
+    }
+  ],
+  architectureSteps: [
+    {
+      id: "01",
+      name: "FastAPI & Google ADK",
+      role: "Coordinator Agent",
+      badge: "Inbound Routing",
+      badgeType: "green",
+      summary: "Translates high-level natural language user intents into structured execution graphs. Dispatches sub-tasks to domain-specific agents with dynamic tool registry lookups and state management.",
+      tech: ["FastAPI", "Google ADK", "Pydantic", "AsyncIO"],
+      metrics: "<15ms Router Latency · Dynamic Tool Discovery"
+    },
+    {
+      id: "02",
+      name: "Domain Agents",
+      role: "Genomics & VEP Tooling",
+      badge: "Scientific Compute",
+      badgeType: "purple",
+      summary: "Specialized agents execute bio-computational workloads—such as Variant Effect Predictor (VEP) queries against Ensembl APIs, GWAS gene relationship analysis, and High Content Analysis (HCA).",
+      tech: ["Python", "Ensembl API", "PyTorch", "GWAS"],
+      metrics: "99% F1 HCA Model · Ensembl REST Batching"
+    },
+    {
+      id: "03",
+      name: "SLURM & Redis",
+      role: "HPC Compute & Cache",
+      badge: "Distributed Queue",
+      badgeType: "cyan",
+      summary: "Orchestrates GPU/CPU node allocation on high-performance compute clusters. Dispatches batch training and heavy ML inference jobs via SLURM job arrays with Redis intermediate result caching.",
+      tech: ["SLURM", "Redis", "NVIDIA A100", "Linux Bash"],
+      metrics: "Multi-Node GPU Scaling · Sub-second Cache Hits"
+    },
+    {
+      id: "04",
+      name: "Docker & AWS ECS",
+      role: "Cloud Deployment",
+      badge: "Resilient Cloud",
+      badgeType: "blue",
+      summary: "Containerized microservices running on AWS ECS with auto-scaling task definitions, ECR image pipelines, and CloudWatch telemetry—ensuring zero-downtime rolling updates and high availability.",
+      tech: ["AWS ECS", "AWS ECR", "Docker", "CloudWatch"],
+      metrics: "Zero-Downtime Deploys · Fault-Tolerant Failover"
     }
   ],
   skills: [

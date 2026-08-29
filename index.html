@@ -3,7 +3,7 @@
 <head>
   <!-- Basic Page Needs -->
   <meta charset="utf-8">
-  <title>Sreyas C.V. | Software Engineer — AI Systems &amp; Backend Infrastructure</title>
+  <title>Sreyas Cheeran Velikoth | Software Engineer — AI Systems &amp; Backend Infrastructure</title>
   <meta name="description" content="Sreyas Cheeran Velikoth (CV) — Software Engineer specializing in AI systems, LLM-powered multi-agent platforms, and cloud-native backend infrastructure. Python, FastAPI, AWS.">
   <meta name="author" content="Sreyas Cheeran Velikoth">
 
@@ -13,12 +13,12 @@
 
   <!-- Open Graph / Twitter -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Sreyas C.V. | Software Engineer">
+  <meta property="og:title" content="Sreyas Cheeran Velikoth | Software Engineer">
   <meta property="og:description" content="Software Engineer specializing in AI systems, LLM-powered multi-agent platforms, and backend infrastructure.">
   <meta property="og:url" content="https://ezyway.github.io/">
   <meta property="og:image" content="https://ezyway.github.io/images/intro-bg.webp">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Sreyas C.V. | Software Engineer">
+  <meta name="twitter:title" content="Sreyas Cheeran Velikoth | Software Engineer">
   <meta name="twitter:description" content="Software Engineer specializing in AI systems, LLM-powered multi-agent platforms, and backend infrastructure.">
   <meta name="twitter:image" content="https://ezyway.github.io/images/intro-bg.webp">
 
@@ -49,7 +49,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/v4-shims.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
   <link rel="stylesheet" href="css/icons.css?v=2.2.0">
-  <link rel="stylesheet" href="css/apple-design.css?v=2.2.0">
+  <link rel="stylesheet" href="css/apple-design.css?v=2.3.0">
 
   <!-- Favicon -->
   <link rel="icon" href="favi.ico" type="image/x-icon">
@@ -70,14 +70,6 @@
   <!-- Header / Apple Floating Navigation Island -->
   <header>
     <div class="nav-island">
-      <a class="brand-logo smoothscroll" href="#intro" aria-label="Sreyas C.V. Overview">
-        <div class="brand-avatar-badge">
-          <span class="brand-initial">S</span>
-          <span class="brand-status-dot" title="Available for Impactful Roles" aria-hidden="true"></span>
-        </div>
-        <span class="brand-name">Sreyas <span class="brand-surname gradient-text">C.V.</span></span>
-      </a>
-
       <nav id="main-nav-wrap" aria-label="Primary Navigation">
         <ul class="nav-links">
           <li class="current"><a class="smoothscroll" href="#intro">Overview</a></li>
@@ -109,17 +101,26 @@
   <section id="intro">
     <div class="page-container">
       <h1 class="hero-title">
-        <span class="hero-title-line">Engineering</span>
-        <span class="hero-title-line"><span class="gradient-text">Intelligent</span> Systems</span>
+        Sreyas <span class="gradient-text">Cheeran Velikoth</span>
       </h1>
 
-      <p class="hero-subtitle">
-        Software Engineer · Multi-Agent LLM Platforms · Cloud-Native Backend · Genomic AI · Transcriptomics · SLURM HPC · Agent Orchestration
+      <p class="hero-tagline">
+        Engineering <span class="gradient-text">Intelligent</span> Systems
       </p>
 
       <p class="hero-description">
-        I architect and ship production-grade agentic platforms &mdash; turning cutting-edge AI research into resilient, scalable cloud systems.
+        Software Engineer specializing in AI systems and backend infrastructure. I architect and ship production-grade multi-agent LLM platforms, cloud-native microservices, and high-performance computational pipelines &mdash; turning cutting-edge AI research into resilient, scalable production systems.
       </p>
+
+      <!-- Hero Actions & Social Links -->
+      <div class="hero-actions-group">
+        <a href="#projects" class="smoothscroll btn btn-primary hero-btn-main">
+          <span>Explore Projects</span> <i class="fa fa-arrow-right" aria-hidden="true"></i>
+        </a>
+        <a href="Profile.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-ghost hero-btn-resume">
+          <i class="fa fa-file-pdf-o" aria-hidden="true"></i> <span>Download Resume</span>
+        </a>
+      </div>
 
       <!-- Hero Social Quick Connect Pill -->
       <div class="hero-social-pill" aria-label="Social Links">
@@ -154,9 +155,16 @@
               <span class="linux-prompt"><span class="p-user">sreyas@hpc-cluster</span><span class="p-sep">:</span><span class="p-path">~/genomics-ai</span><span class="p-dollar">$</span></span>
               <span class="t-command" id="terminal-command-text"></span><span class="t-cursor" aria-hidden="true"></span>
             </div>
+            <div class="terminal-quick-triggers" aria-label="Quick Terminal Commands">
+              <span class="terminal-trigger-label"><i class="fa fa-bolt"></i> Run:</span>
+              <button class="terminal-cmd-chip" data-cmd="sbatch --status" type="button">sbatch --status</button>
+              <button class="terminal-cmd-chip" data-cmd="cat stack.txt" type="button">cat stack.txt</button>
+              <button class="terminal-cmd-chip" data-cmd="python agent.py" type="button">python agent.py</button>
+              <button class="terminal-cmd-chip" data-cmd="clear" type="button">clear</button>
+            </div>
             <div class="terminal-status-hint">
               <span class="hint-dot"></span>
-              <span>SLURM / HPC Cluster Shell · Active</span>
+              <span>SLURM / HPC Cluster Shell · Active &amp; Interactive</span>
             </div>
           </div>
         </div>
@@ -334,7 +342,25 @@
       <div class="section-intro">
         <h5>Featured Projects</h5>
         <h1>Built with Craft &amp; Precision</h1>
-        <p class="lead">Open-source tools, system utilities, and experimental architectures.</p>
+        <p class="lead">Open-source tools, system utilities, and production web platforms.</p>
+      </div>
+
+      <!-- Segmented Control Filters for Projects -->
+      <div class="segmented-control-wrapper">
+        <div class="segmented-control" role="tablist" aria-label="Project Category Filter">
+          <button class="filter-pill active" aria-pressed="true" data-project-filter="all" role="tab">
+            <span>All Projects</span>
+            <span class="pill-count" data-project-count="all">6</span>
+          </button>
+          <button class="filter-pill" aria-pressed="false" data-project-filter="systems" role="tab">
+            <span>AI &amp; Systems</span>
+            <span class="pill-count" data-project-count="systems">3</span>
+          </button>
+          <button class="filter-pill" aria-pressed="false" data-project-filter="web" role="tab">
+            <span>Web &amp; Production</span>
+            <span class="pill-count" data-project-count="web">3</span>
+          </button>
+        </div>
       </div>
 
       <div id="projects-grid-wrap" class="projects-grid">
@@ -416,50 +442,65 @@
             <div class="workflow-icon"><i class="fa fa-cubes"></i></div>
             <div>
               <h4>Agentic AI &amp; HPC Production Pipeline</h4>
-              <p>How my technical stack connects to deliver scalable intelligence</p>
+              <p>Click any pipeline stage below to inspect real-time architectural dataflow</p>
             </div>
           </div>
-          <div class="workflow-steps">
-            <div class="workflow-step">
+          <div class="workflow-steps" id="architecture-steps-container">
+            <button class="workflow-step active" data-step-id="01" type="button">
               <span class="step-num">01</span>
               <div class="step-content">
                 <span class="step-label">FastAPI &amp; ADK</span>
                 <span class="step-desc">Coordinator Agent</span>
               </div>
-            </div>
+            </button>
             <div class="workflow-arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
-            <div class="workflow-step">
+            <button class="workflow-step" data-step-id="02" type="button">
               <span class="step-num">02</span>
               <div class="step-content">
                 <span class="step-label">Domain Agents</span>
                 <span class="step-desc">Genomics / VEP APIs</span>
               </div>
-            </div>
+            </button>
             <div class="workflow-arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
-            <div class="workflow-step">
+            <button class="workflow-step" data-step-id="03" type="button">
               <span class="step-num">03</span>
               <div class="step-content">
                 <span class="step-label">SLURM &amp; Redis</span>
                 <span class="step-desc">HPC Compute &amp; Cache</span>
               </div>
-            </div>
+            </button>
             <div class="workflow-arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
-            <div class="workflow-step">
+            <button class="workflow-step" data-step-id="04" type="button">
               <span class="step-num">04</span>
               <div class="step-content">
                 <span class="step-label">Docker &amp; ECS</span>
                 <span class="step-desc">AWS Cloud Deployment</span>
               </div>
-            </div>
+            </button>
+          </div>
+
+          <!-- Interactive Architecture Step Detail Drawer -->
+          <div class="workflow-detail-panel" id="workflow-detail-panel" aria-live="polite">
+            <!-- Dynamically populated from js/data.js -->
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Contact Section (Apple Studio Direct Connect) -->
+  <!-- Contact Section (Apple Collaboration Hub) -->
   <section id="contact">
     <div class="page-container">
+      <div class="section-intro">
+        <div class="contact-availability-pill">
+          <span class="pulse-green-dot" aria-hidden="true"></span>
+          <span>Open to AI Systems &amp; Backend Engineering Roles</span>
+        </div>
+        <h5>Let's Connect</h5>
+        <h1>Start a Conversation</h1>
+        <p class="lead">Open to impactful software engineering roles, multi-agent platform architecture, and high-scale backend engineering opportunities.</p>
+      </div>
+
       <div class="apple-card contact-studio-card">
         
         <!-- Header -->
@@ -559,10 +600,10 @@
   </footer>
 
   <!-- JavaScript Files -->
-  <script src="js/data.js?v=2.0.0"></script>
-  <script src="js/app.js?v=2.0.0"></script>
-  <script src="js/main.js?v=2.0.0"></script>
-  <script src="js/fluid-bg.js?v=2.0.0"></script>
+  <script src="js/data.js?v=2.1.0"></script>
+  <script src="js/app.js?v=2.1.0"></script>
+  <script src="js/main.js?v=2.1.0"></script>
+  <script src="js/fluid-bg.js?v=2.1.0"></script>
 
 </body>
 </html>
