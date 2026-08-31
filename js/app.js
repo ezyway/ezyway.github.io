@@ -314,8 +314,8 @@ document.addEventListener("DOMContentLoaded", function() {
       const durationText = calculateDuration(exp.start, exp.end);
       const isExpandedClass = index === 0 ? "is-expanded" : "";
       const logoContent = exp.logo 
-        ? `<img src="${exp.logo}" alt="${exp.company} logo" loading="lazy">`
-        : `<i class="fa fa-briefcase"></i>`;
+        ? `<img src="${exp.logo}" alt="${exp.company} logo" width="32" height="32" loading="lazy">`
+        : `<i class="fa fa-briefcase" aria-hidden="true"></i>`;
 
       const tagHtml = exp.tag 
         ? `<span class="timeline-role-tag tag-${exp.tagType || 'default'}">${exp.tag}</span>` 
@@ -331,7 +331,7 @@ document.addEventListener("DOMContentLoaded", function() {
           <div class="timeline-highlights-box">
             <h4 class="timeline-highlights-heading"><i class="fa fa-check-circle-o" aria-hidden="true"></i> Key Achievements &amp; Scope</h4>
             <ul class="timeline-highlights-list">
-              ${exp.highlights.map(h => `<li><span class="bullet-dot"></span><span>${h}</span></li>`).join("")}
+              ${exp.highlights.map(h => `<li><span class="bullet-dot" aria-hidden="true"></span><span>${h}</span></li>`).join("")}
             </ul>
           </div>
         `;
@@ -367,7 +367,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 <span class="timeline-date-badge">${dateText}</span>
                 ${durationText ? `<span class="timeline-duration-text">${durationText}</span>` : ""}
               </div>
-              <span class="timeline-expand-icon"><i class="fa fa-chevron-down"></i></span>
+              <span class="timeline-expand-icon" aria-hidden="true"><i class="fa fa-chevron-down"></i></span>
             </div>
           </div>
           <div class="timeline-details">
@@ -388,8 +388,8 @@ document.addEventListener("DOMContentLoaded", function() {
     resumeData.education.forEach((edu) => {
       const tagsHtml = edu.tags ? edu.tags.map(t => `<span class="edu-tag-chip">${t}</span>`).join("") : "";
       const logoContent = edu.logo 
-        ? `<img src="${edu.logo}" alt="${edu.institution} logo" loading="lazy">`
-        : `<i class="fa fa-graduation-cap"></i>`;
+        ? `<img src="${edu.logo}" alt="${edu.institution} logo" width="32" height="32" loading="lazy">`
+        : `<i class="fa fa-graduation-cap" aria-hidden="true"></i>`;
 
       eduHtml += `
         <div class="education-card apple-card">
@@ -401,9 +401,9 @@ document.addEventListener("DOMContentLoaded", function() {
             <h3 class="edu-degree">${edu.degree}</h3>
             <p class="edu-institution">${edu.institution}</p>
             <div class="edu-meta-pills">
-              <span class="edu-meta-pill"><i class="fa fa-calendar-o"></i> ${edu.year}</span>
-              <span class="edu-meta-pill"><i class="fa fa-map-marker"></i> ${edu.location}</span>
-              ${edu.grade ? `<span class="edu-grade-pill"><i class="fa fa-trophy"></i> ${edu.grade}</span>` : ""}
+              <span class="edu-meta-pill"><i class="fa fa-calendar-o" aria-hidden="true"></i> ${edu.year}</span>
+              <span class="edu-meta-pill"><i class="fa fa-map-marker" aria-hidden="true"></i> ${edu.location}</span>
+              ${edu.grade ? `<span class="edu-grade-pill"><i class="fa fa-trophy" aria-hidden="true"></i> ${edu.grade}</span>` : ""}
             </div>
             <p class="edu-description">${edu.description}</p>
           </div>
@@ -437,21 +437,21 @@ document.addEventListener("DOMContentLoaded", function() {
       if (proj.live) {
         linksHtml += `
           <a href="${proj.live}" target="_blank" rel="noopener noreferrer" class="project-link-pill primary">
-            <i class="fa fa-external-link"></i> ${proj.liveLabel || "Live Demo"}
+            <i class="fa fa-external-link" aria-hidden="true"></i> ${proj.liveLabel || "Live Demo"}
           </a>
         `;
       }
       if (proj.github) {
         linksHtml += `
           <a href="${proj.github}" target="_blank" rel="noopener noreferrer" class="project-link-pill">
-            <i class="fa fa-github"></i> GitHub
+            <i class="fa fa-github" aria-hidden="true"></i> GitHub
           </a>
         `;
       }
       if (proj.extraLink) {
         linksHtml += `
           <a href="${proj.extraLink}" target="_blank" rel="noopener noreferrer" class="project-link-pill">
-            <i class="fa ${proj.extraIcon || 'fa-external-link'}"></i> ${proj.extraLabel || "Link"}
+            <i class="fa ${proj.extraIcon || 'fa-external-link'}" aria-hidden="true"></i> ${proj.extraLabel || "Link"}
           </a>
         `;
       }
@@ -463,12 +463,14 @@ document.addEventListener("DOMContentLoaded", function() {
           <div class="project-preview-cover">
             <img src="${previewUrl}" 
                  alt="${proj.title} live screenshot" 
+                 width="400"
+                 height="225"
                  loading="lazy" 
                  class="project-preview-img"
                  onerror="this.closest('.project-preview-cover').style.display='none';">
             <div class="project-preview-overlay">
               <a href="${proj.live}" target="_blank" rel="noopener noreferrer" class="project-preview-link" title="Visit ${proj.title}">
-                <i class="fa fa-external-link"></i> Live Preview
+                <i class="fa fa-external-link" aria-hidden="true"></i> Live Preview
               </a>
             </div>
           </div>
@@ -483,13 +485,13 @@ document.addEventListener("DOMContentLoaded", function() {
             ${previewCoverHtml}
             <div class="project-header-row">
               <div class="project-title-group">
-                <div class="project-icon-disc"><i class="fa ${proj.icon}"></i></div>
+                <div class="project-icon-disc"><i class="fa ${proj.icon}" aria-hidden="true"></i></div>
                 <h3 class="project-title">${proj.title}</h3>
               </div>
               ${badgeHtml}
             </div>
             <p class="project-desc">${proj.description}</p>
-            ${proj.impact ? `<div class="project-impact"><i class="fa fa-bolt"></i> ${proj.impact}</div>` : ""}
+            ${proj.impact ? `<div class="project-impact"><i class="fa fa-bolt" aria-hidden="true"></i> ${proj.impact}</div>` : ""}
           </div>
           <div>
             <div class="project-tags">
@@ -531,33 +533,27 @@ document.addEventListener("DOMContentLoaded", function() {
       let itemsHtml = "";
       totalSkillsCount += group.items.length;
 
-      group.items.forEach((skill, sIdx) => {
+      group.items.forEach((skill) => {
         let iconContent = "";
         if (skill.icon) {
           if (skill.icon.startsWith("fa-") || skill.icon.startsWith("fa ")) {
-            iconContent = `<i class="fa ${skill.icon}"></i>`;
+            iconContent = `<i class="fa ${skill.icon}" aria-hidden="true"></i>`;
           } else {
-            iconContent = `<img src="${skill.icon}" alt="${skill.name} icon" loading="lazy">`;
+            iconContent = `<img src="${skill.icon}" alt="${skill.name} icon" width="20" height="20" loading="lazy">`;
           }
         } else {
-          iconContent = `<i class="fa fa-code"></i>`;
+          iconContent = `<i class="fa fa-code" aria-hidden="true"></i>`;
         }
 
-        const isDefaultSelected = gIdx === 0 && sIdx === 0;
-        const tagsJson = JSON.stringify(skill.tags || []).replace(/"/g, "&quot;");
+        const tooltip = skill.desc ? `${skill.name} — ${skill.desc}` : skill.name;
 
         itemsHtml += `
           <div class="tech-interactive-chip"
-               role="button"
-               tabindex="0"
+               title="${tooltip}"
                data-name="${skill.name}"
                data-group="${group.group}"
                data-category="${group.category}"
-               data-level="${skill.level || 'Production Ready'}"
-               data-app="${skill.app || 'Engineering System'}"
-               data-desc="${skill.desc || ''}"
-               data-tags="${tagsJson}"
-               data-icon="${skill.icon}">
+               data-level="${skill.level || 'Production Ready'}">
             <div class="tech-chip-icon-disc">${iconContent}</div>
             <div class="tech-chip-info">
               <span class="tech-chip-title">${skill.name}</span>
@@ -576,7 +572,7 @@ document.addEventListener("DOMContentLoaded", function() {
             <div class="tech-domain-top-row">
               <div class="tech-domain-left">
                 <div class="tech-domain-icon-disc">
-                  <i class="fa ${group.icon}"></i>
+                  <i class="fa ${group.icon}" aria-hidden="true"></i>
                 </div>
                 <h3 class="tech-domain-name">${group.group}</h3>
               </div>
@@ -596,88 +592,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
     skillsWrap.innerHTML = skillsHtml;
 
-    // Initialize the Live Tech Inspector HUD & Domain Accordion
-    initTechStackControls();
+    // Initialize Domain Card Accordion for Mobile (< 900px)
+    initTechDomainControls();
   }
 
-  function initTechStackControls() {
-    const hud = document.getElementById("tech-inspector-hud");
-    const hudIcon = document.getElementById("hud-icon-box");
-    const hudDomain = document.getElementById("hud-domain");
-    const hudStatus = document.getElementById("hud-status");
-    const hudName = document.getElementById("hud-name");
-    const hudDesc = document.getElementById("hud-desc");
-    const hudTags = document.getElementById("hud-tags");
-    const hudApp = document.getElementById("hud-app");
-    const allChips = document.querySelectorAll(".tech-interactive-chip");
+  function initTechDomainControls() {
     const domainCards = document.querySelectorAll(".tech-domain-card");
 
-    function updateHud(chip) {
-      if (!chip || !hud) return;
-      const name = chip.getAttribute("data-name");
-      const group = chip.getAttribute("data-group");
-      const level = chip.getAttribute("data-level");
-      const app = chip.getAttribute("data-app");
-      const desc = chip.getAttribute("data-desc");
-      const rawTags = chip.getAttribute("data-tags");
-      const icon = chip.getAttribute("data-icon");
-
-      let tags = [];
-      try {
-        tags = JSON.parse(rawTags);
-      } catch (e) {
-        tags = [];
-      }
-
-      // Remove placeholder styling once user interacts
-      hud.classList.remove("is-placeholder");
-
-      if (hudName) hudName.textContent = name;
-      if (hudDomain) hudDomain.textContent = group;
-      if (hudStatus) {
-        hudStatus.innerHTML = `<span class="pulse-dot"></span> ${level}`;
-      }
-      if (hudDesc) hudDesc.textContent = desc;
-      if (hudApp) hudApp.textContent = app;
-
-      if (hudTags) {
-        hudTags.innerHTML = tags.map(t => `<span class="hud-tag">${t}</span>`).join("");
-      }
-
-      if (hudIcon) {
-        if (icon) {
-          if (icon.startsWith("fa-") || icon.startsWith("fa ")) {
-            hudIcon.innerHTML = `<i class="fa ${icon}"></i>`;
-          } else {
-            hudIcon.innerHTML = `<img src="${icon}" alt="${name}" loading="lazy">`;
-          }
-        } else {
-          hudIcon.innerHTML = `<i class="fa fa-code"></i>`;
-        }
-      }
-
-      allChips.forEach(c => c.classList.remove("is-selected"));
-      chip.classList.add("is-selected");
-
-      // Micro-animation trigger
-      hud.classList.remove("hud-pulse");
-      void hud.offsetWidth; // trigger reflow
-      hud.classList.add("hud-pulse");
-    }
-
-    // Attach click and hover listeners to all chips
-    allChips.forEach(chip => {
-      chip.addEventListener("click", () => updateHud(chip));
-      chip.addEventListener("mouseenter", () => updateHud(chip));
-      chip.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          updateHud(chip);
-        }
-      });
-    });
-
-    // Domain Card Accordion for Mobile (< 900px)
     domainCards.forEach(card => {
       const header = card.querySelector(".tech-domain-header");
       if (!header) return;
@@ -812,50 +733,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
   /* Hero Terminal Animated Prompts */
   initHeroTerminal();
-
-  /* Interactive Architecture Pipeline Explorer */
-  const archStepsContainer = document.getElementById("architecture-steps-container");
-  const archDetailPanel = document.getElementById("workflow-detail-panel");
-
-  function renderArchitectureDetail(stepId = "01") {
-    if (!archDetailPanel || !resumeData.architectureSteps) return;
-    const stepData = resumeData.architectureSteps.find(s => s.id === stepId) || resumeData.architectureSteps[0];
-    if (!stepData) return;
-
-    const techChips = stepData.tech.map(t => `<span class="arch-tech-chip">${t}</span>`).join("");
-
-    archDetailPanel.innerHTML = `
-      <div class="arch-detail-card">
-        <div class="arch-detail-header">
-          <div class="arch-detail-title-group">
-            <span class="arch-step-badge tag-${stepData.badgeType || 'blue'}">Stage ${stepData.id} · ${stepData.badge}</span>
-            <h4 class="arch-step-title">${stepData.name} <span class="arch-step-role">&mdash; ${stepData.role}</span></h4>
-          </div>
-          <div class="arch-detail-metrics">
-            <i class="fa fa-tachometer"></i> <span>${stepData.metrics}</span>
-          </div>
-        </div>
-        <p class="arch-detail-summary">${stepData.summary}</p>
-        <div class="arch-detail-footer">
-          <span class="arch-tech-label">Architecture Stack:</span>
-          <div class="arch-tech-chips">${techChips}</div>
-        </div>
-      </div>
-    `;
-  }
-
-  if (archStepsContainer) {
-    const stepButtons = archStepsContainer.querySelectorAll(".workflow-step");
-    stepButtons.forEach(btn => {
-      btn.addEventListener("click", () => {
-        stepButtons.forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        const stepId = btn.getAttribute("data-step-id");
-        renderArchitectureDetail(stepId);
-      });
-    });
-    renderArchitectureDetail("01");
-  }
 
   /* Typewriter Init */
   var elements = document.getElementsByClassName('typewrite');
