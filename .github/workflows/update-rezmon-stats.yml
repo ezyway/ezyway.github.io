@@ -1,0 +1,40 @@
+name: Update RezMon stats
+
+# GNOME Extensions has no CORS headers, so the browser cannot read its API.
+# This job queries it server-side and commits js/rezmon-stats.json, which the
+# static site fetches at runtime. Runs daily, or on demand from the Actions tab.
+
+on:
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-rezmon-stats
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Fetch live download count
+        run: python3 .github/scripts/update-rezmon-stats.py
+
+      - name: Commit snapshot if changed
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- js/rezmon-stats.json; then
+            echo "No change in download count; skipping commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add js/rezmon-stats.json
+          git commit -m "chore(stats): update RezMon download count"
+          git push

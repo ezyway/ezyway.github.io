@@ -71,16 +71,37 @@
       return document.querySelector('.nav-links a[href="#' + s.id + '"]');
     });
     var navItems = document.querySelectorAll(".nav-links li");
+    var navSectionLabel = document.getElementById("nav-section-label");
+    var currentNavId = null;
+
+    function setNavSectionLabel(text) {
+      if (!navSectionLabel || !text || navSectionLabel.textContent === text) return;
+      if (prefersReducedMotion) {
+        navSectionLabel.textContent = text;
+        return;
+      }
+      navSectionLabel.classList.add("is-changing");
+      window.setTimeout(function () {
+        navSectionLabel.textContent = text;
+        navSectionLabel.classList.remove("is-changing");
+      }, 150);
+    }
 
     function highlightNav() {
       var scrollPos = window.scrollY + window.innerHeight * 0.28;
       var currentId = sections.length ? sections[0].id : null;
-      
+
       sections.forEach(function (section) {
         if (section.offsetTop <= scrollPos) {
           currentId = section.id;
         }
       });
+
+      if (currentId !== currentNavId) {
+        currentNavId = currentId;
+        var activeLink = document.querySelector('.nav-links a[href="#' + currentId + '"]');
+        if (activeLink) setNavSectionLabel(activeLink.textContent.trim());
+      }
 
       navItems.forEach(function (li) {
         var link = li.querySelector("a");
