@@ -34,8 +34,8 @@
     "email": "mailto:cvbiro.career@gmail.com",
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": "Hyderabad",
-      "addressRegion": "Telangana",
+      "addressLocality": "Bengaluru",
+      "addressRegion": "Karnataka",
       "addressCountry": "IN"
     },
     "sameAs": [
@@ -46,15 +46,18 @@
   </script>
 
   <!-- Typography & Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Self-hosted fonts (Inter + JetBrains Mono, latin/latin-ext) -->
+  <link rel="preload" href="fonts/inter/inter-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/inter/inter-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/jetbrains-mono/jetbrains-mono-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/fonts-selfhost.min.css?v=1.0.0">
 
   <!-- CSS Stylesheets -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/v4-shims.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
-  <link rel="stylesheet" href="css/icons.css?v=2.2.0">
-  <link rel="stylesheet" href="css/apple-design.css?v=2.4.0">
+  <link rel="preload" href="fonts/fontawesome/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/fontawesome/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/fontawesome/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/icons.min.css?v=2.3.0">
+  <link rel="stylesheet" href="css/apple-design.min.css?v=2.5.8">
 
   <!-- Favicon -->
   <link rel="icon" href="favi.ico" type="image/x-icon">
@@ -76,6 +79,10 @@
   <header>
     <div class="nav-island">
       <nav id="main-nav-wrap" aria-label="Primary Navigation">
+        <div class="nav-section-indicator" id="nav-section-indicator" aria-live="polite" aria-atomic="true">
+          <span class="nav-section-dot" aria-hidden="true"></span>
+          <span class="nav-section-label" id="nav-section-label">Overview</span>
+        </div>
         <ul class="nav-links">
           <li class="current"><a class="smoothscroll" href="#intro">Overview</a></li>
           <li><a class="smoothscroll" href="#about">About</a></li>
@@ -90,10 +97,10 @@
 
       <div class="nav-actions">
         <button id="theme-toggle" class="theme-toggle-btn" aria-label="Switch to Light Mode">
-          <i class="fa fa-sun-o" aria-hidden="true"></i>
+          <i class="fa fa-sun" aria-hidden="true"></i>
         </button>
         <a href="#contact" class="smoothscroll nav-cta-btn">
-          <span>Connect</span> <i class="fa fa-arrow-right" aria-hidden="true"></i>
+          <span>Connect now</span> <i class="fa fa-arrow-right" aria-hidden="true"></i>
         </a>
         <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="main-nav-wrap">
           <i class="fa fa-bars" aria-hidden="true"></i>
@@ -109,23 +116,11 @@
         Sreyas <span class="gradient-text">Cheeran Velikoth</span>
       </h1>
 
-      <p class="hero-tagline">
-        Engineering <span class="gradient-text">Intelligent</span> Systems
-      </p>
-
       <p class="hero-description">
         Software Engineer specializing in AI systems and backend infrastructure. I architect and ship production-grade multi-agent LLM platforms, cloud-native microservices, and high-performance computational pipelines &mdash; turning cutting-edge AI research into resilient, scalable production systems.
       </p>
 
-      <!-- Hero Actions & Social Links -->
-      <div class="hero-actions-group">
-        <a href="#projects" class="smoothscroll btn btn-primary hero-btn-main">
-          <span>Explore Projects</span> <i class="fa fa-arrow-right" aria-hidden="true"></i>
-        </a>
-        <a href="Profile.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-ghost hero-btn-resume">
-          <i class="fa fa-file-pdf-o" aria-hidden="true"></i> <span>Download Resume</span>
-        </a>
-      </div>
+
 
       <!-- Hero Social Quick Connect Pill -->
       <div class="hero-social-pill" aria-label="Social Links">
@@ -193,23 +188,7 @@
         </div>
       </div>
 
-      <div class="hero-logos-wrapper">
-        <div class="hero-logos-pill hero-logos-current">
-          <span class="hero-current-label">Currently at</span>
-          <img src="images/logos/aganitha.webp" alt="Aganitha logo" width="28" height="28" fetchpriority="high">
-          <span class="hero-current-name">Aganitha</span>
-        </div>
 
-        <div class="hero-logos-pill hero-logos-previous">
-          <span class="hero-current-label">Previously worked with</span>
-          <div class="hero-logos-grid">
-            <img src="images/logos/nxtwave.webp" alt="NxtWave logo" title="NxtWave" width="24" height="24" loading="lazy">
-            <img src="images/logos/walmart.webp" alt="Walmart logo" title="Walmart" width="24" height="24" loading="lazy">
-            <img src="images/logos/saskpoly.webp" alt="Saskatchewan Polytechnic logo" title="Saskatchewan Polytechnic" width="24" height="24" loading="lazy">
-            <img src="images/logos/eci.webp" alt="Election Commission of India logo" title="Election Commission of India" width="24" height="24" loading="lazy">
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -217,7 +196,7 @@
   <section id="about">
     <div class="page-container">
       <div class="section-intro">
-        <span class="section-eyebrow">About Me</span>
+
         <h2>Designing for Scale and Intelligence</h2>
         <p class="lead">Bridging the gap between complex research and production-grade engineering.</p>
       </div>
@@ -259,12 +238,12 @@
           <div class="stat-box">
             <div class="stat-icon"><i class="fa fa-building-o" aria-hidden="true"></i></div>
             <div class="stat-number">Aganitha</div>
-            <div class="stat-label">Current Company</div>
+            <div class="stat-label">Most Recent</div>
           </div>
           <div class="stat-box">
             <div class="stat-icon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
-            <div class="stat-number">Hyderabad</div>
-            <div class="stat-label">Telangana, IN</div>
+            <div class="stat-number">Bangalore</div>
+            <div class="stat-label">Karnataka, IN</div>
           </div>
         </div>
 
@@ -296,7 +275,7 @@
   <section id="resume">
     <div class="page-container">
       <div class="section-intro">
-        <span class="section-eyebrow">Work Experience</span>
+
         <h2>Professional Experience</h2>
         <p class="lead">A history of building production-grade AI platforms, scalable backend services, and high-impact systems.</p>
       </div>
@@ -330,7 +309,7 @@
   <section id="education">
     <div class="page-container">
       <div class="section-intro">
-        <span class="section-eyebrow">Academic Background</span>
+
         <h2>Education</h2>
         <p class="lead">Formal education and foundational degrees in computer science and cyber security.</p>
       </div>
@@ -345,7 +324,7 @@
   <section id="projects">
     <div class="page-container">
       <div class="section-intro">
-        <span class="section-eyebrow">Featured Projects</span>
+
         <h2>Built with Craft &amp; Precision</h2>
         <p class="lead">Open-source tools, system utilities, and production web platforms.</p>
       </div>
@@ -374,31 +353,11 @@
     </div>
   </section>
 
-  <!-- Apple Call to Action Banner -->
-  <div class="page-container">
-    <div class="cta-banner-wrapper">
-      <div class="cta-banner-inner">
-        <div class="cta-banner-text">
-          <h3>Looking for an AI systems engineer?</h3>
-          <p>I build production-grade multi-agent platforms and backend infrastructure. Let's talk about how I can contribute to your team.</p>
-        </div>
-        <div class="cta-banner-actions">
-          <a href="#contact" class="smoothscroll btn btn-primary">
-            <span>Let's Work Together</span> <i class="fa fa-arrow-right" aria-hidden="true"></i>
-          </a>
-          <a href="Profile.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
-            <i class="fa fa-file-pdf-o" aria-hidden="true"></i> <span>Download Resume</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- Skills & Tech Stack Section -->
   <section id="myskills">
     <div class="page-container">
       <div class="section-intro">
-        <span class="section-eyebrow">Technical Mastery</span>
+
         <h2>Systems &amp; AI Stack</h2>
         <p class="lead">Production-tested frameworks, distributed backends, languages, and security tooling I leverage daily.</p>
       </div>
@@ -413,25 +372,11 @@
   <!-- Contact Section (Apple Collaboration Hub) -->
   <section id="contact">
     <div class="page-container">
-      <div class="section-intro">
-        <div class="contact-availability-pill">
-          <span class="pulse-green-dot" aria-hidden="true"></span>
-          <span>Open to AI Systems &amp; Backend Engineering Roles</span>
-        </div>
-        <span class="section-eyebrow">Let's Connect</span>
-        <h2>Start a Conversation</h2>
-        <p class="lead">Open to impactful software engineering roles, multi-agent platform architecture, and high-scale backend engineering opportunities.</p>
-      </div>
-
       <div class="apple-card contact-studio-card">
         
         <!-- Header -->
         <div class="contact-studio-header">
-          <div class="contact-status-capsule">
-            <span class="pulse-dot" aria-hidden="true"></span>
-            <span>Available for Full-Time Roles &amp; High-Impact AI Projects</span>
-          </div>
-          <h3 class="contact-studio-title">Let's Start a Conversation.</h3>
+          <h3 class="contact-studio-title">Let's connect.</h3>
           <p class="contact-studio-lead">
             Whether you have an engineering role, a distributed systems architecture to debate, or an ambitious project — I'd love to connect.
           </p>
@@ -498,7 +443,7 @@
                 <h4>Location</h4>
                 <span class="tile-badge">IST</span>
               </div>
-              <p class="tile-handle">Hyderabad, India</p>
+              <p class="tile-handle">Bangalore, India</p>
               <span class="tile-sub">UTC+5:30 Timezone</span>
             </div>
           </div>
@@ -522,10 +467,22 @@
   </footer>
 
   <!-- JavaScript Files -->
-  <script src="js/data.js?v=2.2.0"></script>
-  <script src="js/app.js?v=2.2.0"></script>
-  <script src="js/main.js?v=2.2.0"></script>
-  <script src="js/fluid-bg.js?v=2.2.0"></script>
+  <script src="js/data.min.js?v=2.2.6"></script>
+  <script src="js/app.min.js?v=2.2.5"></script>
+  <script src="js/stats.min.js?v=2.2.4"></script>
+  <script src="js/main.min.js?v=2.2.6"></script>
+  <script>
+    (function () {
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var small = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
+      var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+      var save = !!(conn && (conn.saveData || /2g/.test(conn.effectiveType || '')));
+      if (reduce || small || save) return;
+      var s = document.createElement('script');
+      s.src = 'js/fluid-bg.min.js?v=2.2.4';
+      document.body.appendChild(s);
+    })();
+  </script>
 
 </body>
 </html>

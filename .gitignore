@@ -2,3 +2,7 @@ Resume.md
 Profile.pdf
 .claude/
 skills-lock.json
+
+__pycache__/
+*.pyc
+node_modules/

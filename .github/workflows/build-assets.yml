@@ -1,0 +1,52 @@
+name: Build minified assets
+
+on:
+  push:
+    branches:
+      - master
+      - main
+    paths:
+      - 'css/icons.css'
+      - 'css/apple-design.css'
+      - 'css/fonts-selfhost.css'
+      - 'js/data.js'
+      - 'js/app.js'
+      - 'js/main.js'
+      - 'js/stats.js'
+      - 'js/fluid-bg.js'
+      - '.github/workflows/build-assets.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-assets
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Build minified CSS/JS
+        run: npx --yes esbuild@0.25.0 css/icons.css --minify --outfile=css/icons.min.css && npx --yes esbuild@0.25.0 css/apple-design.css --minify --outfile=css/apple-design.min.css && npx --yes esbuild@0.25.0 css/fonts-selfhost.css --minify --outfile=css/fonts-selfhost.min.css && npx --yes esbuild@0.25.0 js/data.js --minify --outfile=js/data.min.js && npx --yes esbuild@0.25.0 js/app.js --minify --outfile=js/app.min.js && npx --yes esbuild@0.25.0 js/main.js --minify --outfile=js/main.min.js && npx --yes esbuild@0.25.0 js/stats.js --minify --outfile=js/stats.min.js && npx --yes esbuild@0.25.0 js/fluid-bg.js --minify --outfile=js/fluid-bg.min.js
+
+      - name: Commit updated minified assets
+        run: |
+          if git diff --quiet -- css/*.min.css js/*.min.js; then
+            echo "Minified assets unchanged."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add css/icons.min.css css/apple-design.min.css css/fonts-selfhost.min.css js/data.min.js js/app.min.js js/main.min.js js/stats.min.js js/fluid-bg.min.js
+          git commit -m "chore: rebuild minified assets"
+          git push

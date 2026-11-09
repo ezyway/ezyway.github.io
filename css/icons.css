@@ -7,7 +7,7 @@
   font-family: 'Font Awesome 6 Free';
   font-style: normal;
   font-weight: 900;
-  font-display: block;
+  font-display: swap;
   src: url("../fonts/fontawesome/fa-solid-900.woff2") format("woff2");
 }
 
@@ -15,7 +15,7 @@
   font-family: 'Font Awesome 6 Free';
   font-style: normal;
   font-weight: 400;
-  font-display: block;
+  font-display: swap;
   src: url("../fonts/fontawesome/fa-regular-400.woff2") format("woff2");
 }
 
@@ -23,7 +23,7 @@
   font-family: 'Font Awesome 6 Brands';
   font-style: normal;
   font-weight: 400;
-  font-display: block;
+  font-display: swap;
   src: url("../fonts/fontawesome/fa-brands-400.woff2") format("woff2");
 }
 
@@ -212,3 +212,27 @@
 .fa-shield:before,
 .fa-shield-halved:before,
 .fa-shield-alt:before { content: "\f3ed"; }
+
+/* Added: icons used by site, FA v4 compatibility (CDN removed) */
+.fa-external-link:before,
+.fa-external-link-alt:before { content: "\f35d"; }
+.fa-trophy:before { content: "\f091"; }
+.fa-minus:before { content: "\f068"; }
+.fa-globe:before { content: "\f0ac"; }
+.fa-ship:before { content: "\f21a"; }
+.fa-sliders:before,
+.fa-sliders-h:before { content: "\f1de"; }
+.fa-calendar-o:before,
+.fa-calendar:before { content: "\f133"; }
+.fa-calendar-o:before,
+.fa-check-circle-o:before,
+.fa-comments-o:before,
+.fa-square-o:before {
+  font-family: 'Font Awesome 6 Free' !important;
+  font-weight: 400 !important;
+}
+.fa-check-circle-o:before,
+.fa-check-circle:before { content: "\f058"; }
+.fa-comments-o:before,
+.fa-comments:before { content: "\f086"; }
+.fa-square-o:before { content: "\f0c8"; }

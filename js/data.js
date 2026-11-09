@@ -3,7 +3,7 @@ const resumeData = {
     birthDate: "1999-06-01", // June 1, 1999
     fullName: "Sreyas Cheeran Velikoth",
     email: "cvbiro.career@gmail.com",
-    location: "Hyderabad, Telangana, India",
+    location: "Bangalore, Karnataka, India",
     githubUrl: "https://github.com/ezyway",
     linkedinUrl: "https://linkedin.com/in/cvbiro"
   },
@@ -11,12 +11,12 @@ const resumeData = {
     {
       role: "Jr. Full Stack Developer",
       company: "Aganitha Cognitive Solutions",
-      location: "Hyderabad, India",
+      location: "Bangalore, India",
       start: "2026-04",
-      end: "present",
+      end: "2026-10",
       category: "ai-dev",
       logo: "images/logos/aganitha.webp",
-      tag: "Current Role · AI & Systems",
+      tag: "AI & Systems",
       tagType: "green",
       summary: "Architecting and scaling production-grade multi-agent LLM platforms and cloud-native backend services.",
       highlights: [
@@ -29,7 +29,7 @@ const resumeData = {
     {
       role: "Jr. Developer Intern",
       company: "Aganitha Cognitive Solutions",
-      location: "Hyderabad, India",
+      location: "Bangalore, India",
       start: "2025-09",
       end: "2026-03",
       category: "ai-dev",
@@ -48,7 +48,7 @@ const resumeData = {
     {
       role: "Software Developer Instructor Trainee",
       company: "NxtWave",
-      location: "Hyderabad, Telangana, India",
+      location: "Bangalore, Karnataka, India",
       start: "2025-06",
       end: "2025-07",
       category: "dev",
@@ -226,17 +226,18 @@ const resumeData = {
   ],
   projects: [
     {
+      key: "rezmon",
       title: "RezMon",
       icon: "fa-dashboard",
       category: "systems",
-      badge: "22K+ Downloads",
+      badge: "31.4K+ Downloads",
       badgeType: "green",
       description: "A GNOME Shell system monitor extension displaying live CPU, RAM, and network statistics directly in the Linux system tray.",
-      impact: "22,000+ Downloads · Published on GNOME Marketplace",
+      impact: "31,398+ Downloads · Published on GNOME Marketplace",
       tags: ["JavaScript", "GNOME Shell", "Linux", "System Monitor"],
       live: "https://extensions.gnome.org/extension/6952/rezmon/",
       liveLabel: "GNOME Extensions",
-      preview: "images/projects/rezmon.png",
+      preview: "images/projects/rezmon.webp",
       github: "https://github.com/ezyway/RezMon"
     },
     {
@@ -250,7 +251,7 @@ const resumeData = {
       tags: ["PHP", "JavaScript", "HTML5 Canvas", "Docker", "UI/UX Architecture"],
       live: "https://nayoratechnologies.com/",
       liveLabel: "Live Website",
-      preview: "images/projects/nayora.png",
+      preview: "images/projects/nayora.webp",
       extraLink: "https://www.linkedin.com/company/nayoratechnologies/",
       extraLabel: "LinkedIn",
       extraIcon: "fa-linkedin"
@@ -266,7 +267,7 @@ const resumeData = {
       tags: ["PHP 8.2", "Apache", "Modular Architecture", "SEO", "Docker"],
       live: "https://www.shrivjmodhacollege.com/",
       liveLabel: "Live Website",
-      preview: "images/projects/shrivjmodhacollege.png"
+      preview: "images/projects/shrivjmodhacollege.webp"
     },
     {
       title: "Maruti Nandan Exports",
@@ -279,7 +280,7 @@ const resumeData = {
       tags: ["PHP", "HTML5/CSS3", "JavaScript", "Logistics", "Docker"],
       live: "https://marutinandan.co/",
       liveLabel: "Live Website",
-      preview: "images/projects/marutinandan.png"
+      preview: "images/projects/marutinandan.webp"
     },
     {
       title: "Motion-Detection",
@@ -430,7 +431,7 @@ const resumeData = {
           level: "Production Core",
           category: "languages",
           app: "RezMon & Web Apps",
-          desc: "Built RezMon GNOME Shell extension (22k+ users) with GJS; client-side canvas physics and reactive UI engineering.",
+          desc: "Built RezMon GNOME Shell extension (31k+ users) with GJS; client-side canvas physics and reactive UI engineering.",
           tags: ["GNOME GJS", "Async / Await", "Canvas API"]
         },
         {

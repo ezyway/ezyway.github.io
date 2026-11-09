@@ -883,7 +883,7 @@
     container.style.opacity = '0.9';
 
     function sizeCanvas() {
-      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      var dpr = Math.min(window.devicePixelRatio || 1, 1.5);
       var w = Math.max(1, Math.floor(container.clientWidth * dpr));
       var h = Math.max(1, Math.floor(container.clientHeight * dpr));
       if (canvas.width !== w || canvas.height !== h) {
@@ -903,7 +903,11 @@
     });
 
     var lastTime = performance.now();
+    var rafId = 0;
+    var running = false;
+
     function frame(now) {
+      if (!running) return;
       var dt = Math.min((now - lastTime) / 1000, 0.016666);
       lastTime = now;
 
@@ -927,9 +931,28 @@
       applyBloom();
       applySunrays();
       render();
-      requestAnimationFrame(frame);
+      rafId = requestAnimationFrame(frame);
     }
-    requestAnimationFrame(frame);
+
+    function startSim() {
+      if (running) return;
+      running = true;
+      lastTime = performance.now();
+      rafId = requestAnimationFrame(frame);
+    }
+
+    function stopSim() {
+      running = false;
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = 0;
+    }
+
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) stopSim();
+      else startSim();
+    });
+
+    if (!document.hidden) startSim();
   }
 
   // Performance: don't pay for the WebGL sim on small screens or when the

@@ -1,0 +1,13 @@
+{
+  "name": "ezyway.github.io",
+  "private": true,
+  "description": "Build/minify static assets for the portfolio (source -> *.min.*).",
+  "scripts": {
+    "build:css": "esbuild css/icons.css --minify --outfile=css/icons.min.css && esbuild css/apple-design.css --minify --outfile=css/apple-design.min.css && esbuild css/fonts-selfhost.css --minify --outfile=css/fonts-selfhost.min.css",
+    "build:js": "esbuild js/data.js --minify --outfile=js/data.min.js && esbuild js/app.js --minify --outfile=js/app.min.js && esbuild js/main.js --minify --outfile=js/main.min.js && esbuild js/stats.js --minify --outfile=js/stats.min.js && esbuild js/fluid-bg.js --minify --outfile=js/fluid-bg.min.js",
+    "build": "npm run build:css && npm run build:js"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0"
+  }
+}

@@ -292,10 +292,10 @@ function updateThemeIcon(theme) {
   var themeToggleBtn = document.getElementById("theme-toggle");
   if (!themeToggleBtn) return;
   if (theme === "light") {
-    themeToggleBtn.innerHTML = '<i class="fa fa-moon-o" aria-hidden="true"></i>';
+    themeToggleBtn.innerHTML = '<i class="fa fa-moon" aria-hidden="true"></i>';
     themeToggleBtn.setAttribute("aria-label", "Switch to Dark Mode");
   } else {
-    themeToggleBtn.innerHTML = '<i class="fa fa-sun-o" aria-hidden="true"></i>';
+    themeToggleBtn.innerHTML = '<i class="fa fa-sun" aria-hidden="true"></i>';
     themeToggleBtn.setAttribute("aria-label", "Switch to Light Mode");
   }
 }
@@ -459,13 +459,18 @@ document.addEventListener("DOMContentLoaded", function() {
       let previewCoverHtml = "";
       if (proj.live) {
         const previewUrl = proj.preview || `https://api.microlink.io/?url=${encodeURIComponent(proj.live)}&screenshot=true&meta=false&embed=screenshot.url`;
+        var previewBase = String(previewUrl).replace(/\.[^.]+$/, "");
+        var previewSrcset = previewBase + "-480.webp 480w, " + previewBase + "-800.webp 800w";
         previewCoverHtml = `
           <div class="project-preview-cover">
-            <img src="${previewUrl}" 
-                 alt="${proj.title} live screenshot" 
+            <img src="${previewUrl}"
+                 srcset="${previewSrcset}"
+                 sizes="(max-width: 768px) 92vw, 400px"
+                 alt="${proj.title} live screenshot"
                  width="400"
-                 height="225"
-                 loading="lazy" 
+                 height="250"
+                 loading="lazy"
+                 decoding="async"
                  class="project-preview-img"
                  onerror="this.closest('.project-preview-cover').style.display='none';">
             <div class="project-preview-overlay">
@@ -478,11 +483,13 @@ document.addEventListener("DOMContentLoaded", function() {
       }
 
       const badgeHtml = proj.badge ? `<span class="project-stat-badge tag-${proj.badgeType || 'blue'}">${proj.badge}</span>` : "";
+      const impactHtml = proj.impact
+        ? `<ul class="project-impact">${proj.impact.split("·").map(item => item.trim()).filter(Boolean).map(item => `<li>${item}</li>`).join("")}</ul>`
+        : "";
 
       projHtml += `
-        <div class="project-card" data-tilt data-category="${proj.category || 'all'}">
+        <div class="project-card" data-tilt data-category="${proj.category || 'all'}"${proj.key ? ` data-project-key="${proj.key}"` : ''}>
           <div>
-            ${previewCoverHtml}
             <div class="project-header-row">
               <div class="project-title-group">
                 <div class="project-icon-disc"><i class="fa ${proj.icon}" aria-hidden="true"></i></div>
@@ -490,8 +497,9 @@ document.addEventListener("DOMContentLoaded", function() {
               </div>
               ${badgeHtml}
             </div>
+            ${previewCoverHtml}
             <p class="project-desc">${proj.description}</p>
-            ${proj.impact ? `<div class="project-impact"><i class="fa fa-bolt" aria-hidden="true"></i> ${proj.impact}</div>` : ""}
+            ${impactHtml}
           </div>
           <div>
             <div class="project-tags">
